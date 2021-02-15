@@ -1,0 +1,832 @@
+/*
+
+
+
+    " Reimplement the wheel to either learn, or make it better. "
+
+    http://www.haydex.com/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: YouTubeTracker,
+	Description: Tracking YouTube videos.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2019 HAYDEX, All Rights Reserved.
+	
+	
+	
+*/
+
+/** Global settings START **/
+
+body {
+	background-color:#2F2D2C;
+    margin: 0px;
+    font-family: 'Roboto', sans-serif;
+    color: white;
+    -webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+a {
+    text-decoration: none;
+    color: white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    -webkit-box-sizing: border-box;
+ 	-moz-box-sizing: border-box;
+ 	box-sizing: border-box;
+}
+
+/* interface */
+
+:root {
+
+    /* theme */
+
+    --reddish: #fd4444;
+    --reddishLight: rgb(255, 113, 113);
+    --reddishLight2: rgb(253, 68, 68, 0.4);
+    --blackish: #242120;
+    --blackish2: #2c2928;
+    --shadow: rgb(0, 0, 0, 0.5);
+    --blackishTransparent0: rgb(36, 33, 32, 0.9);
+    --blackishTransparent1: rgb(36, 33, 32, 0.3);
+    --blackishTransparent2: rgb(36, 33, 32, 0.2);
+    --blackishTransparent3: rgb(36, 33, 32, 0);
+    --blackishTransparent4: rgb(36, 33, 32, 0);
+    --blackishTransparent5: rgba(36, 33, 32, 0.90);
+    --blackishShadow: hsla(15, 6%, 13%, 0.3);
+    --littleGrey: hsla(15, 6%, 20%, 0.9);
+    --littleGrey2: hsla(15, 6%, 25%, 1);
+    --greyishDark: hsla(15, 6%, 40%, 0.3);
+    --greyish: hsla(15, 6%, 40%, 1);
+    --lightGreyish: hsla(15, 6%, 60%, 1);
+    --lighterGreyish: rgb(230, 230, 230);
+    --whitish: hsla(15, 6%, 100%, 1);
+    --whitishTransparent1: hsla(15, 6%, 100%, 0.9);
+    --blueish: #2C8DFF;
+    --lightBlueish: rgb(136, 191, 255);
+    --lightBlueish1: rgb(75, 159, 255);
+
+    /* fonts */
+
+    --size12: 12px;
+    --size14: 14px;
+    --size16: 16px;
+    --size18: 18px;
+    --size22: 22px;
+    --size28: 28px;
+    --size30: 30px;
+    --size34: 34px;
+    --size38: 38px;
+    --size48: 48px;
+    --size58: 58px;
+
+    /* radius */
+
+    --radius5: 5px;
+    --radius13: 13px;
+    --radius15: 15px;
+    --radius25: 25px;
+    --radius1000: 1000px;
+
+    --homeInterface: url(/video-tracker/assets/images/home-interface.svg);
+
+}
+
+/** Global settings END **/
+
+/** Header START **/
+
+header {
+    background-color: #2F2D2C;
+    width: 100%;
+    display: flex;
+    position: fixed;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    height: 60px;
+    z-index: 1000;
+}
+
+header a#logo {
+
+    align-self: center;
+    left: 0px;
+    margin-left: 20px;
+    width: 235px;
+    height: 25px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -11px;
+
+}
+
+header.scroll a#logo {
+
+    background-position: -11px -51px;
+
+}
+
+header a#logo:hover {
+
+    opacity: 0.8;
+
+}
+
+header nav {
+    height: 40px;
+    line-height: 40px;
+    font-size: 19px;
+    white-space: nowrap;
+    align-self: center;
+    margin-right: 20px;
+}
+
+header nav ul {
+    display: inline-block;
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 30px;
+    text-align: left;
+}
+
+header nav button#loginButton {
+    height: 40px;
+    padding: 0px 30px;
+    margin-left: 30px;
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+    font-size: 19px;
+    font-weight: 600;
+    border-radius: 25px;
+    outline:0;
+    cursor: hand;
+	cursor: pointer;
+}
+
+header nav button#loginButton:hover {
+    background-color: white;
+    color: #2F2D2C;
+}
+
+/** Header END **/
+
+/** Theme START **/
+
+section#theme {
+    position: relative;
+    padding-top: 80px;
+    min-height: 730px;
+    text-align: center;
+    overflow: hidden;
+}
+
+section#theme h1#title {
+    font-size: 55px;
+    font-weight: 400;
+    margin-top: 50px;
+}
+
+section#theme p#description {
+    font-size: 18px;
+    font-weight: 400;
+    max-width: 620px;
+    margin: 0px auto;
+    margin-top: 10px;
+    line-height: 28px;
+}
+
+section#theme div#search {
+    text-align: center;
+    margin-top: 20px;
+}
+
+section#theme div#search input#searchBox {
+    font-family: 'Roboto', sans-serif;
+    max-width: 620px;
+    color: white;
+    border: 0px solid;
+    font-size: 55px;
+    font-weight: 400;
+    text-align: center;
+    background-color: transparent;
+	outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+}
+
+section#theme div#search input#searchBox::placeholder {
+    color: white;
+    opacity: 0.3;
+}
+
+section#theme div#search div#searchIcon {
+    display: inline-block;
+    width: 0px;
+    height: 40px;
+    background-image: url(../images/search-icon.svg);
+    background-repeat: no-repeat;
+    opacity: 0.5;
+}
+
+section#theme div#search div#searchIcon.typing {
+    background-image: url(../images/close-icon.svg);
+    background-position: center;
+    margin-right: 10px;
+    width: 40px;
+    opacity: 1;
+    cursor: hand;
+	cursor: pointer;
+}
+
+section#theme div#search div#line {
+    height: 3px;
+    width: 580px;
+    border-radius: 100px;
+    background-color: white;
+    opacity: 0.3;
+    margin: 0px auto;
+}
+
+section#theme div#search div#line.typing {
+    opacity: 0;
+}
+
+section#theme button#startButton {
+    width: 200px;
+    height: 60px;
+    margin-top: 30px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 50px;
+    background-color: transparent;
+    font-size: 22px;
+    font-weight: 600;
+    outline:0;
+    cursor: hand;
+    cursor: pointer;
+}
+
+section#theme button#startButton:hover {
+    color: #2F2D2C;
+    background-color: white;
+}
+
+section#theme div#themeIllustration {
+    position: absolute;
+    width: 760px;
+    height: 314px;
+    background-image: url("../images/theme-illustration.svg");
+    background-repeat: no-repeat;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
+}
+
+section#theme div#gradient {
+    position: absolute;
+    width: 2000px;
+    height: 500px;
+    background-image: radial-gradient(at 50% 100%, #454545,#2F2D2C, #2F2D2C);
+    background-repeat: no-repeat;
+    bottom: 0px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -3;
+}
+
+section#theme div#whiteBox {
+    position: absolute;
+    width: 100%;
+    height: 75px;
+    background-color: #F3F4F5;
+    bottom: 0px;
+    z-index: -2;
+}
+
+/** Theme END **/
+
+/** Help START **/
+
+button#helpButton {
+    bottom: 20px;
+    right: 20px;
+    position: fixed;
+    width: 60px;
+    height: 60px;
+    border-radius: 100%;
+    border: 0px;
+    color: white;
+    background-color: #FD4646;
+    font-size: 35px;
+    outline:0;
+    cursor: hand;
+	cursor: pointer;
+}
+
+button#helpButton:hover {
+    background-color: rgb(230, 48, 48);
+}
+
+button#helpButton:active {
+    background-color: rgb(196, 36, 36);
+}
+
+/** Help END **/
+
+/** Why START **/
+
+section#why {
+    text-align: center;
+    color: #2F2D2C;
+    background-color: #F3F4F5;
+    padding-top: 50px;
+    padding-bottom: 100px;
+}
+
+section#why h1#title {
+    text-align: center;
+    font-size: 55px;
+    font-weight: 400;
+}
+
+section#why p#description {
+    font-size: 18px;
+    font-weight: 400;
+    max-width: 620px;
+    margin: 0px auto;
+    margin-top: 10px;
+    line-height: 28px;
+}
+
+section#why ul#items {
+    margin-top: 30px;
+}
+
+section#why ul#items li {
+    display: inline-block;
+    width: 235px;
+    margin-right: 15px;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+
+section#why ul#items li h3#title {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+section#why ul#items li p#details {
+    font-size: 18px;
+    line-height: 28px;
+}
+
+section#why ul#items li div#illustration {
+    display: inline-block;
+    width: 114px;
+    height: 117px;
+    margin-bottom: 10px;
+    background-repeat: no-repeat;
+}
+
+section#why ul#items li#item1 div#illustration {
+    background-image: url("../images/research-based-illustration.svg");
+}
+
+section#why ul#items li#item2 div#illustration {
+    background-image: url("../images/user-friendly-illustration.svg");
+}
+
+section#why ul#items li#item3 div#illustration {
+    background-image: url("../images/mobile-optimized-illustration.svg");
+}
+
+section#why button#startTrackingButton {
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    color: white;
+    border: 0px;
+    border-radius: 50px;
+    background-color: #FD4646;
+    font-size: 22px;
+    font-weight: 600;
+    outline:0;
+    cursor: hand;
+    cursor: pointer;
+}
+
+section#why button#startTrackingButton:hover {
+    background-color: rgb(230, 48, 48);
+}
+
+section#why button#startTrackingButton:active {
+    background-color: rgb(196, 36, 36);
+}
+
+/** Why END **/
+
+/** What START **/
+
+section#what {
+    text-align: center;
+    color: #2F2D2C;
+    background-color: white;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+section#what h1#title {
+    text-align: center;
+    font-size: 55px;
+    font-weight: 400;
+}
+
+section#what ul#items {
+    margin-top: 30px;
+}
+
+section#what ul#items li {
+    display: inline-block;
+    vertical-align: top;
+    width: 280px;
+    height: 140px;
+    margin-right: 10px;
+    margin-left: 10px;
+    margin-top: 20px;
+    /* border-left: 3px solid #2F2D2C; */
+    /* text-align: left; */
+    padding-left: 20px;
+    overflow: hidden;
+}
+
+section#what ul#items li h3#title {
+    height: 80px;
+    font-size: 35px;
+    line-height: 40px;
+    font-weight: 900;
+    margin-bottom: 10px;
+}
+
+section#what ul#items li p#details {
+    font-size: 18px;
+}
+
+section#what button#startTrackingButton {
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    color: white;
+    border: 0px;
+    border-radius: 50px;
+    background-color: #FD4646;
+    font-size: 22px;
+    font-weight: 600;
+    outline:0;
+    cursor: hand;
+    cursor: pointer;
+}
+
+section#what button#startTrackingButton:hover {
+    background-color: rgb(230, 48, 48);
+}
+
+section#what button#startTrackingButton:active {
+    background-color: rgb(196, 36, 36);
+}
+
+/** What END **/
+
+/** Testimonials START **/
+
+section#testimonials {
+    text-align: center;
+    color: white;
+    background-color: #FD4646;
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+section#testimonials h4#title {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+section#testimonials ul#items {
+    margin-top: 30px;
+}
+
+section#testimonials ul#items li {
+}
+
+section#testimonials ul#items p#quote {
+    font-size: 55px;
+    font-weight: 900;
+    line-height: 55px;
+    max-width: 800px;
+    margin: 0px auto;
+}
+
+section#testimonials ul#items p#author {
+    font-size: 18px;
+    margin-top: 20px;
+}
+
+section#what ul#items li p#details {
+    font-size: 18px;
+}
+
+section#what button#startTrackingButton {
+    width: 200px;
+    height: 60px;
+    margin-top: 50px;
+    color: white;
+    border: 0px;
+    border-radius: 50px;
+    background-color: #FD4646;
+    font-size: 22px;
+    font-weight: 600;
+    outline:0;
+    cursor: hand;
+    cursor: pointer;
+}
+
+/** Testimonials END **/
+
+/** Sponsors START **/
+
+section#sponsors {
+    text-align: center;
+    color: #2F2D2C;
+    background-color: #F3F4F5;
+    padding-top: 100px;
+    padding-bottom: 50px;
+}
+
+section#sponsors h4#title {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+section#sponsors ul#items {
+    margin-top: 50px;
+}
+
+section#sponsors ul#items h4#label {
+    display: inline-block;
+    height: 100px;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+section#sponsors ul#items li {
+    display: inline-block;
+    width: 120px;
+    margin-right: 10px;
+    margin-left: 10px;
+    vertical-align: top;
+}
+
+section#sponsors ul#items li div#logo {
+    display: inline-block;
+    width: 115px;
+    height: 115px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    cursor: hand;
+    cursor: pointer;
+}
+
+section#sponsors ul#items li#item1 div#logo {
+    background-image: url("../images/sponsors/png/national-science-foundation.png");
+}
+
+section#sponsors ul#items li#item2 {
+    width: 165px;
+}
+
+section#sponsors ul#items li#item2 div#logo {
+    width: 165px;
+    background-image: url("../images/sponsors/png/office-of-naval-research.png");
+}
+
+section#sponsors ul#items li#item3 div#logo {
+    background-image: url("../images/sponsors/png/air-force-research-laboratory.png");
+}
+
+section#sponsors ul#items li#item4 {
+    width: 165px;
+}
+
+section#sponsors ul#items li#item4 div#logo {
+    width: 165px;
+    background-image: url("../images/sponsors/png/defense-advanced-research-projects-agency.png");
+}
+
+section#sponsors ul#items li#item5 div#logo {
+    background-image: url("../images/sponsors/png/army-research-office.png");
+}
+
+section#sponsors ul#items li#item6 div#logo {
+    background-image: url("../images/sponsors/png/department-of-homeland-security.png");
+}
+
+/** Sponsors END **/
+
+/** COSMOS START **/
+
+section#COSMOS {
+    text-align: center;
+    background-color: #F3F4F5;
+    padding-bottom: 100px;
+    color: #2F2D2C;
+}
+
+section#COSMOS h1#title {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+section#COSMOS div#logo {
+    margin: 0px auto;
+    background-image: url("../images/cosmos-bottom-logo.svg");
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 307px;
+    height: 88px;
+    margin-top: 20px;
+}
+
+section#COSMOS button#learnMoreButton {
+    width: 200px;
+    height: 60px;
+    margin-top: 20px;
+    color: #2F2D2C;
+    border: 2px solid #2F2D2C;
+    border-radius: 50px;
+    background-color: transparent;
+    font-size: 22px;
+    font-weight: 600;
+    outline:0;
+    cursor: hand;
+    cursor: pointer;
+}
+
+section#COSMOS button#learnMoreButton:hover {
+    color: white;
+    background-color: #2F2D2C;
+}
+
+section#COSMOS button#learnMoreButton:active {
+    color: #2F2D2C;
+    background-color: white;
+}
+
+/** COSMOS END **/
+
+/** Footer START **/
+
+footer p#copyright {
+    text-align: center;
+    padding: 10px;
+    color: #2F2D2C;
+    background-color: #F3F4F5;
+}
+
+/** Footer END **/
+
+/* General Message */
+
+div#generalMessage {
+
+    display: none;
+    position: fixed;
+    left:0px;
+    top: 0px;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20000;
+
+}
+
+div#generalMessage.displayed {
+
+    display: flex;
+
+}
+
+div#generalMessage div#overlayBackground {
+
+    background-color: var(--blackish);
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+}
+
+div#generalMessage div#messageBox {
+
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    width: 500px;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 60px 40px;
+    z-index: 20002;
+
+}
+
+div#generalMessage div#messageBox button {
+
+    border: 0px;
+    outline: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#generalMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 20px;
+    right: 20px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.7);
+
+}
+
+div#generalMessage div#messageBox p#message {
+
+    width: 100%;
+    font-size: var(--size30);
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 50px;
+
+}
+
+div#generalMessage div#messageBox div#action {
+
+    width: 100%;
+    text-align: center;
+
+}
+
+div#generalMessage div#messageBox div#action button {
+
+    background-color: var(--lighterGreyish);
+    padding: 10px 20px;
+    margin: 0px 5px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button:hover {
+
+    background-color: var(--blackish);
+    color: var(--whitish);
+
+}
+
+div#generalMessage div#messageBox div#action button.negative {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+/** Screens **/
+
+@media only screen and (max-width: 1360px) {
+
+    header a#logo {
+
+        background-position: -11px -51px;
+
+    }
+
+}

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+
+<!--
+
+
+
+	" Reimplement the wheel to either learn, or make it better. "
+
+    http://www.haydex.com/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: YouTubeTracker,
+	Description: Tracking YouTube"s data.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2020 HAYDEX, All Rights Reserved.
+	
+	
+	
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="author" content="HAYDEX">
+        <meta name="description" content="Tracking YouTube videos.">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+        <title>Trackers - YouTubeTracker</title>
+        
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/youtubetracker-apple-touch-favicon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/youtubetracker-favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/youtubetracker-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/presentation/loading.css"/>
+        
+        <script src="assets/behavior/loading.js"></script>
+
+    </head>
+    <body>
+        
+        <!-- Header -->
+        <header>
+            <a href="landing.html" id="logo"></a>
+            <nav>
+                <ul>
+                    <a href="index.html">
+                        <li id="homeLink" class="navigationButton">
+                            <div id="homeIcon" class="navIcon"></div>
+                            <p id="home">Home</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li id="trackersLink" class="navigationButton selected">
+                            <div id="trackersIcon" class="navIcon"></div>
+                            <p id="trackers">Trackers</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li id="favoritesLink" class="navigationButton">
+                            <div id="favoritesIcon" class="navIcon"></div>
+                            <p id="favorites">Favorites</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+            <div id="username">
+                <div id="photo">
+                    <div id="indicator" class="active"></div>
+                </div>
+                <div id="name">Steven</div>
+                <div id="menu"></div>
+                <div id="arrow"></div>
+            </div>
+        </header>
+
+        <!-- Search -->
+        <section id="search">
+            <div id="wrapper">
+                <div id="searchIcon"></div>
+                <input type="text" id="searchBox" placeholder="Search Trackers" autocomplete="off">
+            </div>
+        </section>
+
+        <!-- separator -->
+        <div id="separator"></div>
+
+        <!-- Options -->
+        <section id="options">
+            <p id="counters">
+                <span id="trackersCounter">15</span>
+                <span>Trackers</span>
+            </p>
+            <div id="views">
+                <p id="label">View</p>
+                <button id="gridView" class="viewButton selected"></button>
+                <button id="listView" class="viewButton"></button>
+            </div>
+        </section>
+    
+        <!-- Trackers START -->
+        <main id="trackers">
+
+            <div id="loading"></div>
+
+        </main>
+
+        <!-- Return TOP -->
+        <button id="returnTop" title="Return to top."></button>
+        
+        <!-- Copyright -->
+        <footer>
+            <div id="copyright">
+                <a id="cosmos" href="http://cosmos.ualr.edu"></a>
+                <p id="description">
+                    COLLABORATORIUM FOR SOCIAL MEDIA AND ONLINE BEHAVIORAL STUDIES
+                </p>
+            </div>
+        </footer>
+
+    </body>
+</html>

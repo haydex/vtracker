@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22.766" height="20.738" viewBox="0 0 22.766 20.738">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="22.766" height="20.739" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="Heart" transform="translate(0 -0.001)" clip-path="url(#clip-path)">
+    <path id="Heart-2" data-name="Heart" d="M19.131,1.685a5.579,5.579,0,0,0-7.942,0l-.781.781-.781-.781A5.616,5.616,0,0,0,1.685,9.627l8.723,8.723,8.723-8.723a5.579,5.579,0,0,0,0-7.942" transform="translate(0.975 0.975)" fill="none" stroke="#fff" stroke-width="2" fill-rule="evenodd"/>
+  </g>
+</svg>

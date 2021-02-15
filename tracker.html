@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+
+<!--
+
+
+
+	" Reimplement the wheel to either learn, or make it better. "
+
+    http://www.haydex.com/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: YouTubeTracker,
+	Description: Tracking YouTube"s data.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2020 HAYDEX, All Rights Reserved.
+	
+	
+	
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="author" content="HAYDEX">
+        <meta name="description" content="Tracking YouTube videos.">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+        <title>Tracker - YouTubeTracker</title>
+        
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/youtubetracker-apple-touch-favicon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/youtubetracker-favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/youtubetracker-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/presentation/tracker.css"/>
+        
+        <script src="assets/behavior/tracker.js"></script>
+
+    </head>
+    <body>
+        
+        <!-- Header -->
+        <header>
+            <a href="landing.html" id="logo"></a>
+            <nav>
+                <ul>
+                    <a href="index.html">
+                        <li id="homeLink" class="navigationButton selected">
+                            <div id="homeIcon" class="navIcon"></div>
+                            <p id="home">Home</p>
+                        </li>
+                    </a>
+                    <a href="trackers.html">
+                        <li id="trackersLink" class="navigationButton">
+                            <div id="trackersIcon" class="navIcon"></div>
+                            <p id="trackers">Trackers</p>
+                        </li>
+                    </a>
+                    <a href="">
+                        <li id="favoritesLink" class="navigationButton">
+                            <div id="favoritesIcon" class="navIcon"></div>
+                            <p id="favorites">Favorites</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+            <div id="username">
+                <div id="photo">
+                    <div id="indicator" class="active"></div>
+                </div>
+                <div id="name">Steven</div>
+                <div id="menu"></div>
+                <div id="arrow"></div>
+            </div>
+        </header>
+
+        <!-- Content -->
+        <main id="content">
+            <div id="head">
+                <div id="title">Middle East Tracker</div>
+                <div id="tools">
+                    <button id="analytics"><div id="icon"></div></button>
+                    <button id="edit"><div id="icon"></div></button>
+                    <button id="refresh"><div id="icon"></div></button>
+                    <button id="delete"><div id="icon"></div></button>
+                </div>
+            </div>
+            <div id="dates">
+                <div id="created">Created | 22-07-2018 . 05:30pm</div>
+            </div>
+            <div id="description">Element represents a range of text that is set off from the normal text for some reason. Some examples include technical terms, foreign language phrases, or fictional character thoughts. It is typically displayed in italic type. An HTML element is an individual component of an HTML (Hypertext Markup Language) document or web page. HTML is composed
+            of a tree of HTML nodes.</div>
+
+            <!-- Search -->
+            <form id="search">
+                <label for="searchBox">Search...</label>
+                <input id="searchBox" type="text" placeholder="Search..." autocomplete="">
+                <div id="type">
+                    <button class="typeButton">Videos</button>
+                </div>
+            </form>
+
+            <div id="videosChannels">
+                
+                
+                <ul id="list">
+                    <div id="arrows">
+                        <div id="backArrow" class="arrow"></div>
+                        <div id="forwardArrow" class="arrow"></div>
+                    </div>
+                    <li id="video">
+                        <img id="photo" src="assets/images/search/20.jpg">
+                        <div id="wrapper">
+                            <h2 id="title"><a href="">Dwayne Johnson Reveals Kevin Hart's Awkward Teen Photo</a></h2>
+                            <p id="channel">Engadget</p>
+                            <span id="separator">·</span>
+                            <p id="date">May 20 2019 06:55 PM</p>
+                            <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                            <button id="delete"></button>
+                        </div>
+                        <img id="barcode" src="assets/images/barcodes/barcode.png">
+                    </li>
+                    <li id="video">
+                        <img id="photo" src="assets/images/search/5.jpg">
+                        <div id="wrapper">
+                            <h2 id="title"><a href="">Real Life Trick Shots 2 | Dude Perfect</a></h2>
+                            <p id="channel">Engadget</p>
+                            <span id="separator">·</span>
+                            <p id="date">May 20 2019 06:55 PM</p>
+                            <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                            <button id="delete"></button>
+                        </div>
+                        <img id="barcode" src="assets/images/barcodes/barcode.png">
+                    </li>
+                    <li id="video">
+                        <img id="photo" src="assets/images/search/8.jpg">
+                        <div id="wrapper">
+                            <h2 id="title"><a href="">IT CHAPTER TWO - Official Teaser Trailer [HD]</a></h2>
+                            <p id="channel">Engadget</p>
+                            <span id="separator">·</span>
+                            <p id="date">May 20 2019 06:55 PM</p>
+                            <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                            <button id="delete"></button>
+                        </div>
+                        <img id="barcode" src="assets/images/barcodes/barcode.png">
+                    </li>
+                    <li id="video">
+                        <img id="photo" src="assets/images/search/14.jpg">
+                        <div id="wrapper">
+                            <h2 id="title"><a href="">Winter Bear by V</a></h2>
+                            <p id="channel">Engadget</p>
+                            <span id="separator">·</span>
+                            <p id="date">May 20 2019 06:55 PM</p>
+                            <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                            <button id="delete"></button>
+                        </div>
+                        <img id="barcode" src="assets/images/barcodes/barcode.png">
+                    </li>
+                </ul>
+
+                <div id="pagination">
+                    <div class="page selected">1</div>
+                    <div class="page">2</div>
+                    <div class="page">3</div>
+                    <div class="page">4</div>
+                    <div class="page">5</div>
+                </div>
+            </div>
+        </main>
+
+        <section id="modals">
+            <div id="window">
+                <button id="close"></button>
+            </div>
+            <div id="video" class="modal">
+                <div id="player">
+                    <div id="wrapper">
+                        <iframe width="100%" height="312"
+                            src="https://www.youtube-nocookie.com/embed/Brbrdnh74yA?enablejsapi=1&mute=1&loop=1" frameborder="0"
+                            allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
+                            allowfullscreen></iframe>
+                    </div>
+                    <div id="movieBarCodeWrapper">
+                        <div id="movieBarCode"></div>
+                        <div id="movieBarCodePointer">▼</div>
+                    </div>
+                </div>
+                <div id="tools">
+                    <div id="details">
+                        <div id="head">
+                            <div id="titleWrapper">
+                                <p id="title">Dwayne Johnson is back tonight! Throwback to when he and Jimmy contemplated this
+                                    important question in Blow Your Mind</p>
+                                <!-- <button id="favor"></button> -->
+                            </div>
+                            <div id="statistics">
+                                <div id="tracks"><span id="icon"></span>
+                                    <p>46 Tracks</p>
+                                </div>
+                                <div id="globalTracks"><span id="icon"></span>
+                                    <p>250K All Tracks</p>
+                                </div>
+                                <div id="views"><span id="icon"></span>
+                                    <p>601M Views</p>
+                                </div>
+                                <div id="likes"><span id="icon"></span>
+                                    <p>435K Likes</p>
+                                </div>
+                                <div id="dislikes"><span id="icon"></span>
+                                    <p>322K Dislikes</p>
+                                </div>
+                                <div id="comments"><span id="icon"></span>
+                                    <p>10K Comments</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="horizontalSeparator"></div>
+                        <div id="channel">
+                            <div id="iconWrapper">
+                                <div id="profile"><img id="photo" src="assets/images/search/16.jpg"></div>
+                                <div id="nameWrapper">
+                                    <p id="name">TED Foundation</p>
+                                    <p id="published">2 Years Ago</p>
+                                </div>
+                            </div>
+                            <!-- <div id="subscribers"><span id="icon"></span><p>3M Subscribers</p></div> -->
+                        </div>
+                        <div id="horizontalSeparator"></div>
+                        <div id="description">
+                            <!-- <p>"The Department of Justice has decided not to press charges against former FBI Director James Comey for FBI documents
+                                        he leaked. &raquo; Subscribe to MSNBC: <a class="yt-simple-endpoint style-scope yt-formatted-string"
+                                            spellcheck="false"
+                                            href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FSubscribeTomsnbc"
+                                            target="_blank" rel="nofollow">http://on.msnbc.com/SubscribeTomsnbc</a> MSNBC delivers breaking news, in-depth
+                                        analysis of politics headlines, as well as commentary and informed perspectives. Find video clips and segments from
+                                        The Rachel Maddow Show, Morning Joe, Meet the Press Daily, The Beat with Ari Melber, Deadline: White House with
+                                        Nicolle Wallace, Hardball, All In, Last Word, 11th Hour, and more. Connect with MSNBC Online Visit msnbc.com: <a
+                                            class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                            href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FReadmsnbc"
+                                            target="_blank" rel="nofollow">http://on.msnbc.com/Readmsnbc</a> Subscribe to MSNBC Newsletter: <a
+                                            class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                            href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2FMSNBC.com%2FNewslettersYouTube"
+                                            target="_blank" rel="nofollow">http://MSNBC.com/NewslettersYouTube</a> Find MSNBC on Facebook: <a
+                                            class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                            href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FLikemsnbc"
+                                            target="_blank" rel="nofollow">http://on.msnbc.com/Likemsnbc</a> Follow MSNBC on Twitter: <a
+                                            class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                            href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FFollowmsnbc"
+                                            target="_blank" rel="nofollow">http://on.msnbc.com/Followmsnbc</a> Follow MSNBC on Instagram: <a
+                                            class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                            href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FInstamsnbc"
+                                            target="_blank" rel="nofollow">http://on.msnbc.com/Instamsnbc</a> Justice Department Won't Prosecute James Comey
+                                        For Leaking FBI Memos | Velshi &amp; Ruhle | MSNBC</p> -->
+                        </div>
+                    </div>
+                    <div id="trackers">
+                        <p id="title">My Trackers</p>
+                        <input id="search" placeholder="Search Trackers"></input>
+                        <ul id="trackers">
+                            <li><span>Jeepers Creepers Tracker Version Two</span><button id="checkMark"
+                                    class="selected"></button></li>
+                            <li><span>Russian Hacker</span><button id="checkMark"></button></li>
+                            <li><span>Middle East</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>China Spies</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Pacific Hackers Tracker</span><button id="checkMark"></button></li>
+                            <li><span>Nobel Spies</span><button id="checkMark"></button></li>
+                            <li><span>Hit and go</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Jack Ryan</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Tom Clansy</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Boeing</span><button id="checkMark" class="selected"></button></li>
+                        </ul>
+                        <!-- <p id="status">Click the + button below to create a new tracker.</p> -->
+                        <form id="createTrackerForm">
+                            <div id="createTrackerFormWrapper">
+                                <input id="trackerName" type="text" placeholder="Name" autocomplete="off" class="input">
+                                <textarea id="trackerDescription" placeholder="Description" autocomplete="off"
+                                    class="input"></textarea>
+                            </div>
+        
+                            <button id="addTracker" title="Creat a new tracker"></button>
+                            <div id="createWrapper">
+                                <button id="createTracker" title="Creat tracker">CREATE</button>
+                                <button id="cancel" title="Cancel creating a tracker">CANCEL</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="horizontalSeparator"></div>
+                    <div id="relatedVideos">
+                        <p id="label">Related Videos</p>
+                        <ul id="cards">
+                            <li id="card" class="video">
+                                <div id="thumbnail">
+                                    <img id="photo" id="photo" src="assets/images/search/1.jpg">
+                                    <div id="shadow"></div>
+                                    <button id="favor"></button>
+                                    <div id="duration">5 Min</div>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <div id="wrapper">
+                                            <h4 id="channel">Engadget</h4>
+                                            <span id="separator">·</span>
+                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                        </div>
+                                        <p id="title"
+                                            title="Raptors nearly traded for Paul George, Russell Westbrook to try to keep Kawhi - Woj | SportsCenter">
+                                            <span>Raptors nearly traded for Paul George, Russell Westbrook to try to keep Kawhi
+                                                - Woj |
+                                                SportsCenter</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="video">
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/2.jpg">
+                                    <div id="shadow"></div>
+                                    <button id="favor"></button>
+                                    <div id="duration">5 Min</div>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <div id="wrapper">
+                                            <h4 id="channel">The Wall Street Journal</h4>
+                                            <span id="separator">·</span>
+                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                        </div>
+                                        <p id="title" title="Disney's Mulan - Official Teaser"><span>Disney's Mulan - Official
+                                                Teaser</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="video">
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/3.jpg">
+                                    <div id="shadow"></div>
+                                    <button id="favor"></button>
+                                    <div id="duration">5 Min</div>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <div id="wrapper">
+                                            <h4 id="channel">Smosh</h4>
+                                            <span id="separator">·</span>
+                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                        </div>
+                                        <p id="title" title="Disney Star Cameron Boyce Dies In His Sleep At Age 20"><span>Disney
+                                                Star Cameron
+                                                Boyce Dies In His Sleep At Age 20</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers." class="tracking">3
+                                            TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="video">
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/5.jpg">
+                                    <div id="shadow"></div>
+                                    <button id="favor"></button>
+                                    <div id="duration">5 Min</div>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <div id="wrapper">
+                                            <h4 id="channel">CNET</h4>
+                                            <span id="separator">·</span>
+                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                        </div>
+                                        <p id="title" title="Trap 3 Little Pigs"><span>Trap 3 Little Pigs</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="video">
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/6.jpg">
+                                    <div id="shadow"></div>
+                                    <button id="favor"></button>
+                                    <div id="duration">5 Min</div>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <div id="wrapper">
+                                            <h4 id="channel">World War 3</h4>
+                                            <span id="separator">·</span>
+                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                        </div>
+                                        <p id="title" title="DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump">
+                                            <span>DeMarcus
+                                                Cousins, Rajon Rondo sign with the Lakers | The Jump</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div id="channel" class="modal">
+                <div id="master">
+                    <div id="banner">
+                        <img src="assets/images/channel-banner.jpg" alt="">
+                    </div>
+                    <div id="content">
+                        <div id="details">
+                            <div id="channel">
+                                <div id="topWrapper">
+                                    <div id="iconWrapper">
+                                        <div id="profile"><img id="photo" src="assets/images/search/16.jpg"></div>
+                                        <div id="nameWrapper">
+                                            <p id="name">TED Foundation</p>
+                                            <p id="published">2 Years Ago</p>
+                                        </div>
+                                    </div>
+                                    <button id="favor"></button>
+                                </div>
+                                <div id="statistics">
+                                    <div id="tracks"><span id="icon"></span>
+                                        <p>46 Tracks</p>
+                                    </div>
+                                    <div id="globalTracks"><span id="icon"></span>
+                                        <p>250K Global Tracks</p>
+                                    </div>
+                                    <div id="views"><span id="icon"></span>
+                                        <p>601M Views</p>
+                                    </div>
+                                    <div id="videos"><span id="icon"></span>
+                                        <p>435K Videos</p>
+                                    </div>
+                                    <div id="subscribers"><span id="icon"></span>
+                                        <p>322K Subscribers</p>
+                                    </div>
+                                    <div id="location"><span id="icon"></span>
+                                        <p>US</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="horizontalSeparator"></div>
+                            <div id="description">
+                                <p>"The Department of Justice has decided not to press charges against former FBI Director James
+                                    Comey
+                                    for FBI documents
+                                    he leaked. &raquo; Subscribe to MSNBC: <a
+                                        class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                        href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FSubscribeTomsnbc"
+                                        target="_blank" rel="nofollow">http://on.msnbc.com/SubscribeTomsnbc</a> MSNBC delivers
+                                    breaking
+                                    news, in-depth
+                                    analysis of politics headlines, as well as commentary and informed perspectives. Find video
+                                    clips
+                                    and segments from
+                                    The Rachel Maddow Show, Morning Joe, Meet the Press Daily, The Beat with Ari Melber,
+                                    Deadline: White
+                                    House with
+                                    Nicolle Wallace, Hardball, All In, Last Word, 11th Hour, and more. Connect with MSNBC Online
+                                    Visit
+                                    msnbc.com: <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                        href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FReadmsnbc"
+                                        target="_blank" rel="nofollow">http://on.msnbc.com/Readmsnbc</a> Subscribe to MSNBC
+                                    Newsletter:
+                                    <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                        href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2FMSNBC.com%2FNewslettersYouTube"
+                                        target="_blank" rel="nofollow">http://MSNBC.com/NewslettersYouTube</a> Find MSNBC on
+                                    Facebook:
+                                    <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                        href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FLikemsnbc"
+                                        target="_blank" rel="nofollow">http://on.msnbc.com/Likemsnbc</a> Follow MSNBC on
+                                    Twitter: <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                        href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FFollowmsnbc"
+                                        target="_blank" rel="nofollow">http://on.msnbc.com/Followmsnbc</a> Follow MSNBC on
+                                    Instagram: <a class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+                                        href="https://www.youtube.com/redirect?event=video_description&amp;v=szqDGsKo8Mo&amp;redir_token=DRzZ9WEQxwQpSZ297mwc52JQOuN8MTU2NDc4MjU1NEAxNTY0Njk2MTU0&amp;q=http%3A%2F%2Fon.msnbc.com%2FInstamsnbc"
+                                        target="_blank" rel="nofollow">http://on.msnbc.com/Instamsnbc</a> Justice Department
+                                    Won't
+                                    Prosecute James Comey
+                                    For Leaking FBI Memos | Velshi &amp; Ruhle | MSNBC</p>
+                            </div>
+                        </div>
+                        <div id="horizontalSeparator"></div>
+                        <div id="videos">
+                            <p id="label">Videos</p>
+                            <ul id="cards">
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/9.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title"
+                                                title="I gave him what he deserved! Jorge Masvidal speaks after knocking out Ben Askren in FIVE seconds">
+                                                <span>I gave him what he deserved! Jorge Masvidal speaks after knocking out Ben
+                                                    Askren in FIVE
+                                                    seconds</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/10.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title" title="This is a video title"><span>This is a video title</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/11.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title"
+                                                title="Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most Searched Questions | WIRED">
+                                                <span>Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most
+                                                    Searched Questions |
+                                                    WIRED</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/12.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title"
+                                                title="Adam Devine Gets Patriotic While Eating Spicy Wings | Hot Ones">
+                                                <span>Adam Devine
+                                                    Gets Patriotic While Eating Spicy Wings | Hot Ones</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/13.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title" title="USGS debunks 5 common earthquake myths"><span>USGS debunks 5
+                                                    common earthquake
+                                                    myths</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/14.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title" title="Disney's Mulan - Official Teaser"><span>Disney's Mulan -
+                                                    Official Teaser</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/15.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title" title="Disney Star Cameron Boyce Dies In His Sleep At Age 20">
+                                                <span>Disney Star Cameron
+                                                    Boyce Dies In His Sleep At Age 20</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers."
+                                                class="tracking">3 TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/17.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title" title="Trap 3 Little Pigs"><span>Trap 3 Little Pigs</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li id="card" class="video">
+                                    <ul id="statistics">
+                                        <li id="views" title="Views">
+                                            <div id="icon"></div>
+                                            <p id="counter">345M</p>
+                                        </li>
+                                        <li id="likes" title="Likes">
+                                            <div id="icon"></div>
+                                            <p id="counter">202M</p>
+                                        </li>
+                                        <li id="dislikes" title="Dislikes">
+                                            <div id="icon"></div>
+                                            <p id="counter">199K</p>
+                                        </li>
+                                        <li id="comments" title="Comments">
+                                            <div id="icon"></div>
+                                            <p id="counter">200K</p>
+                                        </li>
+                                    </ul>
+                                    <div id="thumbnail">
+                                        <img id="photo" src="assets/images/search/18.jpg">
+        
+                                        <div id="shadow"></div>
+                                        <button id="favor"></button>
+                                        <div id="duration">5 Min</div>
+                                    </div>
+                                    <div id="detailsWrapper">
+                                        <div id="details">
+                                            <div id="wrapper">
+                                                <h4 id="channel">The Wall Street Journal</h4>
+                                                <span id="separator">·</span>
+                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            </div>
+                                            <p id="title" title="DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump">
+                                                <span>DeMarcus
+                                                    Cousins, Rajon Rondo sign with the Lakers | The Jump</span></p>
+                                        </div>
+                                        <div id="wrapper">
+                                            <button id="trackStatusButton" title="Click to see list of trackers.">0
+                                                TRACKS</button>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="side">
+                    <div id="trackers">
+                        <p id="title">My Trackers</p>
+                        <input id="search" placeholder="Search Trackers"></input>
+                        <ul id="trackers">
+                            <li><span>Jeepers Creepers Tracker Version Two</span><button id="checkMark"
+                                    class="selected"></button>
+                            </li>
+                            <li><span>Russian Hacker</span><button id="checkMark"></button></li>
+                            <li><span>Middle East</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>China Spies</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Pacific Hackers Tracker</span><button id="checkMark"></button></li>
+                            <li><span>Nobel Spies</span><button id="checkMark"></button></li>
+                            <li><span>Hit and go</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Jack Ryan</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Tom Clansy</span><button id="checkMark" class="selected"></button></li>
+                            <li><span>Boeing</span><button id="checkMark" class="selected"></button></li>
+                        </ul>
+                        <!-- <p id="status">Click the + button below to create a new tracker.</p> -->
+                        <form id="createTrackerForm">
+                            <div id="createTrackerFormWrapper">
+                                <input id="trackerName" type="text" placeholder="Name" autocomplete="off" class="input">
+                                <textarea id="trackerDescription" placeholder="Description" autocomplete="off"
+                                    class="input"></textarea>
+                            </div>
+        
+                            <button id="addTracker" title="Creat a new tracker"></button>
+                            <div id="createWrapper">
+                                <button id="createTracker" title="Creat tracker">CREATE</button>
+                                <button id="cancel" title="Cancel creating a tracker">CANCEL</button>
+                            </div>
+                        </form>
+                    </div>
+                    <div id="horizontalSeparator"></div>
+                    <div id="relatedChannels">
+                        <p id="label">Related Channels</p>
+                        <ul id="cards">
+                            <li id="card" class="channel">
+                                <ul id="statistics">
+                                    <li id="views" title="Views">
+                                        <div id="icon"></div>
+                                        <p id="counter">345M</p>
+                                    </li>
+                                    <li id="subscribers" title="Subscribers">
+                                        <div id="icon"></div>
+                                        <p id="counter">200K</p>
+                                    </li>
+                                    <li id="videos" title="Videos">
+                                        <div id="icon"></div>
+                                        <p id="counter">199K</p>
+                                    </li>
+                                </ul>
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/4.jpg">
+                                    <div id="shadow"></div>
+                                    <button id="favor"></button>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <h4 id="created">Created : September 3 2019</h4>
+                                        <p id="title" title="SpaceX"><span>SpaceX</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="channel">
+                                <ul id="statistics">
+                                    <li id="views" title="Views">
+                                        <div id="icon"></div>
+                                        <p id="counter">345M</p>
+                                    </li>
+                                    <li id="subscribers" title="Subscribers">
+                                        <div id="icon"></div>
+                                        <p id="counter">200K</p>
+                                    </li>
+                                    <li id="videos" title="Videos">
+                                        <div id="icon"></div>
+                                        <p id="counter">199K</p>
+                                    </li>
+                                </ul>
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/8.jpg">
+                                    <button id="favor"></button>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <h4 id="created">Created : September 3 2019</h4>
+                                        <p id="title" title="TEDx Talks"><span>TEDx Talks</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="channel">
+                                <ul id="statistics">
+                                    <li id="views" title="Views">
+                                        <div id="icon"></div>
+                                        <p id="counter">345M</p>
+                                    </li>
+                                    <li id="subscribers" title="Subscribers">
+                                        <div id="icon"></div>
+                                        <p id="counter">200K</p>
+                                    </li>
+                                    <li id="videos" title="Videos">
+                                        <div id="icon"></div>
+                                        <p id="counter">199K</p>
+                                    </li>
+                                </ul>
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/16.jpg">
+                                    <button id="favor"></button>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <h4 id="created">Created : September 3 2019</h4>
+                                        <p id="title" title="SpaceX"><span>SpaceX</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                            <li id="card" class="channel">
+                                <ul id="statistics">
+                                    <li id="views" title="Views">
+                                        <div id="icon"></div>
+                                        <p id="counter">345M</p>
+                                    </li>
+                                    <li id="subscribers" title="Subscribers">
+                                        <div id="icon"></div>
+                                        <p id="counter">200K</p>
+                                    </li>
+                                    <li id="videos" title="Videos">
+                                        <div id="icon"></div>
+                                        <p id="counter">199K</p>
+                                    </li>
+                                </ul>
+                                <div id="thumbnail">
+                                    <img id="photo" src="assets/images/search/23.jpg">
+                                    <button id="favor"></button>
+                                </div>
+                                <div id="detailsWrapper">
+                                    <div id="details">
+                                        <h4 id="created">Created : September 3 2019</h4>
+                                        <p id="title" title="TEDx Talks"><span>TEDx Talks</span></p>
+                                    </div>
+                                    <div id="wrapper">
+                                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <button id="scrollDown" title="Scroll video for details"></button>
+            </div>
+        </section>
+
+        <!-- More Menu -->
+        <div id="moreMenu" class="dummy hidden">
+            <ul id="list"></ul>
+        </div>
+
+    </body>
+</html>

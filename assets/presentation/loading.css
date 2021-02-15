@@ -1,0 +1,1216 @@
+/*
+
+
+
+    " Reimplement the wheel to either learn, or make it better. "
+
+    http://www.hayder.design/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: YouTubeTracker,
+	Description: Tracking YouTube"s data.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2019 HAYDER, All Rights Reserved.
+	
+	
+	
+*/
+
+/** Global settings **/
+
+:root {
+    
+    /* theme */
+
+    --reddish: #fd4444;
+    --reddishLight: rgb(255, 113, 113);
+    --reddishLight2: rgb(253, 68, 68, 0.4);
+    --blackish: #242120;
+    --blackish2: #2c2928;
+    --shadow: rgb(0, 0, 0, 0.5);
+    --blackishTransparent0: rgb(36, 33, 32, 0.9);
+    --blackishTransparent1: rgb(36, 33, 32, 0.3);
+    --blackishTransparent2: rgb(36, 33, 32, 0.2);
+    --blackishTransparent3: rgb(36, 33, 32, 0);
+    --blackishTransparent4: rgb(36, 33, 32, 0);
+    --blackishTransparent5: rgba(36, 33, 32, 0.90);
+    --blackishShadow: hsla(15, 6%, 13%, 0.3);
+    --littleGrey: hsla(15, 6%, 20%, 0.9);
+    --littleGrey2: hsla(15, 6%, 25%, 1);
+    --greyishDark: hsla(15, 6%, 40%, 0.3);
+    --greyish: hsla(15, 6%, 40%, 1);
+    --lightGreyish: hsla(15, 6%, 60%, 1);
+    --lighterGreyish: rgb(230, 230, 230);
+    --whitish: hsla(15, 6%, 100%, 1);
+    --whitishTransparent1: hsla(15, 6%, 100%, 0.9);
+    --blueish: #2C8DFF;
+    --lightBlueish: rgb(136, 191, 255);
+    --lightBlueish1: rgb(75, 159, 255);
+
+    /* fonts */
+
+    --size12: 12px;
+    --size14: 14px;
+    --size16: 16px;
+    --size18: 18px;
+    --size22: 22px;
+    --size28: 28px;
+    --size30: 30px;
+    --size34: 34px;
+    --size38: 38px;
+    --size48: 48px;
+    --size58: 58px;
+
+    /* radius */
+
+    --radius5: 5px;
+    --radius13: 13px;
+    --radius15: 15px;
+    --radius25: 25px;
+    --radius1000: 1000px;
+
+    /* interface */
+
+    --homeInterface: url(/video-tracker/assets/images/home-interface.svg);
+    
+}
+
+html {
+
+    color: var(--whitish);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box; /* https://www.w3schools.com/css/css3_box-sizing.asp   https://www.youtube.com/watch?v=ADDvQlerEx4&list=PLu8EoSxDXHP5CIFvt9-ze3IngcdAc2xKG&index=2 */
+
+}
+
+body {
+
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+        "Header"
+        "Search"
+        "Options"
+        "Content"
+        "Footer";
+    
+	background-color:var(--blackish);
+    margin: 0px;
+    box-sizing: inherit;
+
+}
+
+body.noScroll {
+
+    overflow: hidden;
+    
+}
+
+a {
+
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:hover {
+
+    color: inherit;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+
+}
+
+/** Header **/
+
+header {
+
+    display: flex;
+    position: fixed;
+    grid-area: Header;
+    justify-content: center;
+    text-align: center;
+    top:0px;
+    width: 100%;
+    background-color: var(--blackish);
+    height: 60px;
+
+    z-index: 10000;
+
+}
+
+header.scroll {
+
+    z-index: 10000;
+
+}
+
+header a#logo {
+
+    position: absolute;
+    align-self: center;
+    left: 0px;
+    margin-left: 20px;
+    width: 235px;
+    height: 25px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -11px;
+
+}
+
+header.scroll a#logo {
+
+    background-position: -11px -51px;
+
+}
+
+header a#logo:hover {
+
+    opacity: 0.8;
+
+}
+
+header nav {
+
+    white-space: nowrap;
+
+}
+
+header.scroll nav {
+
+    display: none;
+
+}
+
+header div.navIcon {
+    
+    display: inline-flex;
+    align-self: center;
+    background-repeat: no-repeat;
+    margin-right: 0px;
+
+}
+
+header div#homeIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -38px -337px;
+    
+
+}
+
+header div#trackersIcon {
+
+    width: 22px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -11px -337px;
+
+}
+
+header div#favoritesIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -64px -337px;
+
+}
+
+li.navigationButton {
+
+    color: var(--whitish);
+    display: inline-block;
+    background-color: var(--blackish);
+    width: 150px;
+    height: 45px;
+    line-height: 50px;
+    font-size: var(--size22);
+    font-weight: 400;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: var(--radius1000);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+li.navigationButton:hover {
+
+    background-color: var(--greyish);
+
+}
+
+li.navigationButton.selected {
+
+    background-color: var(--reddish);
+
+}
+
+li.navigationButton p {
+
+    display: inline-block;
+    line-height: 45px;
+    vertical-align: top;
+
+}
+
+header div#username {
+
+    display: flex;
+    position: absolute;
+    align-self: center;
+    white-space: nowrap;
+    right: 0px;
+    margin-right: 20px;
+
+}
+
+header div#username div#photo {
+
+    align-self: center;
+    position: relative;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--whitish);
+    border-radius: var(--radius1000);
+
+}
+
+header div#username div#indicator.active {
+
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: -3px;
+    right: -3px;
+    border-radius: var(--radius1000);
+    background-color: var(--reddish);
+
+}
+
+header div#username div#name {
+
+    display: inline-block;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: top;
+    margin-left: 10px;
+
+}
+
+header div#username div#menu {
+
+    display: inline-flex;
+    align-self: center;
+    width: 20px;
+    height: 17px;
+    margin-left: 20px;
+    background-image: var(--homeInterface);
+    background-position: -74px -291px;
+    background-repeat: no-repeat;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+header div#username div#menu:hover {
+
+    opacity: 0.8;
+
+}
+
+/** Search **/
+
+section#search {
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: fixed;
+    height: 120px;
+    margin-top: 55px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--blackish);
+    z-index: 10001;
+    top: 0px;
+    grid-area: Search;
+
+}
+
+section#search.scroll {
+
+    /* https://stackoverflow.com/questions/17069435/center-fixed-div-with-dynamic-width-css */
+
+    height: 60px;
+    background-color: transparent;
+    left: 0px;
+    right: 0px;
+    width: 50%;
+    margin: 0px auto;
+
+}
+
+section#search div#wrapper {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-content: center;
+    height: 100%;
+
+}
+
+section#search input#searchBox {
+
+    display: flex;
+    color: var(--whitish);
+    border: 0px solid;
+    border-radius: 0px;
+    font-size: var(--size58);
+    font-weight: 300;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    background-color: transparent;
+    outline: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+section#search.scroll input#searchBox {
+
+    font-size: var(--size34);
+    font-weight: 300;
+
+}
+
+section#search input#searchBox::placeholder {
+
+    color: var(--whitish);
+    opacity: 1;
+
+}
+
+section#search input#searchBox:focus::placeholder {
+
+    color: var(--greyish);
+
+}
+
+section#search div#searchIcon {
+
+    display: none;
+    width: 45px;
+    height: 45px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -422px;
+    margin-right: 20px;
+
+}
+
+section#search.scroll div#searchIcon {
+
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    background-position: -83px -430px;
+
+}
+
+section#search div#searchIcon.displayed {
+
+    display: flex;
+    align-self: center;
+
+}
+
+section#search div#searchIcon.editing {
+
+    background-position: -135px -424px;
+    opacity: 1;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#search.scroll div#searchIcon.editing {
+
+    background-position: -196px -430px;
+    
+}
+
+section#search div#searchIcon.editing:hover {
+
+    opacity: 0.5;
+
+}
+
+/** Separator **/
+
+div#separator {
+
+    position: fixed;
+    width: 100%;
+    height: 2px;
+    background-color: var(--littleGrey);
+    margin-top: 175px;
+    z-index: 10006;
+
+}
+
+div#separator.scroll {
+
+    margin-top: 60px;
+
+}
+
+/** Options **/
+
+section#options {
+
+    width: 100%;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: var(--blackish);
+    font-size: var(--size18);
+    justify-content: center;
+    margin-top: 165px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    z-index: 200;
+    grid-area: Options;
+
+}
+
+section#options.scroll {
+
+    visibility: hidden;
+
+}
+
+section#options p#counters {
+
+    position: absolute;
+    left: 0px;
+    line-height: 40px;
+    margin-left: 20px;
+    align-content: center;
+
+}
+
+section#options p#counters.hidden {
+
+    display: none;
+
+}
+
+section#options div#views {
+
+    display: inline-flex;
+    position: absolute;
+    right: 0px;
+    margin-right: 20px;
+    height: 40px;
+
+}
+
+section#options div#views p#label {
+
+    display: inline-flex;
+    align-self: center;
+
+}
+
+section#options button.viewButton {
+
+    display: inline-flex;
+    align-self: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    opacity: 0.4;
+    border: 0px;
+    outline: 0px;
+    cursor: hand;
+    cursor: pointer;
+    margin-left: 20px;
+
+}
+
+section#options button.viewButton:hover {
+
+    opacity: 1;
+
+}
+
+section#options button.viewButton.selected {
+
+    opacity: 1;
+
+}
+
+section#options button#gridView {
+
+    width: 16px;
+    height: 16px;
+    background-image: var(--homeInterface);
+    background-position: -11px -291px;
+
+}
+
+section#options button#listView {
+
+    width: 23px;
+    height: 16px;
+    background-image: var(--homeInterface);
+    background-position: -37px -291px;
+
+}
+
+/** Trackers START **/
+
+main#trackers {
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 50px;
+    width: 90%;
+
+    grid-area: Content;
+}
+
+main#trackers div#loading {
+    position: relative;
+    background-image: var(--homeInterface);
+    width: 22px;
+    height: 25px;
+    background-position-x: -11px;
+    background-position-y: -11px;
+    margin: 0px auto;
+    margin-top: 100px;
+    margin-bottom: 200px;
+    transform: scale(2);
+    visibility: visible;
+    animation: loadingAnimation 270ms infinite alternate linear;
+}
+
+@keyframes loadingAnimation {
+  from {left: -20px;}
+  to {left: 20px;}
+}
+
+main#trackers div#wrapper {
+    display: inline-block;
+}
+
+main#trackers div#newTrackerWrapper {
+    display: inline-block;
+    position: relative;
+    width: 270px;
+    height: 390px;
+    margin-bottom: 80px;
+    vertical-align: top;
+    border-radius: 15px;
+    outline: 0px;
+    border: 2px solid var(--blackish);
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+main#trackers div#newTrackerWrapper div#form {
+    display: none;
+    position: relative;
+    background-color: var(--littleGrey);
+    color: var(--whitish);
+    width: 270px;
+    height: 390px;
+    border-radius: 15px;
+    padding: 20px;
+}
+
+main#trackers div#newTrackerWrapper div#form .input {
+    display: block;
+    width: 100%;
+    color: var(--whitish);
+    border: 2px solid var(--greyishDark);
+    border-radius: var(--radius13);
+    font-weight: 300;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    margin-bottom: 10px;
+    text-align: center;
+    background-color: transparent;
+    outline: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+main#trackers div#newTrackerWrapper div#form .input::placeholder {
+    color: var(--whitish);
+}
+
+main#trackers div#newTrackerWrapper div#form input#title {
+    font-size: var(--size28);
+}
+
+main#trackers div#newTrackerWrapper div#form textarea#description {
+    font-size: var(--size14);
+    height: 150px;
+    resize: none;
+}
+
+main#trackers div#newTrackerWrapper div#form div#submitWrapper {
+    margin-top: 100px;
+}
+
+main#trackers div#newTrackerWrapper div#form button {
+    font-size: var(--size16);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    border: 0px;
+    padding: 10px 20px;
+    outline: 0px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+main#trackers div#newTrackerWrapper div#form button:hover {
+    font-size: var(--size16);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    border: 0px;
+    padding: 10px 20px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+main#trackers div#newTrackerWrapper div#form button#create {
+    background-color: var(--reddish);
+}
+
+main#trackers div#newTrackerWrapper div#form button#cancel {
+    background-color: var(--blackish);
+}
+
+main#trackers div#newTrackerWrapper.editing div#form {
+    display: inline-block;
+}
+
+main#trackers div#newTrackerWrapper.editing button#newTracker {
+    display: none;
+}
+
+main#trackers button#newTracker {
+    background-color: var(--littleGrey);
+    color: var(--whitish);
+    font-size: var(--size48);
+    font-weight: 200;
+    display: inline-block;
+    position: relative;
+    width: 270px;
+    height: 390px;
+    border-radius: 15px;
+    outline: 0px;
+    border: 2px solid var(--blackish);
+    padding-left: 20px;
+    padding-right: 20px;
+    cursor: hand;
+    cursor: pointer;
+}
+
+main#trackers button#newTracker p#description {
+    margin-top: 20px;
+    font-size: var(--size16);
+    opacity: 0.5;
+}
+
+main#trackers button#newTracker:hover {
+    border: 2px solid var(--littleGrey2);
+}
+
+main#trackers div#tracker {
+    background-color: var(--littleGrey);
+    display: inline-block;
+    position: relative;
+    width: 270px;
+    height: 390px;
+    margin-bottom: 80px;
+    vertical-align: top;
+    border-radius: 15px;
+    border: 2px solid var(--blackish);
+    margin-left: 10px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+main#trackers div#tracker:hover {
+    border: 2px solid var(--littleGrey2);
+}
+
+main#trackers div#tracker h2#title {
+    margin: 0px auto;
+    font-size: 28px;
+    font-weight: 500;
+    line-height: 28px;
+    height: 100px;
+    margin-bottom: 0px;
+    margin-top: 20px;
+    overflow: hidden;
+    padding-top: 20px;
+
+    cursor: hand;
+    cursor: pointer;
+}
+
+main#trackers div#tracker h2#title:hover {
+    color: var(--lightBlueish);
+}
+
+main#trackers div#tracker p#description {
+    margin-bottom: 30px;
+    font-size: 14px;
+    opacity: 0.5;
+}
+
+main#trackers div#tracker div.wrapper {
+    margin-bottom: 20px;
+}
+
+main#trackers div#tracker .counter {
+    color: var(--reddish);
+}
+
+main#trackers div#tracker div#actionsWrapper .button {
+    height: 32px;
+    margin: 10px;
+    outline:0;
+    border: 0px;
+    background-color: transparent;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position-y: -234px;
+    
+    cursor: hand;
+    cursor: pointer;
+}
+
+main#trackers div#tracker div#actionsWrapper .button:hover {
+    opacity: 0.5;
+}
+
+main#trackers div#tracker div#actionsWrapper button#analyticsButton {
+    width: 26px;
+    background-position-x: -349px;
+}
+
+main#trackers div#tracker div#actionsWrapper button#editButton {
+    width: 22px;
+    background-position-x: -376px;
+}
+
+main#trackers div#tracker div#actionsWrapper button#deleteButton {
+    width: 26px;
+    background-position-x: -322px;
+}
+
+/** Return TOP **/
+
+button#returnTop {
+
+    display: none;
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 80px;
+    right: 60px;
+    background-color: var(--blackish);
+    background-image: var(--homeInterface);
+    background-position: -12px -554px;
+    background-repeat: no-repeat;
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: 2px solid var(--littleGrey);
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+button#returnTop:hover {
+
+    background-position: -96px -554px;
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+
+}
+
+button#returnTop.scroll {
+
+    display: inline-block;
+
+}
+
+/** Footer **/
+
+footer {
+
+    grid-area: Footer;
+
+}
+
+footer div#copyright {
+
+    width: 300px;
+    margin: 0px auto;
+    text-align: center;
+
+}
+
+footer div#copyright a#cosmos {
+
+    display: inline-block;
+    margin: 0px auto;
+    margin-top: 0px;
+    width: 200px;
+    height: 38px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -482px;
+    opacity: 0.3;
+
+}
+
+footer div#copyright a#cosmos:hover {
+
+    opacity: 1;
+
+}
+
+footer div#copyright p#description {
+
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+    margin-bottom: 160px;
+    font-size: var(--size12);
+    opacity: 0.3;
+
+}
+
+/** Screens **/
+
+@media only screen and (max-width: 1360px) {
+
+    header a#logo {
+
+        background-position: -11px -51px;
+
+    }
+
+}
+
+@media only screen and (min-width: 1441px) {
+
+    section#options {
+
+        margin-top: 165px;
+
+    }
+
+    section#search {
+
+        height: 120px;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+    main#content ul#cards li#card {
+
+        width: 370px;
+        margin-left: 10px;
+        margin-right: 10px;
+
+    }
+
+    main#content ul#cards li#card div#thumbnail {
+
+        height: 270px;
+
+    }
+
+    main#content ul#cards.listView li#card.channel div#thumbnail img {
+
+        width: 170px;
+        height: 170px;
+
+    }
+
+    section#modals div#video.modal div#player {
+
+        /* width: 70%; */
+
+    }
+
+    section#modals div#video.modal div#player div#wrapper {
+
+        /* height: calc((70vw * (70/100)) / 1.7777777); */
+
+    }
+
+    section#modals div#video.modal div#player div#details h1#title {
+
+        font-size: var(--size38);
+
+    }
+
+    section#modals div#video.modal div#tools {
+
+        /* width: 30%; */
+        
+    }
+
+    section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details p#title {
+
+        /* font-size: var(--size18); */
+
+    }
+
+}
+
+@media only screen and (max-width: 1440px) {
+
+    main#content ul#cards.listView li#card {
+
+        height: 183px;
+
+    }
+
+    main#content ul#cards.listView li#card div#thumbnail {
+
+        width: 250px;
+        height: 183px;
+
+    }
+
+    section#modals div#video.modal div#player div#details h1#title {
+
+        font-size: var(--size30);
+
+    }
+
+    section#modals div#video.modal div#player div#details p#description {
+
+        font-size: var(--size14);
+
+    }
+
+    section#modals div#video.modal button#close {
+
+        transform: scale(0.7);
+
+    }
+
+}
+
+@media only screen and (max-width: 1366px) {
+
+    section#options {
+
+        margin-top: 165px;
+
+    }
+
+    section#search {
+
+        height: 120px;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+    section#options {
+
+        margin-top: 165px;
+
+    }
+
+    section#search {
+
+        height: 120px;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    header {
+
+        height: 70px;
+
+    }
+
+    main#content ul#cards li#card {
+
+        width: 200px;
+
+    }
+
+    main#content ul#cards li#card div#thumbnail {
+
+        height: 170px;
+
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+
+
+    header a#logo {
+
+        display: none;
+
+    }
+
+    header nav {
+
+        display: none;
+
+    }
+
+    header div#username div#photo, header div#username div#indicator, header div#username div#name {
+
+        display: none;
+
+    }
+
+    header div#username {
+
+        width: 100%;
+        margin-right: 0px;
+        
+    }
+
+    header div#username div#menu {
+
+        display: inline-flex;
+        justify-self: center;
+        margin-left: 0px;
+        height: 70px;
+        margin: auto;
+        
+    }
+    
+    section#options p#counters {
+
+        display: none;
+
+    }
+
+    section#options ul#filters {
+
+        position: relative;
+
+    }
+
+    section#options div#views {
+
+        display: none;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+    main#content ul#cards li#card {
+
+        width: 370px;
+        margin-bottom: 80px;
+
+    }
+
+    main#content ul#cards li#card div#thumbnail {
+
+        height: 240px;
+
+    }
+
+    section#search input#searchBox {
+
+        font-size: var(--size38);
+
+    }
+
+    section#search div#searchIcon {
+
+        width: 30px;
+        height: 30px;
+
+    }
+
+    main#content ul#cards li#card ul#statistics {
+
+        visibility: visible;
+
+    }
+
+}

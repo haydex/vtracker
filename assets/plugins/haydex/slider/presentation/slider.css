@@ -1,0 +1,194 @@
+/*
+    " The people who are crazy enough to think they can change the world, are the ones who do. "
+    
+    Copyright © 2014 HAYDEX Inc. All Rights Reserved.
+*/
+
+
+
+/*************************************************** HAYDEXSlider START ***********************************************************/
+
+#HAYDEXSlider
+{
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+.HAYDEXSliderTitleColor
+{
+	color: white;
+}
+
+.HAYDEXSliderSubTitleColor
+{
+	color: grey;
+}
+
+#HAYDEXSlider #wrapper
+{
+	width: 80%;
+	height: 100%;
+	overflow: hidden;
+	margin: 0px auto;
+}
+
+#HAYDEXSlider #wrapper #scroller
+{
+	display: inline-block;
+	position: relative;
+	white-space: nowrap;
+	height: 100%;
+}
+
+#HAYDEXSlider #wrapper #scroller #page
+{
+	display: inline-block;
+	white-space: nowrap;
+	height: 100%;
+	text-align: center;
+	vertical-align: top;
+}
+
+#HAYDEXSlider #wrapper #scroller #page.blueprint
+{
+	display: none;
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide
+{
+	display: inline-block;
+	height: 100%;
+	margin-left: 15px;
+	margin-right: 15px;
+	vertical-align: top;
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide #image
+{
+	background-position: center 0px;
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide #image img
+{
+	-webkit-filter: grayscale(100%);
+	filter: grayscale(100%);
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide #image img:hover
+{
+	-webkit-filter: grayscale(0%);
+	filter: grayscale(0%);
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide.blueprint
+{
+	display: none;
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide #title
+{
+	display: none;
+	text-align: center;
+	font-size: 26px;
+	font-weight: bold;
+	height: 26px;
+	line-height: 26px;
+	width: 100%;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#HAYDEXSlider #wrapper #scroller #page div.slide #subtitle
+{
+	display: none;
+	text-align: center;
+	font-size: 18px;
+	height: 18px;
+	line-height: 10px;
+	margin-top: 10px;
+	width: 100%;
+	-webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+#HAYDEXSlider div.arrow
+{
+	display: none;
+	position: absolute;
+	top: 50%;
+	margin-top: -70px;
+	cursor: hand;
+	cursor: pointer;
+	width: 140px;
+	height: 140px;
+}
+
+#HAYDEXSlider #left
+{
+	left: 0px;
+	background-position: -290px -43px;
+}
+
+#HAYDEXSlider #left:hover
+{
+	background-position: -140px -43px;
+}
+
+#HAYDEXSlider #right
+{
+	right: 0px;
+	background-position: -440px -43px;
+}
+
+#HAYDEXSlider #right:hover
+{
+	background-position: -590px -43px;
+}
+
+#HAYDEXSlider #pagination
+{
+	display: none;
+	position: absolute;
+	bottom: 0px;
+	height: 25px;
+	width: 100%;
+	padding-top: 20px;
+	padding-bottom: 20px;
+	text-align: center;
+}
+
+#HAYDEXSlider #pagination div.pageIndicator
+{
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	background-position: 0px -100px;
+	cursor: hand;
+	cursor: pointer;
+}
+
+#HAYDEXSlider #pagination div.pageIndicator.blueprint
+{
+	display: none;
+}
+
+#HAYDEXSlider #pagination div.pageIndicator:hover
+{
+	background-position: -35px -100px;
+}
+
+#HAYDEXSlider #pagination div.pageIndicator.selected
+{
+	background-position: -70px -100px;
+}
+
+#HAYDEXSlider #chromeHighlightBug
+{
+	height: 1px;
+	text-align: left;
+}
+
+/*************************************************** HAYDEXSlider END *************************************************************/
