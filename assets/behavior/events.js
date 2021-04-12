@@ -1095,7 +1095,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
         constructor() {
 
-            this.noSelectionMessage = "Select Videos/Channels to track.";
+            this.noSelectionMessage = "Track Events individually or in groups.";
             this.message = document.querySelector("section#bottom div#message");
             this.details = document.querySelector("section#bottom div#message div#wrapper p#details");
             this.trackButton = document.querySelector("section#bottom div#message div#wrapper div#buttonWrapper button#track");
@@ -1143,7 +1143,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (cards.numberOfSelectedVideos > 1) multiVideos = "s";
             if (cards.numberOfSelectedChannels > 1) multiChannels = "s";
             if ((cards.numberOfSelectedVideos >= 1) && (cards.numberOfSelectedChannels)) separator = " · ";
-            if (cards.numberOfSelectedVideos > 0) videosLabel = cards.numberOfSelectedVideos + " Video" + multiVideos;
+            if (cards.numberOfSelectedVideos > 0) videosLabel = cards.numberOfSelectedVideos + " Event" + multiVideos;
             if (cards.numberOfSelectedChannels > 0) channelsLabel = cards.numberOfSelectedChannels + " Channel" + multiChannels;
             return videosLabel + separator + channelsLabel + " selected";
 

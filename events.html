@@ -26,7 +26,7 @@
         <meta http-equiv="author" content="HAYDEX">
         <meta name="description" content="Tracking data from videos.">
         <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
-        <title>Home - Vtracker</title>
+        <title>Events - Vtracker</title>
         
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/youtubetracker-apple-touch-favicon.png">
@@ -34,9 +34,9 @@
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/youtubetracker-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="assets/presentation/index.css"/>
+        <link rel="stylesheet" href="assets/presentation/events.css"/>
         
-        <script src="assets/behavior/index.js"></script>
+        <script src="assets/behavior/events.js"></script>
 
     </head>
     <body>
@@ -63,7 +63,7 @@
             <nav>
                 <ul>
                     <a href="">
-                        <li id="homeLink" class="navigationButton selected">
+                        <li id="homeLink" class="navigationButton">
                             <div id="homeIcon" class="navIcon"></div>
                             <p id="home">Home</p>
                         </li>
@@ -72,6 +72,12 @@
                         <li id="trackersLink" class="navigationButton">
                             <div id="trackersIcon" class="navIcon"></div>
                             <p id="trackers">Trackers</p>
+                        </li>
+                    </a>
+                    <a href="events.html">
+                        <li id="eventsLink" class="navigationButton selected">
+                            <div id="eventsIcon" class="navIcon"></div>
+                            <p id="events">Events</p>
                         </li>
                     </a>
                     <a href="favorites.html">
@@ -96,7 +102,7 @@
         <section id="search">
             <div id="wrapper">
                 <div id="searchIcon"></div>
-                <input type="text" id="searchBox" placeholder="Search Videos" autocomplete="off">
+                <input type="text" id="searchBox" placeholder="Search Events" autocomplete="off">
             </div>
         </section>
 
@@ -160,14 +166,15 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                         <div id="details">
                             <div id="wrapper">
                                 <h4 id="channel">Engadget</h4>
                                 <span id="separator">·</span>
-                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                             </div>
-                            <p id="title" title="Raptors nearly traded for Paul George, Russell Westbrook to try to keep Kawhi - Woj | SportsCenter"><span>Raptors nearly traded for Paul George, Russell Westbrook to try to keep Kawhi - Woj | SportsCenter</span></p>
+                            <p id="title" title="Capitol Attack"><span>Capitol Attack</span></p>
                         </div>
                         <div id="wrapper">
                             <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
@@ -200,14 +207,15 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
-                        <p id="title" title="Disney's Mulan - Official Teaser"><span>Disney's Mulan - Official Teaser</span></p>
+                        <p id="title" title="Coronavirus Updates"><span>Coronavirus Updates</span></p>
                     </div>
                     <div id="wrapper">
                         <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
@@ -240,48 +248,18 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">Smosh</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
-                        <p id="title" title="Disney Star Cameron Boyce Dies In His Sleep At Age 20"><span>Disney Star Cameron Boyce Dies In His Sleep At Age 20</span></p>
+                        <p id="title" title="Controversial Voter Law"><span>Controversial Voter Law</span></p>
                     </div>
                     <div id="wrapper">
                         <button id="trackStatusButton" title="Click to see list of trackers." class="tracking">3 TRACKS</button>
-                    </div>
-                    </div>
-                </li>
-                <li id="card" class="channel">
-                    <ul id="statistics">
-                        <li id="views" title="Views">
-                            <div id="icon"></div>
-                            <p id="counter">345M</p>
-                        </li>
-                        <li id="subscribers" title="Subscribers">
-                            <div id="icon"></div>
-                            <p id="counter">200K</p>
-                        </li>
-                        <li id="videos" title="Videos">
-                            <div id="icon"></div>
-                            <p id="counter">199K</p>
-                        </li>
-                    </ul>
-                    <div id="thumbnail">
-                        <img id="photo" src="assets/images/search/4.jpg">
-                        <button id="checkMark"></button>
-                        <div id="shadow"></div>
-                        <button id="favor"></button>
-                    </div>
-                    <div id="detailsWrapper">
-                    <div id="details">
-                        <h4 id="created">Created : September 3 2019</h4>
-                        <p id="title" title="SpaceX"><span>SpaceX</span></p>
-                    </div>
-                    <div id="wrapper">
-                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
                     </div>
                     </div>
                 </li>
@@ -311,14 +289,15 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">CNET</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
-                        <p id="title" title="Trap 3 Little Pigs"><span>Trap 3 Little Pigs</span></p>
+                        <p id="title" title="Suez Canal Remains Blocked"><span>Suez Canal Remains Blocked</span></p>
                     </div>
                     <div id="wrapper">
                         <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
@@ -351,12 +330,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">World War 3</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump"><span>DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump</span></p>
                     </div>
@@ -391,44 +371,15 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="United States' Rose Lavelle doubles lead vs. Netherlands | 2019 FIFA Women's World Cup™ Highlights"><span>United States' Rose Lavelle doubles lead vs. Netherlands | 2019 FIFA Women's World Cup™ Highlights</span></p>
-                    </div>
-                    <div id="wrapper">
-                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
-                    </div>
-                    </div>
-                </li>
-                <li id="card" class="channel">
-                    <ul id="statistics">
-                        <li id="views" title="Views">
-                            <div id="icon"></div>
-                            <p id="counter">345M</p>
-                        </li>
-                        <li id="subscribers" title="Subscribers">
-                            <div id="icon"></div>
-                            <p id="counter">200K</p>
-                        </li>
-                        <li id="videos" title="Videos">
-                            <div id="icon"></div>
-                            <p id="counter">199K</p>
-                        </li>
-                    </ul>
-                    <div id="thumbnail">
-                        <img id="photo" src="assets/images/search/8.jpg">
-                        <button id="checkMark"></button>
-                        <button id="favor"></button>
-                    </div>
-                    <div id="detailsWrapper">
-                    <div id="details">
-                        <h4 id="created">Created : September 3 2019</h4>
-                        <p id="title" title="TEDx Talks"><span>TEDx Talks</span></p>
                     </div>
                     <div id="wrapper">
                         <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
@@ -461,12 +412,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="I gave him what he deserved! Jorge Masvidal speaks after knocking out Ben Askren in FIVE seconds"><span>I gave him what he deserved! Jorge Masvidal speaks after knocking out Ben Askren in FIVE seconds</span></p>
                     </div>
@@ -501,12 +453,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="This is a video title"><span>This is a video title</span></p>
                     </div>
@@ -541,12 +494,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most Searched Questions | WIRED"><span>Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most Searched Questions | WIRED</span></p>
                     </div>
@@ -581,12 +535,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Adam Devine Gets Patriotic While Eating Spicy Wings | Hot Ones"><span>Adam Devine Gets Patriotic While Eating Spicy Wings | Hot Ones</span></p>
                     </div>
@@ -621,12 +576,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="USGS debunks 5 common earthquake myths"><span>USGS debunks 5 common earthquake myths</span></p>
                     </div>
@@ -661,12 +617,13 @@
                         <button id="favor"></button>
                         <div id="duration">5 Min</div>
                     </div>
+                    <div id="eventbarcode"></div>
                     <div id="detailsWrapper">
                     <div id="details">
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Disney's Mulan - Official Teaser"><span>Disney's Mulan - Official Teaser</span></p>
                     </div>
@@ -706,42 +663,12 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Disney Star Cameron Boyce Dies In His Sleep At Age 20"><span>Disney Star Cameron Boyce Dies In His Sleep At Age 20</span></p>
                     </div>
                     <div id="wrapper">
                         <button id="trackStatusButton" title="Click to see list of trackers." class="tracking">3 TRACKS</button>
-                    </div>
-                    </div>
-                </li>
-                <li id="card" class="channel">
-                    <ul id="statistics">
-                        <li id="views" title="Views">
-                            <div id="icon"></div>
-                            <p id="counter">345M</p>
-                        </li>
-                        <li id="subscribers" title="Subscribers">
-                            <div id="icon"></div>
-                            <p id="counter">200K</p>
-                        </li>
-                        <li id="videos" title="Videos">
-                            <div id="icon"></div>
-                            <p id="counter">199K</p>
-                        </li>
-                    </ul>
-                    <div id="thumbnail">
-                        <img id="photo" src="assets/images/search/16.jpg">
-                        <button id="checkMark"></button>
-                        <button id="favor"></button>
-                    </div>
-                    <div id="detailsWrapper">
-                    <div id="details">
-                        <h4 id="created">Created : September 3 2019</h4>
-                        <p id="title" title="SpaceX"><span>SpaceX</span></p>
-                    </div>
-                    <div id="wrapper">
-                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
                     </div>
                     </div>
                 </li>
@@ -776,7 +703,7 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Trap 3 Little Pigs"><span>Trap 3 Little Pigs</span></p>
                     </div>
@@ -816,7 +743,7 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump"><span>DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump</span></p>
                     </div>
@@ -856,7 +783,7 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="United States' Rose Lavelle doubles lead vs. Netherlands | 2019 FIFA Women's World Cup™ Highlights"><span>United States' Rose Lavelle doubles lead vs. Netherlands | 2019 FIFA Women's World Cup™ Highlights</span></p>
                     </div>
@@ -896,7 +823,7 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="'I gave him what he deserved!' Jorge Masvidal speaks after knocking out Ben Askren in FIVE seconds"><span>'I gave him what he deserved!' Jorge Masvidal speaks after knocking out Ben Askren in FIVE seconds</span></p>
                     </div>
@@ -936,7 +863,7 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="This is a video title"><span>This is a video title</span></p>
                     </div>
@@ -976,39 +903,9 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most Searched Questions | WIRED"><span>Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most Searched Questions | WIRED</span></p>
-                    </div>
-                    <div id="wrapper">
-                        <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
-                    </div>
-                    </div>
-                </li>
-                <li id="card" class="channel">
-                    <ul id="statistics">
-                        <li id="views" title="Views">
-                            <div id="icon"></div>
-                            <p id="counter">345M</p>
-                        </li>
-                        <li id="subscribers" title="Subscribers">
-                            <div id="icon"></div>
-                            <p id="counter">200K</p>
-                        </li>
-                        <li id="videos" title="Videos">
-                            <div id="icon"></div>
-                            <p id="counter">199K</p>
-                        </li>
-                    </ul>
-                    <div id="thumbnail">
-                        <img id="photo" src="assets/images/search/23.jpg">
-                        <button id="checkMark"></button>
-                        <button id="favor"></button>
-                    </div>
-                    <div id="detailsWrapper">
-                    <div id="details">
-                        <h4 id="created">Created : September 3 2019</h4>
-                        <p id="title" title="TEDx Talks"><span>TEDx Talks</span></p>
                     </div>
                     <div id="wrapper">
                         <button id="trackStatusButton" title="Click to see list of trackers.">0 TRACKS</button>
@@ -1046,7 +943,7 @@
                         <div id="wrapper">
                             <h4 id="channel">The Wall Street Journal</h4>
                             <span id="separator">·</span>
-                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                         </div>
                         <p id="title" title="Adam Devine Gets Patriotic While Eating Spicy Wings | Hot Ones"><span>Adam Devine Gets Patriotic While Eating Spicy Wings | Hot Ones</span></p>
                     </div>
@@ -1203,7 +1100,7 @@
                                         <div id="wrapper">
                                             <h4 id="channel">Engadget</h4>
                                             <span id="separator">·</span>
-                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                         </div>
                                         <p id="title"
                                             title="Raptors nearly traded for Paul George, Russell Westbrook to try to keep Kawhi - Woj | SportsCenter">
@@ -1227,7 +1124,7 @@
                                         <div id="wrapper">
                                             <h4 id="channel">The Wall Street Journal</h4>
                                             <span id="separator">·</span>
-                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                         </div>
                                         <p id="title" title="Disney's Mulan - Official Teaser"><span>Disney's Mulan - Official Teaser</span></p>
                                     </div>
@@ -1248,7 +1145,7 @@
                                         <div id="wrapper">
                                             <h4 id="channel">Smosh</h4>
                                             <span id="separator">·</span>
-                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                         </div>
                                         <p id="title" title="Disney Star Cameron Boyce Dies In His Sleep At Age 20"><span>Disney Star Cameron
                                                 Boyce Dies In His Sleep At Age 20</span></p>
@@ -1270,7 +1167,7 @@
                                         <div id="wrapper">
                                             <h4 id="channel">CNET</h4>
                                             <span id="separator">·</span>
-                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                         </div>
                                         <p id="title" title="Trap 3 Little Pigs"><span>Trap 3 Little Pigs</span></p>
                                     </div>
@@ -1291,7 +1188,7 @@
                                         <div id="wrapper">
                                             <h4 id="channel">World War 3</h4>
                                             <span id="separator">·</span>
-                                            <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                            <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                         </div>
                                         <p id="title" title="DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump"><span>DeMarcus
                                                 Cousins, Rajon Rondo sign with the Lakers | The Jump</span></p>
@@ -1412,7 +1309,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title"
                                                 title="I gave him what he deserved! Jorge Masvidal speaks after knocking out Ben Askren in FIVE seconds">
@@ -1455,7 +1352,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="This is a video title"><span>This is a video title</span></p>
                                         </div>
@@ -1495,7 +1392,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title"
                                                 title="Millie Bobby Brown, Finn Wolfhard & Noah Schnapp Answer the Web's Most Searched Questions | WIRED">
@@ -1538,7 +1435,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="Adam Devine Gets Patriotic While Eating Spicy Wings | Hot Ones"><span>Adam Devine
                                                     Gets Patriotic While Eating Spicy Wings | Hot Ones</span></p>
@@ -1579,7 +1476,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="USGS debunks 5 common earthquake myths"><span>USGS debunks 5 common earthquake
                                                     myths</span></p>
@@ -1620,7 +1517,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="Disney's Mulan - Official Teaser"><span>Disney's Mulan - Official Teaser</span></p>
                                         </div>
@@ -1660,7 +1557,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="Disney Star Cameron Boyce Dies In His Sleep At Age 20"><span>Disney Star Cameron
                                                     Boyce Dies In His Sleep At Age 20</span></p>
@@ -1701,7 +1598,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="Trap 3 Little Pigs"><span>Trap 3 Little Pigs</span></p>
                                         </div>
@@ -1741,7 +1638,7 @@
                                             <div id="wrapper">
                                                 <h4 id="channel">The Wall Street Journal</h4>
                                                 <span id="separator">·</span>
-                                                <h4 id="date">Feb 03 2019 06:55 PM</h4>
+                                                <h4 id="date">Feb 03 2019 - May 17 2020</h4>
                                             </div>
                                             <p id="title" title="DeMarcus Cousins, Rajon Rondo sign with the Lakers | The Jump"><span>DeMarcus
                                                     Cousins, Rajon Rondo sign with the Lakers | The Jump</span></p>

@@ -317,6 +317,15 @@ header div#trackersIcon {
 
 }
 
+header div#eventsIcon {
+
+    width: 22px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -89px -337px;
+
+}
+
 header div#favoritesIcon {
 
     width: 20px;
@@ -783,6 +792,7 @@ main#content ul#cards li#card {
 main#content ul#cards li#card ul#statistics {
 
     display: flex;
+    display: none;
     justify-content: center;
     width: 100%;
     visibility: hidden;
@@ -879,7 +889,7 @@ main#content ul#cards li#card div#thumbnail {
     width: 100%;
     height: 230px;
     border-radius : var(--radius15);
-    border: 2px solid var(--blackish);
+    /* border: 2px solid var(--blackish); */
     cursor: hand;
     cursor: pointer;
     
@@ -895,6 +905,8 @@ main#content ul#cards li#card div#thumbnail img {
 
     object-fit: cover;
     border-radius: var(--radius13);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
     width: 100%;
     height: 100%;
 
@@ -993,6 +1005,7 @@ main#content ul#cards li#card div#thumbnail.selected button#checkMark {
 
 main#content ul#cards li#card div#thumbnail div#duration {
 
+    display: none;
     position: absolute;
     right: 10px;
     bottom: 10px;
@@ -1033,6 +1046,7 @@ main#content ul#cards li#card div#details div#wrapper {
 
 main#content ul#cards li#card div#details h4#channel {
 
+    display: none;
     font-size: var(--size12);
     max-width: 170px;
     max-height: 22px;
@@ -1054,11 +1068,23 @@ main#content ul#cards li#card div#details h4#channel:hover {
 
 main#content ul#cards li#card div#details span#separator {
 
+    display: none;
     font-size: var(--size12);
     font-weight: 600;
     opacity: 0.5;
     margin: 0px 5px;
     vertical-align: top;
+
+}
+
+#eventbarcode {
+
+    height: 20px;
+    width: 100%;
+    background-image: url(/vtracker/assets/images/eventsbar.png);
+    border-radius: var(--radius13);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
 
 }
 
