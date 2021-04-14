@@ -1,0 +1,5249 @@
+/*
+
+
+
+    " Reimplement the wheel to either learn, or make it better. "
+
+    http://www.hayder.design/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: YouTubeTracker,
+	Description: Tracking YouTube"s data.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2021 HAYDER, All Rights Reserved.
+	
+	
+	
+*/
+
+/** Global settings **/
+
+:root {
+    
+    /* theme */
+
+    --reddish: #fd4444;
+    --reddishLight: rgb(255, 113, 113);
+    --reddishLight2: rgb(253, 68, 68, 0.4);
+    --blackish: #242120;
+    --blackish2: #2c2928;
+    --shadow: rgb(0, 0, 0, 0.5);
+    --blackishTransparent0: rgb(36, 33, 32, 0.9);
+    --blackishTransparent1: rgb(36, 33, 32, 0.3);
+    --blackishTransparent2: rgb(36, 33, 32, 0.2);
+    --blackishTransparent3: rgb(36, 33, 32, 0);
+    --blackishTransparent4: rgb(36, 33, 32, 0);
+    --blackishTransparent5: rgba(36, 33, 32, 0.90);
+    --blackishShadow: hsla(15, 6%, 13%, 0.3);
+    --littleGrey: hsla(15, 6%, 20%, 0.9);
+    --littleGrey2: hsla(15, 6%, 25%, 1);
+    --greyishDark: hsla(15, 6%, 40%, 0.3);
+    --greyish: hsla(15, 6%, 40%, 1);
+    --lightGreyish: hsla(15, 6%, 60%, 1);
+    --lighterGreyish: rgb(230, 230, 230);
+    --whitish: hsla(15, 6%, 100%, 1);
+    --whitishTransparent1: hsla(15, 6%, 100%, 0.9);
+    --blueish: #2C8DFF;
+    --lightBlueish: rgb(136, 191, 255);
+    --lightBlueish1: rgb(75, 159, 255);
+
+    /* fonts */
+
+    --size12: 12px;
+    --size14: 14px;
+    --size16: 16px;
+    --size18: 18px;
+    --size22: 22px;
+    --size28: 28px;
+    --size30: 30px;
+    --size34: 34px;
+    --size38: 38px;
+    --size48: 48px;
+    --size58: 58px;
+
+    /* radius */
+
+    --radius5: 5px;
+    --radius13: 13px;
+    --radius15: 15px;
+    --radius25: 25px;
+    --radius1000: 1000px;
+
+    /* interface */
+
+    --homeInterface: url(/vtracker/assets/images/home-interface.svg);
+    --eventsBarcode: url(/vtracker/assets/images/eventsbar.png);
+    
+}
+
+html {
+
+    color: var(--whitish);
+    font-family: "Roboto", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box; /* https://www.w3schools.com/css/css3_box-sizing.asp   https://www.youtube.com/watch?v=ADDvQlerEx4&list=PLu8EoSxDXHP5CIFvt9-ze3IngcdAc2xKG&index=2 */
+
+}
+
+body {
+
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+        "Header"
+        "Search"
+        "Options"
+        "Content"
+        "Footer";
+    
+	background-color:var(--blackish);
+    margin: 0px;
+    box-sizing: inherit;
+
+}
+
+body.noScroll {
+
+    overflow: hidden;
+    
+}
+
+a {
+
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:hover {
+
+    color: inherit;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+
+}
+
+/** Side Menu **/
+
+div#sideMenu {
+    position: fixed;
+    right: -300px;
+    top: 0px;
+    background-color: var(--reddish);
+    z-index: 40000;
+    height: 100vh;
+    width: 300px;
+    padding: 30px;
+    text-align: center;
+    transition: right 0.3s;
+}
+
+div#sideMenu.displayed {
+    right: 0px;
+    transition: right 0.3s;
+}
+
+div#sideMenu div#user {
+
+    width: 100%;
+
+}
+
+div#sideMenu div#user div#photo {
+
+    margin: 0px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius1000);
+    border: 2px solid var(--whitish);
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+div#sideMenu div#user p#name {
+
+    font-weight: 800;
+
+}
+
+div#sideMenu button#closeSideMenuButton {
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: 0px;
+    border-radius: var(--radius1000);
+    background-image: var(--homeInterface);
+    background-position: -130px -197px;
+    outline: none;
+    cursor: pointer;
+
+}
+
+div#sideMenu button#closeSideMenuButton:hover {
+
+    opacity: 0.5;
+
+}
+
+div#sideMenu ul#sideMenuList {
+
+    margin-top: 30px;
+    list-style: none;
+
+}
+
+div#sideMenu ul#sideMenuList li {
+
+    padding: 10px;
+    font-size: var(--size22);
+
+}
+
+div#sideMenu ul#sideMenuList li:hover {
+
+    opacity: 0.5;
+    cursor: pointer;
+
+}
+
+
+
+/** Header **/
+
+header {
+
+    display: flex;
+    position: fixed;
+    grid-area: Header;
+    justify-content: center;
+    text-align: center;
+    top:0px;
+    width: 100%;
+    background-color: var(--blackish);
+    height: 60px;
+
+    z-index: 10000;
+
+}
+
+header.scroll {
+
+    z-index: 10000;
+
+}
+
+header a#logo {
+
+    position: absolute;
+    align-self: center;
+    left: 0px;
+    margin-left: 20px;
+    width: 235px;
+    height: 30px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -11px;
+
+}
+
+header.scroll a#logo {
+
+    background-position: -11px -51px;
+
+}
+
+header a#logo:hover {
+
+    opacity: 0.8;
+
+}
+
+header nav {
+
+    white-space: nowrap;
+
+}
+
+header.scroll nav {
+
+    display: none;
+
+}
+
+header div.navIcon {
+    
+    display: inline-flex;
+    align-self: center;
+    background-repeat: no-repeat;
+    margin-right: 0px;
+
+}
+
+header div#homeIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -38px -337px;
+    
+
+}
+
+header div#trackersIcon {
+
+    width: 22px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -11px -337px;
+
+}
+
+header div#eventsIcon {
+
+    width: 22px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -89px -337px;
+
+}
+
+header div#favoritesIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -64px -337px;
+
+}
+
+li.navigationButton {
+
+    color: var(--whitish);
+    display: inline-block;
+    background-color: var(--greyishDark);
+    width: 150px;
+    height: 45px;
+    line-height: 50px;
+    font-size: var(--size22);
+    font-weight: 400;
+    margin-left: 2px;
+    margin-right: 2px;
+    border-radius: var(--radius1000);
+    margin-top: 5px;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+li.navigationButton:hover {
+
+    background-color: var(--greyish);
+
+}
+
+li.navigationButton.selected {
+
+    background-color: var(--reddish);
+
+}
+
+li.navigationButton p {
+
+    display: inline-block;
+    line-height: 45px;
+    vertical-align: top;
+
+}
+
+header div#username {
+
+    display: flex;
+    position: absolute;
+    align-self: center;
+    white-space: nowrap;
+    right: 0px;
+    margin-right: 20px;
+
+}
+
+header div#username div#photo {
+
+    align-self: center;
+    position: relative;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--whitish);
+    border-radius: var(--radius1000);
+
+}
+
+header div#username div#indicator.active {
+
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: -3px;
+    right: -3px;
+    border-radius: var(--radius1000);
+    background-color: var(--reddish);
+
+}
+
+header div#username div#name {
+
+    display: inline-block;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: top;
+    margin-left: 10px;
+
+}
+
+header div#username div#menu {
+
+    display: inline-flex;
+    align-self: center;
+    width: 20px;
+    height: 17px;
+    margin-left: 20px;
+    background-image: var(--homeInterface);
+    background-position: -74px -291px;
+    background-repeat: no-repeat;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+header div#username div#menu:hover {
+
+    opacity: 0.5;
+
+}
+
+/** Search **/
+
+section#search {
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    position: fixed;
+    height: 120px;
+    margin-top: 55px;
+    width: 100%;
+    text-align: center;
+    background-color: var(--blackish);
+    z-index: 10001;
+    top: 0px;
+    grid-area: Search;
+
+}
+
+section#search.scroll {
+
+    /* https://stackoverflow.com/questions/17069435/center-fixed-div-with-dynamic-width-css */
+
+    height: 60px;
+    background-color: transparent;
+    left: 0px;
+    right: 0px;
+    width: 50%;
+    margin: 0px auto;
+
+}
+
+section#search div#wrapper {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    align-content: center;
+    height: 100%;
+
+}
+
+section#search input#searchBox {
+
+    display: flex;
+    color: var(--whitish);
+    border: 0px solid;
+    border-radius: 0px;
+    font-size: var(--size58);
+    font-weight: 300;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    text-align: center;
+    background-color: transparent;
+    outline: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+section#search.scroll input#searchBox {
+
+    font-size: var(--size34);
+    font-weight: 300;
+
+}
+
+section#search input#searchBox::placeholder {
+
+    color: var(--whitish);
+    opacity: 1;
+
+}
+
+section#search input#searchBox:focus::placeholder {
+
+    color: var(--greyish);
+
+}
+
+section#search div#searchIcon {
+
+    display: none;
+    width: 45px;
+    height: 45px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -422px;
+    margin-right: 20px;
+
+}
+
+section#search.scroll div#searchIcon {
+
+    width: 28px;
+    height: 28px;
+    margin-right: 10px;
+    background-position: -83px -430px;
+
+}
+
+section#search div#searchIcon.displayed {
+
+    display: flex;
+    align-self: center;
+
+}
+
+section#search div#searchIcon.editing {
+
+    background-position: -135px -424px;
+    opacity: 1;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#search.scroll div#searchIcon.editing {
+
+    background-position: -196px -430px;
+    
+}
+
+section#search div#searchIcon.editing:hover {
+
+    opacity: 0.5;
+
+}
+
+/** Separator **/
+
+div#separator {
+
+    position: fixed;
+    width: 100%;
+    height: 2px;
+    background-color: var(--littleGrey);
+    margin-top: 175px;
+    z-index: 10006;
+
+}
+
+div#separator.scroll {
+
+    margin-top: 60px;
+
+}
+
+/** Options **/
+
+section#options {
+
+    width: 100%;
+    display: flex;
+    width: 100%;
+    height: 60px;
+    background-color: var(--blackish);
+    font-size: var(--size18);
+    justify-content: center;
+    margin-top: 165px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    z-index: 200;
+    grid-area: Options;
+
+}
+
+section#options.scroll {
+
+    visibility: hidden;
+
+}
+
+section#options p#counters {
+
+    position: absolute;
+    left: 0px;
+    line-height: 40px;
+    margin-left: 20px;
+    align-content: center;
+
+}
+
+section#options p#counters.hidden {
+
+    display: none;
+
+}
+
+section#options ul#filters {
+
+    position: absolute;
+    left: 0px;
+    margin-left: 20px;
+    margin-right: 20px;
+    white-space: nowrap;
+
+}
+
+section#options ul#filters.center {
+
+    position: relative;
+
+}
+
+section#options ul#filters span#sortLabel {
+
+    opacity: 0.5;
+
+}
+
+section#options ul#filters li.filter {
+
+    display: inline-block;
+    position: relative;
+    margin-left: -2px;
+    margin-right: -2px;
+
+}
+
+section#options ul#filters li.filter button.filter {
+
+    border: 0px;
+    outline: 0px;
+    cursor: hand;
+    cursor: pointer;
+    background-color: transparent;
+    color: var(--whitish);
+    font-size: var(--size18);
+    margin-left: 10px;
+    margin-right: 10px;
+    opacity: 0.5;
+    line-height: 40px;
+
+}
+
+section#options ul#filters li.filter button.filter.hidden {
+
+    display: none;
+
+}
+
+section#options ul#filters li.filter button.filter.selected {
+
+    opacity: 1;
+
+}
+
+section#options ul#filters li.filter button.filter:hover {
+
+    opacity: 1;
+
+}
+
+section#options div#views {
+
+    display: inline-flex;
+    position: absolute;
+    right: 0px;
+    margin-right: 20px;
+    height: 40px;
+
+}
+
+section#options div#views p#label {
+
+    display: inline-flex;
+    align-self: center;
+
+}
+
+section#options button.viewButton {
+
+    display: inline-flex;
+    align-self: center;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    opacity: 0.4;
+    border: 0px;
+    outline: 0px;
+    cursor: hand;
+    cursor: pointer;
+    margin-left: 20px;
+
+}
+
+section#options button.viewButton:hover {
+
+    opacity: 1;
+
+}
+
+section#options button.viewButton.selected {
+
+    opacity: 1;
+
+}
+
+section#options button#gridView {
+
+    width: 16px;
+    height: 16px;
+    background-image: var(--homeInterface);
+    background-position: -11px -291px;
+
+}
+
+section#options button#listView {
+
+    width: 23px;
+    height: 16px;
+    background-image: var(--homeInterface);
+    background-position: -37px -291px;
+
+}
+
+
+/** Content **/
+
+main#content {
+
+    width: 100%;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: 50px;
+    grid-area: Content;
+
+}
+
+main#content ul#cards li#card {
+
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    margin-bottom: 80px;
+    vertical-align: top;
+    border-radius: var(--radius15);
+    list-style: none;
+    margin-left: 5px;
+    margin-right: 5px;
+
+}
+
+main#content ul#cards li#card ul#statistics {
+
+    display: flex;
+    display: none;
+    justify-content: center;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+    height: 50px;
+    top: -50px;
+    list-style: none;
+    font-size: var(--size14);
+    font-weight: 500;
+    overflow: hidden;
+
+}
+
+main#content ul#cards li#card:hover ul#statistics {
+
+    visibility: visible;
+
+}
+
+main#content ul#cards li#card ul#statistics li {
+
+    display: inline-flex;
+    align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+main#content ul#cards li#card ul#statistics li div#icon {
+
+    display: inline-flex;
+    align-self: center;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position-y: -234px;
+
+}
+
+main#content ul#cards li#card ul#statistics li p#counter {
+
+    display: inline-flex;
+    align-self: center;
+    font-size: 12px;
+
+}
+
+main#content ul#cards li#card ul#statistics li#views div#icon {
+
+    width: 30px;
+    background-position-x: -10px;
+
+}
+
+main#content ul#cards li#card ul#statistics li#likes div#icon {
+
+    width: 26px;
+    background-position-x: -167px;
+
+}
+
+main#content ul#cards li#card ul#statistics li#dislikes div#icon {
+
+    width: 26px;
+    background-position-x: -194px;
+
+}
+
+main#content ul#cards li#card ul#statistics li#comments div#icon {
+
+    width: 28px;
+    background-position-x: -41px;
+
+}
+
+main#content ul#cards li#card ul#statistics li#subscribers div#icon {
+
+    width: 24px;
+    background-position-x: -221px;
+
+}
+
+main#content ul#cards li#card ul#statistics li#videos div#icon {
+
+    width: 26px;
+    background-position-x: -246px;
+
+}
+
+main#content ul#cards li#card div#thumbnail {
+
+    position: relative;
+    width: 100%;
+    height: 230px;
+    border-radius : var(--radius15);
+    /* border: 2px solid var(--blackish); */
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+main#content ul#cards li#card div#thumbnail.selected {
+
+    /* border: 2px solid var(--reddishLight2); */
+    
+}
+
+main#content ul#cards li#card div#thumbnail img {
+
+    object-fit: cover;
+    border-radius: var(--radius13);
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    width: 100%;
+    height: 100%;
+
+}
+
+main#content ul#cards li#card div#thumbnail button#checkMark {
+
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 41px;
+    height: 41px;
+    border-radius: var(--radius1000);
+    background-image: var(--homeInterface);
+    background-position: -11px -141px;
+    background-repeat: no-repeat;
+    background-color: var(--blackish);
+    outline:0;
+    border: 2px solid var(--littleGrey2);
+    /* box-shadow: 0px 0px 40px black; */
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+main#content ul#cards li#card div#thumbnail:hover button#checkMark {
+
+    display: inline-block;
+
+}
+
+main#content ul#cards li#card div#thumbnail:hover button#checkMark:hover {
+
+    /* border: 2px solid white; */
+
+}
+
+main#content ul#cards li#card div#thumbnail:not(.selected):hover button#checkMark:hover {
+
+    border: 2px solid var(--whitish);
+    background-color: var(--blackish);
+    background-position: -11px -141px;
+
+}
+
+main#content ul#cards li#card div#thumbnail div#shadow {
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 60px;
+    height: 60px;
+    background-image: radial-gradient(var(--blackishTransparent1), var(--blackishTransparent2), var(--blackishTransparent3), var(--blackishTransparent4));
+
+}
+
+main#content ul#cards li#card div#thumbnail button#favor {
+
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position: -92px -234px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    outline:0;
+    border: 0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+main#content ul#cards li#card div#thumbnail button#favor.selected {
+
+    background-position-x: -117px;
+
+}
+
+main#content ul#cards li#card div#thumbnail button#favor:hover {
+
+    opacity: 1;
+
+}
+
+main#content ul#cards li#card div#thumbnail.selected button#checkMark {
+
+    display: inline-block;
+    border: 2px solid var(--reddish);
+    background-color: var(--reddish);
+    background-position: -59px -141px;
+
+}
+
+main#content ul#cards li#card div#thumbnail div#duration {
+
+    display: none;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: var(--size16);
+    padding: 5px;
+    background-color: var(--blackish);
+    border-radius: var(--radius5);
+
+}
+
+main#content ul#cards li#card div#details p#title {
+
+    margin: 0px auto;
+    font-size: var(--size18);
+    font-weight: 500;
+    line-height: 22px;
+    max-height: 46px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+main#content ul#cards li#card div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+main#content ul#cards li#card div#details div#wrapper {
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+
+}
+
+main#content ul#cards li#card div#details h4#channel {
+
+    display: none;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+main#content ul#cards li#card div#details h4#channel:hover {
+
+    opacity: 1;
+    color: var(--lightBlueish);
+
+}
+
+main#content ul#cards li#card div#details span#separator {
+
+    display: none;
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin: 0px 5px;
+    vertical-align: top;
+
+}
+
+#eventbarcode {
+
+    height: 15px;
+    width: 100%;
+    background-image: var(--eventsBarcode);
+    border-radius: var(--radius13);
+    border-top-left-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
+
+div#events-barcode {
+
+    position: relative;
+    height: 50px;
+    width: 87%;
+    background-image: var(--eventsBarcode);
+    border-radius: var(--radius13);
+    margin:0px auto;
+    margin-bottom: 90px;
+
+}
+
+div#events-barcode div#cursor {
+
+    position: absolute;
+    width: 4px;
+    height: 150%;
+    top: -12px;
+    background-color: var(--whitish);
+    left: 50%;
+    border-radius: var(--radius5);
+
+}
+
+main#content ul#cards li#card div#details h4#date {
+
+    display: inline-block;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    vertical-align: top;
+
+}
+
+main#content ul#cards li#card.channel div#thumbnail {
+
+    display: flex;
+    background-color: var(--blackish);
+    border-color: var(--littleGrey);
+
+}
+
+main#content ul#cards li#card.channel div#thumbnail.selected {
+
+    /* border: 2px solid var(--reddishLight2); */
+    
+}
+
+main#content ul#cards li#card.channel div#thumbnail img {
+
+    display: flex;
+    align-self: center;
+    margin: 0px auto;
+    width: 210px;
+    height: 210px;
+    border-radius: var(--radius1000);
+
+}
+
+main#content ul#cards li#card.channel div#details {
+
+    margin-top: 10px;
+
+}
+
+main#content ul#cards li#card.channel div#details p#title {
+
+    margin: 5px auto;
+    font-size: var(--size18);
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+main#content ul#cards li#card.channel div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+main#content ul#cards li#card.channel div#details h4#created {
+
+    display: inline-block;
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+
+}
+
+main#content ul#cards li#card div#wrapper {
+
+    position: relative;
+    display: inline-block;
+    padding-top: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+}
+
+main#content ul#cards li#card div#wrapper button#trackStatusButton {
+
+    display: flex;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: var(--size14);
+    font-weight: 600;
+    border: 2px solid var(--whitish);
+    outline: 0px;
+    vertical-align: middle;
+    cursor: hand;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.2;
+
+}
+
+main#content ul#cards li#card div#wrapper button#trackStatusButton:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    opacity: 1;
+
+}
+
+main#content ul#cards li#card div#wrapper button#trackStatusButton.tracking {
+
+    background-color: var(--reddish);
+    border-color: var(--reddish);
+    color: var(--whitish);
+    opacity: 1;
+
+}
+
+main#content ul#cards li#card div#wrapper button#trackStatusButton.tracking:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+main#content ul#cards li#card div#wrapper button#trackStatusButton.selected {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    opacity: 1;
+
+}
+
+main#content ul#cards li#card div#wrapper button#trackStatusButton.selected:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+main#content ul#cards.listView {
+
+    display: inline-block;
+
+}
+
+main#content ul#cards.listView li#card {
+
+    display: block;
+    position: relative;
+    width: 800px;
+    height: 219px;
+    margin-bottom: 30px;
+
+}
+
+main#content ul#cards.listView li#card div#thumbnail {
+
+    float: left;
+    width: 300px;
+    height: 219px;
+    margin-right: 20px;
+
+}
+
+main#content ul#cards.listView li#card.channel div#thumbnail img {
+
+    width: 140px;
+    height: 140px;
+
+}
+
+main#content ul#cards.listView li#card div#detailsWrapper {
+
+    text-align: left;
+
+}
+
+main#content ul#cards.listView li#card div#detailsWrapper div#details div#wrapper {
+
+    justify-content: left;
+    text-align: left;
+
+}
+
+main#content ul#cards.listView li#card ul#statistics {
+
+    display: none;
+
+}
+
+/** Return TOP **/
+
+button#returnTop {
+
+    display: none;
+    position: fixed;
+    width: 70px;
+    height: 70px;
+    bottom: 80px;
+    right: 60px;
+    background-color: var(--blackish);
+    background-image: var(--homeInterface);
+    background-position: -12px -554px;
+    background-repeat: no-repeat;
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: 2px solid var(--littleGrey);
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+button#returnTop:hover {
+
+    background-position: -96px -554px;
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+
+}
+
+button#returnTop.scroll {
+
+    display: inline-block;
+
+}
+
+/** Bottom **/
+
+section#bottom {
+
+    position: fixed;
+    bottom: 0px;
+    width: 100%;
+    z-index: 10201;
+
+}
+
+section#bottom div#message {
+
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    background-color: var(--blueish);
+    color: var(--whitish);
+    font-size: var(--size18);
+    font-weight: 500;
+    text-align: center;
+    height: 40px;
+    
+    transition: padding 300ms;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+section#bottom div#message div#wrapper {
+
+    position: relative;
+    align-self: center;
+
+}
+
+section#bottom div#message button#close {
+
+    display: none;
+    align-self: center;
+    background-image: var(--homeInterface);
+    background-position: -125px -191px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    padding: 16px;
+    border-radius: var(--radius1000);
+    margin-left: 10px;
+    outline:0;
+    border: 0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#bottom div#message div#wrapper div#buttonWrapper {
+
+    display: none;
+
+}
+
+/* Tracking */
+
+section#bottom div#message.selecting {
+
+    height: 50px;
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+section#bottom div#message.selecting div#wrapper {
+
+    display: flex;
+    align-self: center;
+
+}
+
+section#bottom div#message.selecting div#wrapper p#details {
+
+    display: inline-flex;
+    align-self: center;
+
+}
+
+section#bottom div#message.selecting div#wrapper div#buttonWrapper {
+
+    display: inline-flex;
+    position: relative;
+    align-self: center;
+
+}
+
+section#bottom div#message.selecting div#wrapper div#buttonWrapper button#track {
+
+    font-size: var(--size18);
+    font-weight: 600;
+    height:40px;
+    width: 150px;
+    outline:0;
+    border: 2px solid var(--whitish);
+    border-radius: 100px;
+    margin-left: 10px;
+    color: var(--whitish);
+    background-color: transparent;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#bottom div#message.selecting div#wrapper div#buttonWrapper button#track:hover {
+
+    color: var(--reddish);
+    background-color: var(--whitish);
+
+}
+
+section#bottom div#message.selecting div#wrapper div#buttonWrapper button#track.selected {
+
+    color: var(--reddish);
+    background-color: var(--whitish);
+
+}
+
+section#bottom div#message.selecting button#close {
+
+    display: block;
+
+}
+
+section#bottom div#message.selecting button#close:hover {
+
+    background-position: -168px -191px;
+    background-color: var(--whitish);
+
+}
+
+/** Footer **/
+
+footer {
+
+    grid-area: Footer;
+
+}
+
+footer div#copyright {
+
+    width: 300px;
+    margin: 0px auto;
+    text-align: center;
+
+}
+
+footer div#copyright a#cosmos {
+
+    display: inline-block;
+    margin: 0px auto;
+    margin-top: 0px;
+    width: 200px;
+    height: 38px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -482px;
+    opacity: 0.3;
+
+}
+
+footer div#copyright a#cosmos:hover {
+
+    opacity: 1;
+
+}
+
+footer div#copyright p#description {
+
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+    margin-bottom: 160px;
+    font-size: var(--size12);
+    opacity: 0.3;
+
+}
+
+/** Overlay **/
+
+div#overlay {
+
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blackish);
+    opacity: 0.3;
+    z-index: 10200;
+
+}
+
+div#overlay.displayed {
+
+    display: block;
+
+}
+
+/** modals **/
+
+section#modals {
+
+    display: none;
+    position: fixed;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10500;
+    background-color: var(--blackishTransparent5);
+
+}
+
+section#modals.displayed {
+
+    display: flex;
+
+}
+
+section#modals div#window {
+
+    /* display: inline-flex; */
+    display: none;
+    position: absolute;
+    width: 80vw;
+    height: 85vh;
+    background-color: var(--blackish);
+    align-self: center;
+    justify-self: center;
+    border: 2px solid var(--greyishDark);
+    border-radius: var(--radius15);
+
+}
+
+/* video */
+
+section#modals div#video.modal {
+
+    display: none;
+    position: relative;
+    margin: 0px auto;
+    align-self: center;
+    justify-self: center;
+    /* width: 70vw; */
+    height: calc((65vw / 1.7777777) + 3.5vw);
+    
+    border-radius: 15px;
+    background-color: var(--blackish);
+    border: 0px solid var(--littleGrey2);
+    box-shadow: 10px 10px 80px rgba(0, 0, 0, 0.507);
+    /* box-shadow: 10px 10px 20px var(--shadow); */
+
+}
+
+section#modals div#video.modal.displayed {
+
+    display: flex;
+
+}
+
+section#modals div#video.modal button#scrollDown {
+
+    display: inline-block;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    bottom: -5%;
+    left: calc(60vw * (50/100));
+    background-color: transparent;
+    background-image: var(--homeInterface);
+    background-position: -12px -554px;
+    background-repeat: no-repeat;
+    transform: rotate(180deg) translate(-50%, -50%) scale(2);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: 0px solid var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#video.modal button#scrollDown:hover {
+
+    /* background-position: -96px -554px;
+    background-color: var(--whitish);
+    border-color: var(--whitish); */
+
+}
+
+section#modals div#video.modal button#scrollDown.scroll {
+
+    display: none;
+
+}
+
+section#modals div#window button#close {
+
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    background-image: var(--homeInterface);
+    background-position: -195px -430px;
+    background-color: transparent;
+    border:0px;
+    outline:0px;
+    opacity: 0.5;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#window button#close:hover {
+
+    opacity: 1;
+
+}
+
+section#modals div#video.modal div#player {
+
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 65vw;
+    height: 100%;
+    color: var(--blackish);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 15px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
+
+section#modals div#video.modal div#player div#wrapper {
+
+    position: relative;
+    height: calc((65vw / 1.7777777));
+    width: 100%;
+
+}
+
+section#modals div#video.modal div#player div#wrapper iframe {
+
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+
+}
+
+section#modals div#video.modal div#player div#movieBarCodeWrapper {
+
+    position: relative;
+
+}
+
+section#modals div#video.modal div#player div#movieBarCode {
+
+    width: 100%;
+    height: 70px;
+    background-image: url(../images/moviebarcode.jpeg);
+
+}
+
+section#modals div#video.modal div#player div#movieBarCodePointer {
+
+    width: 20px;
+    height: 20px;
+    color: white;
+    position: absolute;
+    top: -10px;
+    left: 40%;
+    transform: scale(1.3);
+    box-shadow: var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#video.modal div#tools {
+
+    display: inline-block;
+    width: 23vw;
+    height: 100%;
+    overflow-y: scroll;
+    color: var(--whitish);
+    background-color: var(--blackish2);
+    padding: 3%;
+    overflow-x: hidden;
+    border-top-right-radius: var(--radius15);
+    border-bottom-right-radius: var(--radius15);
+    
+}
+
+section#modals div#video.modal div#tools div#details {
+
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 2%;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head {
+
+    display: flex;
+    flex-direction: column;
+    justify-self: center;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#titleWrapper {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#titleWrapper p#title {
+
+    display: inline-flex;
+    font-size: var(--size18);
+    font-weight: 500;
+    color: var(--whitish);
+    width: 100%;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#titleWrapper button#favor {
+
+    display: inline-flex;
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position: -92px -234px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    transform: scale(1.5);
+    transform-origin: top right;
+    margin-left: 20px;
+    border:0px;
+    outline:0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#titleWrapper button#favor.selected {
+
+    background-position-x: -142px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#titleWrapper button#favor:not(.selected):hover {
+
+    background-position-x: -117px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics {
+
+    margin-top: 10px;
+    margin-bottom: 20px;
+    color: var(--whitish);
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div {
+
+    display: inline-flex;
+    align-content: center;
+    margin-right: 10px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div span#icon {
+
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position-y: -234px;
+    margin-right: 2px;
+    transform: scale(0.8);
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div p {
+
+    display: inline-flex;
+    align-items: center;
+    font-size: 14px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div#tracks span#icon {
+
+    width: 21px;
+    background-position-x: -70px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div#globalTracks span#icon {
+
+    width: 26px;
+    background-position-x: -273px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div#views span#icon {
+
+    width: 30px;
+    background-position-x: -10px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div#likes span#icon {
+
+    width: 26px;
+    background-position-x: -167px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div#dislikes span#icon {
+
+    width: 26px;
+    background-position-x: -194px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#head div#statistics div#comments span#icon {
+
+    width: 28px;
+    background-position-x: -41px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#horizontalSeparator {
+
+    height: 2px;
+    background-color: var(--blackish2);
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel {
+
+    display: flex;
+    /* justify-content: space-between; */
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#iconWrapper {
+
+    display: flex;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#iconWrapper div#profile {
+
+    display: flex;
+    width: 65px;
+    height: 65px;
+    overflow: hidden;
+    border-radius: var(--radius1000);
+    margin-right: 20px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#iconWrapper div#profile img {
+
+    width: 80px;
+    height: 65px;
+    object-fit: cover;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#iconWrapper div#nameWrapper {
+
+    flex-direction: column;
+    align-self: center;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#iconWrapper div#nameWrapper p {
+
+    color: var(--whitish);
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#iconWrapper div#nameWrapper p#name {
+
+    font-weight: 600;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#subscribers {
+
+    display: inline-flex;
+    color: var(--whitish);
+    align-self: center;
+    align-items: center;
+
+}
+
+section#modals div#video.modal div#tools div#details div#channel div#subscribers span#icon {
+
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -221px -234px;
+    margin-right: 10px;
+
+}
+
+section#modals div#video.modal div#tools div#details div#description p {
+
+    font-size: var(--size14);
+    color: var(--whitish);
+    word-wrap: break-word;
+    white-space: normal;
+    
+}
+
+section#modals div#video.modal div#tools div#details div#description p a {
+
+    text-decoration: underline;
+    font-weight: 700;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers {
+
+    padding-bottom: 20px;
+    margin-top: 50px;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers p#title {
+
+    font-size: var(--size30);
+    font-weight: 600;
+    padding: 20px 5%;
+    padding-top: 0px;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers input#search {
+
+    width: 100%;
+    border: 0px solid var(--greyishDark);
+    background-color: var(--blackish);
+    color: var(--whitish);
+    font-size: var(--size28);
+    font-weight: 400;
+    text-align: left;
+    text-indent: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: var(--radius25);
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers {
+
+    max-height: calc((70vw * 0.6) / 3);
+    overflow-y: scroll;
+    list-style: none;
+    padding-bottom: 10px;
+
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li {
+
+    height: 40px;
+    color: var(--whitish);
+    text-align: left;
+    font-size: var(--size18);
+    font-weight: 500;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 40px;
+    vertical-align: middle;
+    border-radius: var(--radius1000);
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li span {
+
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li a {
+
+    color: var(--blackish);
+
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li:hover {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li:hover > button#checkMark {
+
+    background-position: -107px -141px;
+
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li button#checkMark {
+
+    position: relative;
+    width: 35px;
+    height: 35px;
+    top: 50%;
+    margin-top: -17px;
+    background-image: var(--homeInterface);
+    background-position: -107px -141px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border:0px;
+    outline:0px;
+    float: right;
+    opacity: 0.2;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li button#checkMark:hover {
+
+    opacity: 0.5;
+
+}
+
+section#modals div#video.modal div#tools div#trackers ul#trackers li button#checkMark.selected {
+
+    opacity: 1;
+
+}
+
+section#modals div#video.modal div#tools div#trackers p#status {
+
+    color: var(--blackish);
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm {
+
+    text-align: left;
+    margin: 5% 0px;
+    margin-bottom: 0px;
+    color: var(--blackish);
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm button#addTracker {
+
+    display: block;
+    margin: 0px auto;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: var(--homeInterface);
+    background-position: -11px -86px;
+    background-repeat: no-repeat;
+    background-color: var(--reddish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: none;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm div#createTrackerFormWrapper {
+
+    transition: max-height 200ms;
+    max-height: 0px;
+    overflow: hidden;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm .input {
+
+    float: left;
+    padding: 15px;
+    border-radius: var(--radius25);
+    color: var(--whitish);
+    font-family: "Roboto", sans-serif;
+    font-size: var(--size18);
+    font-weight: 400;
+    text-align: left;
+    border: 0px solid var(--greyishDark);
+    background-color: var(--blackish);
+    width: 100%;
+    outline: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm input#trackerName {
+
+    margin-bottom: 10px;
+    height: 40px;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm textarea#trackerDescription {
+
+    resize: none;
+    height: 70px;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm div#createWrapper {
+
+    display: flex;
+    justify-content: center;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm button#createTracker {
+
+    display: inline-flex;
+    justify-self: center;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: var(--radius1000);
+    border: 0px solid var(--blackish);
+    outline:0;
+    font-size: var(--size16);
+    font-weight: 600;
+    background-color: var(--reddish);
+    color: var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm button#cancel {
+
+    display: inline-flex;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: var(--radius1000);
+    border: 0px solid var(--whitish);
+    outline:0;
+    font-size: var(--size16);
+    font-weight: 600;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm button#cancel:hover {
+
+    background-color: var(--white);
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm.creating div#createTrackerFormWrapper {
+
+    max-height: 170px;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm.creating button#addTracker {
+
+    display: none;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm:not(.creating) button#createTracker {
+
+    display: none;
+
+}
+
+section#modals div#video.modal div#tools div#trackers form#createTrackerForm:not(.creating) button#cancel {
+
+    display: none;
+
+}
+
+section#modals div#video.modal div#tools div#horizontalSeparator {
+
+    display: none;
+    width: 100%;
+    height: 2px;
+    background-color: var(--greyishDark);
+
+}
+
+/* Related Videos */
+
+section#modals div#video.modal div#tools div#relatedVideos {
+
+    padding: 5%;
+    padding-top: 10%;
+    padding-bottom: 0px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos p#label {
+
+    font-size: var(--size30);
+    font-weight: 600;
+    padding-bottom: 20px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card {
+
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: var(--radius15);
+    list-style: none;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card:last-child {
+    
+    margin-bottom: 0px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail {
+
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    border-radius : var(--radius13);
+    border: 0px solid var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail img {
+
+    object-fit: cover;
+    border-radius: var(--radius13);
+    width: 100%;
+    height: calc((70vw * 0.4) / 2.6);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail div#shadow {
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 60px;
+    height: 60px;
+    background-image: radial-gradient(var(--blackishTransparent1), var(--blackishTransparent2), var(--blackishTransparent3), var(--blackishTransparent4));
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail button#favor {
+
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position: -92px -234px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    outline:0;
+    border: 0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail button#favor.selected {
+
+    background-position-x: -117px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail button#favor:hover {
+
+    opacity: 1;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#thumbnail div#duration {
+
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: var(--size16);
+    padding: 5px;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    border-radius: var(--radius5);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details p#title {
+
+    text-align: center;
+    font-size: var(--size16);
+    font-weight: 600;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details div#wrapper {
+
+    display: flex;
+    margin-bottom: 0px;
+    justify-content: center;
+    justify-self: center;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details h4#channel {
+
+    justify-self: center;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details h4#channel:hover {
+
+    opacity: 1;
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details span#separator {
+
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin: 0px 5px;
+    vertical-align: top;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details h4#date {
+
+    display: inline-block;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    vertical-align: top;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper {
+
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    justify-self: center;
+    padding-top: 5px;
+    margin-top: 5px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card #detailsWrapper {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu {
+
+    margin-left: 0;
+    transform: translate(-50%);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu {
+
+    width: 210px;
+    background-color: var(--whitish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#arrow {
+
+    border-top: 15px solid var(--whitish);
+    margin-top: -4px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li {
+
+    width: 85%;
+    font-size: var(--size16);
+    color: var(--blackish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li:hover {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li:hover > button#checkMark {
+
+    background-position: -107px -141px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li span {
+
+    width: 75%;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li button#checkMark {
+
+    background-position: -161px -141px;
+    
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu input#searchBox {
+
+    display: none;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper div#trackMenu div#menu form#createTrackerForm {
+
+    display: none;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper button#trackStatusButton {
+
+    display: inline-flex;
+    justify-self: center;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: var(--size14);
+    font-weight: 600;
+    border: 2px solid var(--whitish);
+    outline: 0px;
+    vertical-align: middle;
+    opacity: 0.2;
+    cursor: hand;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper button#trackStatusButton:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    opacity: 1;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper button#trackStatusButton.tracking {
+
+    background-color: var(--reddish);
+    border-color: var(--reddish);
+    color: var(--whitish);
+    opacity: 1;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper button#trackStatusButton.tracking:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper button#trackStatusButton.selected {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    opacity: 1;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#wrapper button#trackStatusButton.selected:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards.listView {
+
+    display: inline-block;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards.listView li#card {
+
+    display: block;
+    position: relative;
+    width: 800px;
+    height: 219px;
+    margin-bottom: 30px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards.listView li#card div#thumbnail {
+
+    float: left;
+    width: 300px;
+    height: 219px;
+    margin-right: 20px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards.listView li#card.channel div#thumbnail img {
+
+    width: 140px;
+    height: 140px;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards.listView li#card div#detailsWrapper {
+
+    text-align: left;
+
+}
+
+section#modals div#video.modal div#tools div#relatedVideos ul#cards.listView li#card div#detailsWrapper div#details div#wrapper {
+
+    justify-content: left;
+    text-align: left;
+
+}
+
+/* Channels */
+
+section#modals div#channel.modal {
+
+    display: none;
+    position: relative;
+    margin: 0px auto;
+    align-self: center;
+    justify-self: center;
+    height: calc(65vw / 1.7777777);
+    border-radius: 15px;
+    background-color: var(--blackish);
+    border: 0px solid var(--littleGrey2);
+    box-shadow: 10px 10px 80px rgba(0, 0, 0, 0.507);
+
+}
+
+section#modals div#channel.modal.displayed {
+
+    display: flex;
+
+}
+
+section#modals div#channel.modal button#scrollDown {
+
+    display: inline-block;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    bottom: -5%;
+    left: calc(60vw * (50/100));
+    background-color: transparent;
+    background-image: var(--homeInterface);
+    background-position: -12px -554px;
+    background-repeat: no-repeat;
+    transform: rotate(180deg) translate(-50%, -50%) scale(2);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: 0px solid var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal button#scrollDown.scroll {
+
+    display: none;
+
+}
+
+section#modals div#window button#close {
+
+    position: absolute;
+    top: 30px;
+    right: 30px;
+    width: 30px;
+    height: 30px;
+    background-image: var(--homeInterface);
+    background-position: -195px -430px;
+    background-color: transparent;
+    border:0px;
+    outline:0px;
+    opacity: 0.5;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#window button#close:hover {
+
+    opacity: 1;
+
+}
+
+/* Master */
+
+section#modals div#channel.modal div#master {
+
+    display: inline-block;
+    vertical-align: top;
+    position: relative;
+    width: 65vw;
+    height: 100%;
+    color: var(--blackish);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    border-radius: 15px;
+    border-bottom-right-radius: 0px;
+    border-top-right-radius: 0px;
+
+}
+
+section#modals div#channel.modal div#master div#banner {
+
+    width: 100%;
+    height: calc(65vw * 0.2);
+
+}
+
+section#modals div#channel.modal div#master div#banner img {
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+section#modals div#channel.modal div#master div#content {
+
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding: 2%;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details {
+
+    display: flex;
+    position: relative;
+    flex-direction: column;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#topWrapper {
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#channel div#topWrapper div#iconWrapper {
+
+    display: inline-flex;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#channel div#topWrapper div#iconWrapper div#profile {
+
+    display: inline-flex;
+    width: 100px;
+    height: 100px;
+    overflow: hidden;
+    border-radius: var(--radius1000);
+    margin-right: 20px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#channel div#topWrapper div#iconWrapper div#profile img {
+
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#channel div#topWrapper div#iconWrapper div#nameWrapper {
+
+    flex-direction: column;
+    align-self: center;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#channel div#topWrapper div#iconWrapper div#nameWrapper p {
+
+    color: var(--whitish);
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#channel div#topWrapper div#iconWrapper div#nameWrapper p#name {
+
+    font-size: var(--size22);
+    font-weight: 600;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#topWrapper button#favor {
+
+    display: inline-flex;
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position: -92px -234px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    transform: scale(1.5);
+    transform-origin: top right;
+    margin-left: 20px;
+    border:0px;
+    outline:0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#topWrapper button#favor.selected {
+
+    background-position-x: -142px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#topWrapper button#favor:not(.selected):hover {
+
+    background-position-x: -117px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics {
+
+    margin-top: 10px;
+    color: var(--whitish);
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div {
+
+    display: inline-flex;
+    align-content: center;
+    margin-right: 20px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div span#icon {
+
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position-y: -234px;
+    margin-right: 5px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div p {
+
+    display: inline-flex;
+    align-items: center;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div#tracks span#icon {
+
+    width: 21px;
+    background-position-x: -70px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div#globalTracks span#icon {
+
+    width: 26px;
+    background-position-x: -273px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div#views span#icon {
+
+    width: 30px;
+    background-position-x: -10px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div#videos span#icon {
+
+    width: 26px;
+    background-position-x: -246px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div#subscribers span#icon {
+
+    width: 24px;
+    background-position-x: -221px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details  div#channel div#statistics div#location span#icon {
+
+    width: 21px;
+    background-position-x: -300px;
+
+}
+
+section#modals div#channel.modal div#master div#horizontalSeparator {
+
+    height: 2px;
+    background-color: var(--blackish2);
+    margin-top: 30px;
+    margin-bottom: 30px;
+
+}
+
+section#modals div#channel.modal div#master div#content div#details div#description p {
+
+    font-size: var(--size14);
+    color: var(--whitish);
+    word-wrap: break-word;
+    white-space: normal;
+    
+}
+
+section#modals div#channel.modal div#master div#content div#details div#description p a {
+
+    text-decoration: underline;
+    font-weight: 700;
+    
+}
+
+/* Cards */
+
+section#modals div#channel.modal div#master div#content ul#cards {
+
+    margin-top: 80px;
+    text-align: center;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card {
+
+    display: inline-block;
+    position: relative;
+    width: 300px;
+    margin-bottom: 80px;
+    vertical-align: top;
+    border-radius: var(--radius15);
+    list-style: none;
+    margin-left: 2%;
+    margin-right: 2%;
+    color: var(--whitish);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+    height: 50px;
+    top: -50px;
+    list-style: none;
+    font-size: var(--size14);
+    font-weight: 500;
+    overflow: hidden;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card:hover ul#statistics {
+
+    visibility: visible;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li {
+
+    display: inline-flex;
+    align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li div#icon {
+
+    display: inline-flex;
+    align-self: center;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position-y: -234px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li p#counter {
+
+    display: inline-flex;
+    align-self: center;
+    font-size: 12px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#views div#icon {
+
+    width: 30px;
+    background-position-x: -10px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#likes div#icon {
+
+    width: 26px;
+    background-position-x: -167px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#dislikes div#icon {
+
+    width: 26px;
+    background-position-x: -194px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#comments div#icon {
+
+    width: 28px;
+    background-position-x: -41px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#comments {
+
+    display: none;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#subscribers div#icon {
+
+    width: 24px;
+    background-position-x: -221px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card ul#statistics li#videos div#icon {
+
+    width: 26px;
+    background-position-x: -246px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail {
+
+    position: relative;
+    width: 100%;
+    height: 230px;
+    border-radius : var(--radius15);
+    border: 2px solid var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail.selected {
+
+    /* border: 2px solid var(--reddishLight2); */
+    
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail img {
+
+    object-fit: cover;
+    border-radius: var(--radius13);
+    width: 100%;
+    height: 100%;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail button#checkMark {
+
+    display: none;
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    width: 41px;
+    height: 41px;
+    border-radius: var(--radius1000);
+    background-image: var(--homeInterface);
+    background-position: -11px -141px;
+    background-repeat: no-repeat;
+    background-color: var(--blackish);
+    outline:0;
+    border: 2px solid var(--littleGrey2);
+    /* box-shadow: 0px 0px 40px black; */
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail:hover button#checkMark {
+
+    display: inline-block;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail:hover button#checkMark:hover {
+
+    /* border: 2px solid white; */
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail:not(.selected):hover button#checkMark:hover {
+
+    border: 2px solid var(--whitish);
+    background-color: var(--blackish);
+    background-position: -11px -141px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail div#shadow {
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 60px;
+    height: 60px;
+    background-image: radial-gradient(var(--blackishTransparent1), var(--blackishTransparent2), var(--blackishTransparent3), var(--blackishTransparent4));
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail button#favor {
+
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position: -92px -234px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    outline:0;
+    border: 0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail button#favor.selected {
+
+    background-position-x: -117px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail button#favor:hover {
+
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail.selected button#checkMark {
+
+    display: inline-block;
+    border: 2px solid var(--reddish);
+    background-color: var(--reddish);
+    background-position: -59px -141px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#thumbnail div#duration {
+
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: var(--size16);
+    padding: 5px;
+    background-color: var(--blackish);
+    border-radius: var(--radius5);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details p#title {
+
+    margin: 0px auto;
+    font-size: var(--size18);
+    font-weight: 500;
+    line-height: 22px;
+    max-height: 46px;
+    overflow: hidden;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details div#wrapper {
+
+    display: flex;
+    justify-content: center;
+    margin-bottom: 0px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details h4#channel {
+
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details h4#channel:hover {
+
+    opacity: 1;
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details span#separator {
+
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin: 0px 5px;
+    vertical-align: top;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#details h4#date {
+
+    display: inline-block;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    vertical-align: top;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#thumbnail {
+
+    display: flex;
+    background-color: var(--blackish);
+    border-color: var(--littleGrey);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#thumbnail.selected {
+
+    /* border: 2px solid var(--reddishLight2); */
+    
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#thumbnail img {
+
+    display: flex;
+    align-self: center;
+    margin: 0px auto;
+    width: 210px;
+    height: 210px;
+    border-radius: var(--radius1000);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#details {
+
+    margin-top: 10px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#details p#title {
+
+    margin: 5px auto;
+    font-size: var(--size18);
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card.channel div#details h4#created {
+
+    display: inline-block;
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper {
+
+    position: relative;
+    display: inline-block;
+    padding-top: 5px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper button#trackStatusButton {
+
+    display: flex;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: var(--size14);
+    font-weight: 600;
+    border: 2px solid var(--whitish);
+    outline: 0px;
+    vertical-align: middle;
+    cursor: hand;
+    cursor: pointer;
+    user-select: none;
+    opacity: 0.2;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper button#trackStatusButton:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper button#trackStatusButton.tracking {
+
+    background-color: var(--reddish);
+    border-color: var(--reddish);
+    color: var(--whitish);
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper button#trackStatusButton.tracking:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper button#trackStatusButton.selected {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards li#card div#wrapper button#trackStatusButton.selected:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView {
+
+    display: inline-block;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView li#card {
+
+    display: block;
+    position: relative;
+    width: 800px;
+    height: 219px;
+    margin-bottom: 30px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView li#card div#thumbnail {
+
+    float: left;
+    width: 300px;
+    height: 219px;
+    margin-right: 20px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView li#card.channel div#thumbnail img {
+
+    width: 140px;
+    height: 140px;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView li#card div#detailsWrapper {
+
+    text-align: left;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView li#card div#detailsWrapper div#details div#wrapper {
+
+    justify-content: left;
+    text-align: left;
+
+}
+
+section#modals div#channel.modal div#master div#content ul#cards.listView li#card ul#statistics {
+
+    display: none;
+
+}
+
+/* Side */
+
+section#modals div#channel.modal div#side {
+
+    display: inline-block;
+    width: 20vw;
+    height: 100%;
+    overflow-y: scroll;
+    color: var(--whitish);
+    background-color: var(--blackish2);
+    padding: 3%;
+    overflow-x: hidden;
+    border-top-right-radius: var(--radius15);
+    border-bottom-right-radius: var(--radius15);
+    
+}
+
+section#modals div#channel.modal div#side div#trackers {
+
+    padding-bottom: 20px;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers p#title {
+
+    font-size: var(--size30);
+    font-weight: 600;
+    padding: 20px 5%;
+    padding-top: 0px;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers input#search {
+
+    width: 100%;
+    border: 0px solid var(--greyishDark);
+    background-color: var(--blackish);
+    color: var(--whitish);
+    font-size: var(--size28);
+    font-weight: 400;
+    text-align: left;
+    text-indent: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: var(--radius25);
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers {
+
+    max-height: calc((70vw * 0.6) / 3);
+    overflow-y: scroll;
+    list-style: none;
+    padding-bottom: 10px;
+
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li {
+
+    height: 40px;
+    color: var(--whitish);
+    text-align: left;
+    font-size: var(--size18);
+    font-weight: 500;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 40px;
+    vertical-align: middle;
+    border-radius: var(--radius1000);
+    width: 100%;
+    margin: 0px auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li span {
+
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li a {
+
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li:hover {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li:hover > button#checkMark {
+
+    background-position: -107px -141px;
+
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li button#checkMark {
+
+    position: relative;
+    width: 35px;
+    height: 35px;
+    top: 50%;
+    margin-top: -17px;
+    background-image: var(--homeInterface);
+    background-position: -107px -141px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border:0px;
+    outline:0px;
+    float: right;
+    opacity: 0.2;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li button#checkMark:hover {
+
+    opacity: 0.5;
+
+}
+
+section#modals div#channel.modal div#side div#trackers ul#trackers li button#checkMark.selected {
+
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#side div#trackers p#status {
+
+    color: var(--blackish);
+    padding-left: 10%;
+    padding-right: 10%;
+    text-align: left;
+    padding-top: 10px;
+    padding-bottom: 10px;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm {
+
+    text-align: left;
+    margin: 5% 0px;
+    margin-bottom: 0px;
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm button#addTracker {
+
+    display: block;
+    margin: 0px auto;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: var(--homeInterface);
+    background-position: -11px -86px;
+    background-repeat: no-repeat;
+    background-color: var(--reddish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: none;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm div#createTrackerFormWrapper {
+
+    transition: max-height 200ms;
+    max-height: 0px;
+    overflow: hidden;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm .input {
+
+    float: left;
+    padding: 15px;
+    border-radius: var(--radius25);
+    color: var(--whitish);
+    font-family: "Roboto", sans-serif;
+    font-size: var(--size18);
+    font-weight: 400;
+    text-align: left;
+    border: 0px solid var(--greyishDark);
+    background-color: var(--blackish);
+    width: 100%;
+    outline: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm input#trackerName {
+
+    margin-bottom: 10px;
+    height: 40px;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm textarea#trackerDescription {
+
+    resize: none;
+    height: 70px;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm div#createWrapper {
+
+    display: flex;
+    justify-content: center;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm button#createTracker {
+
+    display: inline-flex;
+    justify-self: center;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: var(--radius1000);
+    border: 0px solid var(--blackish);
+    outline:0;
+    font-size: var(--size16);
+    font-weight: 600;
+    background-color: var(--reddish);
+    color: var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm button#cancel {
+
+    display: inline-flex;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    margin-left: 5px;
+    margin-right: 5px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: var(--radius1000);
+    border: 0px solid var(--whitish);
+    outline:0;
+    font-size: var(--size16);
+    font-weight: 600;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm button#cancel:hover {
+
+    background-color: var(--white);
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm.creating div#createTrackerFormWrapper {
+
+    max-height: 170px;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm.creating button#addTracker {
+
+    display: none;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm:not(.creating) button#createTracker {
+
+    display: none;
+
+}
+
+section#modals div#channel.modal div#side div#trackers form#createTrackerForm:not(.creating) button#cancel {
+
+    display: none;
+
+}
+
+section#modals div#channel.modal div#side div#horizontalSeparator {
+
+    display: none;
+    width: 100%;
+    height: 2px;
+    background-color: var(--greyishDark);
+
+}
+
+/* Related Channels */
+
+section#modals div#channel.modal div#side div#relatedChannels {
+
+    padding: 5%;
+    padding-top: 10%;
+    padding-bottom: 0px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels p#label {
+
+    font-size: var(--size30);
+    font-weight: 600;
+    padding-bottom: 80px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card {
+
+    display: block;
+    position: relative;
+    width: 100%;
+    margin-bottom: 80px;
+    border-radius: var(--radius15);
+    list-style: none;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card:last-child {
+    
+    margin-bottom: 0px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail {
+
+    display: inline-flex;
+    position: relative;
+    width: 100%;
+    border-radius : var(--radius13);
+    border: 0px solid var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail img {
+
+    object-fit: cover;
+    border-radius: var(--radius13);
+    width: 100%;
+    height: calc((70vw * 0.4) / 2.6);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail div#shadow {
+
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 60px;
+    height: 60px;
+    background-image: radial-gradient(var(--blackishTransparent1), var(--blackishTransparent2), var(--blackishTransparent3), var(--blackishTransparent4));
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail button#favor {
+
+    position: absolute;
+    bottom: 15px;
+    left: 15px;
+    width: 24px;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position: -92px -234px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    outline:0;
+    border: 0px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail button#favor.selected {
+
+    background-position-x: -117px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail button#favor:hover {
+
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail div#duration {
+
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    font-size: var(--size16);
+    padding: 5px;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    border-radius: var(--radius5);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details p#title {
+
+    text-align: center;
+    font-size: var(--size16);
+    font-weight: 600;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details div#wrapper {
+
+    display: flex;
+    margin-bottom: 0px;
+    justify-content: center;
+    justify-self: center;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details h4#channel {
+
+    justify-self: center;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details h4#channel:hover {
+
+    opacity: 1;
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details span#separator {
+
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin: 0px 5px;
+    vertical-align: top;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#details h4#date {
+
+    display: inline-block;
+    font-size: var(--size12);
+    max-width: 170px;
+    max-height: 22px;
+    overflow: hidden;
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    vertical-align: top;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper {
+
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    justify-self: center;
+    padding-top: 5px;
+    margin-top: 5px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card #detailsWrapper {
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu {
+
+    margin-left: 0;
+    transform: translate(-50%);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu {
+
+    width: 210px;
+    background-color: var(--whitish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#arrow {
+
+    border-top: 15px solid var(--whitish);
+    margin-top: -4px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li {
+
+    width: 85%;
+    font-size: var(--size16);
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li:hover {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li:hover > button#checkMark {
+
+    background-position: -107px -141px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li span {
+
+    width: 75%;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu ul#trackers li button#checkMark {
+
+    background-position: -161px -141px;
+    
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu input#searchBox {
+
+    display: none;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper div#trackMenu div#menu form#createTrackerForm {
+
+    display: none;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper button#trackStatusButton {
+
+    display: inline-flex;
+    justify-self: center;
+    background-color: var(--blackish);
+    color: var(--whitish);
+    border-radius: var(--radius1000);
+    padding: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: var(--size14);
+    font-weight: 600;
+    border: 2px solid var(--whitish);
+    outline: 0px;
+    vertical-align: middle;
+    opacity: 0.2;
+    cursor: hand;
+    cursor: pointer;
+    user-select: none;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper button#trackStatusButton:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper button#trackStatusButton.tracking {
+
+    background-color: var(--reddish);
+    border-color: var(--reddish);
+    color: var(--whitish);
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper button#trackStatusButton.tracking:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper button#trackStatusButton.selected {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+    opacity: 1;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#wrapper button#trackStatusButton.selected:hover {
+
+    background-color: var(--whitish);
+    border-color: var(--whitish);
+    color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards.listView {
+
+    display: inline-block;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards.listView li#card {
+
+    display: block;
+    position: relative;
+    width: 800px;
+    height: 219px;
+    margin-bottom: 30px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards.listView li#card div#thumbnail {
+
+    float: left;
+    width: 300px;
+    height: 219px;
+    margin-right: 20px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards.listView li#card.channel div#thumbnail img {
+
+    width: 140px;
+    height: 140px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards.listView li#card div#detailsWrapper {
+
+    text-align: left;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards.listView li#card div#detailsWrapper div#details div#wrapper {
+
+    justify-content: left;
+    text-align: left;
+
+}
+
+/* Related Channels */
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#thumbnail {
+
+    display: flex;
+    background-color: var(--blackish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#thumbnail.selected {
+
+    /* border: 2px solid var(--reddishLight2); */
+    
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#thumbnail img {
+
+    display: flex;
+    align-self: center;
+    margin: 0px auto;
+    width: 200px;
+    height: 200px;
+    border-radius: var(--radius1000);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#details {
+
+    margin-top: 10px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#details p#title {
+
+    margin: 5px auto;
+    font-size: var(--size18);
+    font-weight: 500;
+    line-height: 22px;
+    margin-bottom: 5px;
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#details p#title:hover {
+
+    color: var(--lightBlueish);
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card.channel div#details h4#created {
+
+    display: block;
+    font-size: var(--size12);
+    font-weight: 600;
+    opacity: 0.5;
+    margin-bottom: 5px;
+    text-align: center;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics {
+
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    visibility: hidden;
+    position: absolute;
+    height: 50px;
+    top: -50px;
+    list-style: none;
+    font-size: var(--size14);
+    font-weight: 500;
+    overflow: hidden;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card:hover ul#statistics {
+
+    visibility: visible;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li {
+
+    display: inline-flex;
+    align-self: center;
+    margin-left: 10px;
+    margin-right: 10px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li div#icon {
+
+    display: inline-flex;
+    align-self: center;
+    margin-right: 5px;
+    background-repeat: no-repeat;
+    height: 32px;
+    background-image: var(--homeInterface);
+    background-position-y: -234px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li p#counter {
+
+    display: inline-flex;
+    align-self: center;
+    font-size: 12px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li#views div#icon {
+
+    width: 30px;
+    background-position-x: -10px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li#likes div#icon {
+
+    width: 26px;
+    background-position-x: -167px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li#dislikes div#icon {
+
+    width: 26px;
+    background-position-x: -194px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li#comments div#icon {
+
+    width: 28px;
+    background-position-x: -41px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li#subscribers div#icon {
+
+    width: 24px;
+    background-position-x: -221px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card ul#statistics li#videos div#icon {
+
+    width: 26px;
+    background-position-x: -246px;
+
+}
+
+section#modals div#channel.modal div#side div#relatedChannels ul#cards li#card div#thumbnail {
+
+    position: relative;
+    width: 100%;
+    height: 230px;
+    border-radius : var(--radius15);
+    border: 2px solid var(--blackish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+/** Track Menu **/
+
+div#trackMenu {
+
+    position: absolute;
+    left: 50%;
+    margin-left: -150px;
+    bottom: 100%;
+    text-align: center;
+
+}
+
+div#trackMenu.hidden {
+
+    display: none;
+
+}
+
+div#trackMenu.dummy {
+
+    display: none;
+
+}
+
+div#trackMenu div#menu {
+
+    width: 300px;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background-color: var(--whitish);
+    border-radius: var(--radius15);
+
+}
+
+div#trackMenu div#arrow {
+
+    width: 0px;
+    height: 0px;
+    border-left: 20px solid transparent;
+	border-right: 20px solid transparent;
+    border-top: 20px solid var(--whitish);
+    margin: 0px auto;
+    margin-top: -2px;
+
+}
+
+div#trackMenu div#menu input#searchBox {
+
+    width: 90%;
+    color: var(--blackish);
+    border: 0px solid;
+    font-size: var(--size28);
+    font-weight: 400;
+    text-align: left;
+    background-color: var(--lighterGreyish);
+    text-indent: 10px;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: var(--radius1000);
+    outline: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+
+}
+
+div#trackMenu div#menu input#searchBox::placeholder {
+
+    color: var(--blackish);
+
+}
+
+div#trackMenu div#menu input#searchBox:focus::placeholder {
+
+    opacity: 0.2;
+
+}
+
+div#trackMenu div#menu ul#trackers {
+
+    max-height: 200px;
+    overflow-y: scroll;
+    list-style: none;
+    padding-bottom: 10px;
+
+}
+
+div#trackMenu div#menu ul#trackers li {
+
+    height: 40px;
+    color: var(--blackish);
+    text-align: left;
+    font-size: var(--size18);
+    font-weight: 500;
+    padding-left: 5%;
+    padding-right: 5%;
+    line-height: 40px;
+    vertical-align: middle;
+    border-radius: var(--radius1000);
+    width: 90%;
+    margin: 0px auto;
+    white-space: nowrap;
+    overflow: hidden;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+div#trackMenu div#menu ul#trackers li span {
+
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 80%;
+
+}
+
+div#trackMenu div#menu ul#trackers li a {
+
+    color: var(--blackish);
+
+}
+
+div#trackMenu div#menu ul#trackers li:hover {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+div#trackMenu div#menu ul#trackers li:hover > button#checkMark {
+
+    background-position: -107px -141px;
+
+}
+
+div#trackMenu div#menu ul#trackers li button#checkMark {
+
+    position: relative;
+    width: 35px;
+    height: 35px;
+    top: 50%;
+    margin-top: -17px;
+    background-image: var(--homeInterface);
+    background-position: -161px -141px;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border:0px;
+    outline:0px;
+    float: right;
+    opacity: 0.2;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+div#trackMenu div#menu ul#trackers li button#checkMark:hover {
+
+    opacity: 0.5;
+
+}
+
+div#trackMenu div#menu ul#trackers li button#checkMark.selected {
+
+    opacity: 1;
+
+}
+
+div#trackMenu div#menu p#status {
+
+    display: none;
+    position: relative;
+    color: var(--reddish);
+    padding: 5%;
+    text-align: left;
+
+}
+
+div#trackMenu.error div#menu p#status {
+
+    display: inline-block;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm {
+
+    text-align: left;
+    margin: 5%;
+    margin-bottom: 0px;
+    color: var(--blackish);
+
+}
+
+div#trackMenu div#menu form#createTrackerForm button#addTracker {
+
+    display: block;
+    margin: 0px auto;
+    padding: 25px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    background-image: var(--homeInterface);
+    background-position: -11px -86px;
+    background-repeat: no-repeat;
+    background-color: var(--reddish);
+    border-radius: var(--radius1000);
+    outline:0;
+    border: none;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+div#trackMenu div#menu form#createTrackerForm button#addTracker:hover {
+
+    background-color: var(--reddishLight);
+
+}
+
+div#trackMenu div#menu form#createTrackerForm div#createTrackerFormWrapper {
+
+    transition: max-height 200ms;
+    max-height: 0px;
+    overflow: hidden;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm .input {
+
+    float: left;
+    padding: 15px;
+    border-radius: var(--radius25);
+    color: var(--blackish);
+    font-family: "Roboto", sans-serif;
+    font-size: var(--size18);
+    font-weight: 400;
+    text-align: left;
+    border: 2px solid var(--lighterGreyish);
+    width: 100%;
+    outline: 0px;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm input#trackerName {
+
+    margin-bottom: 10px;
+    height: 40px;
+
+}
+
+div#trackMenu.error div#menu form#createTrackerForm input#trackerName.error {
+
+    margin-bottom: 10px;
+    height: 40px;
+    border: 2px solid var(--reddish);
+}
+
+div#trackMenu div#menu form#createTrackerForm textarea#trackerDescription {
+
+    resize: none;
+    height: 70px;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm button#createTracker {
+
+    display: block;
+    margin: 0px auto;
+    height: 40px;
+    padding-left: 15px;
+    padding-right: 15px;
+    line-height: 40px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    border-radius: var(--radius1000);
+    border: 0px solid var(--blackish);
+    outline:0;
+    font-size: var(--size16);
+    font-weight: 600;
+    background-color: var(--reddish);
+    color: var(--whitish);
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+div#trackMenu div#menu form#createTrackerForm button#createTracker:hover {
+
+    background-color: var(--reddishLight);
+
+}
+
+div#trackMenu.card {
+
+    display: block;
+    z-index: 10100;
+
+}
+
+div#trackMenu.footer {
+
+    display: block;
+    z-index: 1001;
+    margin-bottom: 5px;
+
+}
+
+div#trackMenu.footer div#menu ul#trackers {
+
+    max-height: 280px;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm.creating div#createTrackerFormWrapper {
+
+    max-height: 170px;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm.creating button#addTracker {
+
+    display: none;
+
+}
+
+div#trackMenu div#menu form#createTrackerForm:not(.creating) button#createTracker {
+
+    display: none;
+
+}
+
+main#content ul#cards.listView li#card div#trackMenu {
+
+    left: 124%;
+    margin-left: 0px;
+    bottom: -140px;
+
+}
+
+main#content ul#cards.listView li#card div#trackMenu div#arrow {
+
+    position: absolute;
+    width: 0px;
+    height: 0px;
+    border-top: 20px solid transparent;
+    border-bottom: 20px solid transparent;
+    border-right: 20px solid var(--whitish);
+    margin-left: -20px;
+    margin-top: 0px;
+    left: -18px;
+    bottom: 135px;
+
+}
+
+/** More Menu **/
+
+div#moreMenu {
+    
+    position: absolute;
+    top: 100%;
+    z-index: 1100;
+    display: inline-block;
+    border-radius: var(--radius15);
+    background-color: var(--whitish);
+    padding: 15px;
+
+}
+
+div#moreMenu.hidden {
+    
+    display: none;
+
+}
+
+div#moreMenu.dummy {
+    
+    display: none;
+
+}
+
+div#moreMenu ul#list {
+
+    list-style: none;
+
+}
+
+div#moreMenu ul#list li.filter.more {
+
+    display: list-item;
+
+    cursor: hand;
+    cursor: pointer;
+
+}
+
+div#moreMenu ul#list li.filter.more button {
+    
+    border: 0px solid var(--blackish);
+    color: var(--blackish);
+    background-color: transparent;
+    outline:0;
+    font-size: var(--size16);
+    padding: 0px 20px;
+    margin: 0px;
+    width: 100%;
+    text-align: left;
+    opacity: 1;
+    border-radius: var(--radius1000);
+    
+}
+
+div#moreMenu ul#list li.filter.more button:hover {
+    
+    background-color: var(--reddish);
+    color: var(--whitish);
+    
+}
+
+div#moreMenu ul#list li.filter.more button.dummy {
+    
+    display: none;
+    
+}
+
+/* General Message */
+
+div#generalMessage {
+
+    display: none;
+    position: fixed;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20000;
+
+}
+
+div#generalMessage.displayed {
+
+    display: flex;
+
+}
+
+div#generalMessage div#overlayBackground {
+
+    background-color: var(--blackish);
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+}
+
+div#generalMessage div#messageBox {
+
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    width: 500px;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 60px 40px;
+    z-index: 20002;
+
+}
+
+div#generalMessage div#messageBox button {
+
+    border: 0px;
+    outline: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#generalMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 20px;
+    right: 20px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.7);
+
+}
+
+div#generalMessage div#messageBox p#message {
+
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+div#generalMessage div#messageBox div#action {
+
+    width: 100%;
+    text-align: center;
+
+}
+
+div#generalMessage div#messageBox div#action button {
+
+    background-color: var(--lighterGreyish);
+    width: 100px;
+    padding: 10px 0px;
+    margin: 0px 5px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button:hover {
+
+    background-color: var(--lighterGreyish);
+    width: 100px;
+    padding: 10px 0px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button.negative {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+/** Notification Message **/
+
+div#notificationMessage {
+
+    display: none;
+    position: fixed;
+    width: 20vw;
+    top: 20px;
+    right: 20px;
+    z-index: 20000;
+
+}
+
+div#notificationMessage.displayed {
+
+    display: inline-block;
+
+}
+
+div#notificationMessage div#messageBox {
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 30px;
+
+}
+
+div#notificationMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 15px;
+    right: 15px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.6);
+    outline: 0px;
+    border: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#notificationMessage div#messageBox h1#title {
+
+    font-size: 18px;
+
+}
+
+div#notificationMessage div#messageBox p#message {
+
+    width: 100%;
+    font-size: 14px;
+
+}
+
+/** Screens **/
+
+@media only screen and (max-width: 1360px) {
+
+    header a#logo {
+
+        background-position: -11px -51px;
+
+    }
+
+}
+
+@media only screen and (min-width: 1441px) {
+
+    section#options {
+
+        margin-top: 165px;
+
+    }
+
+    section#search {
+
+        height: 120px;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+    main#content ul#cards li#card {
+
+        width: 370px;
+        margin-left: 10px;
+        margin-right: 10px;
+
+    }
+
+    main#content ul#cards li#card div#thumbnail {
+
+        height: 270px;
+
+    }
+
+    main#content ul#cards.listView li#card.channel div#thumbnail img {
+
+        width: 170px;
+        height: 170px;
+
+    }
+
+    section#modals div#video.modal div#player {
+
+        /* width: 70%; */
+
+    }
+
+    section#modals div#video.modal div#player div#wrapper {
+
+        /* height: calc((70vw * (70/100)) / 1.7777777); */
+
+    }
+
+    section#modals div#video.modal div#player div#details h1#title {
+
+        font-size: var(--size38);
+
+    }
+
+    section#modals div#video.modal div#tools {
+
+        /* width: 30%; */
+        
+    }
+
+    section#modals div#video.modal div#tools div#relatedVideos ul#cards li#card div#details p#title {
+
+        /* font-size: var(--size18); */
+
+    }
+
+}
+
+@media only screen and (max-width: 1440px) {
+
+    main#content ul#cards.listView li#card {
+
+        height: 183px;
+
+    }
+
+    main#content ul#cards.listView li#card div#thumbnail {
+
+        width: 250px;
+        height: 183px;
+
+    }
+
+    section#modals div#video.modal div#player div#details h1#title {
+
+        font-size: var(--size30);
+
+    }
+
+    section#modals div#video.modal div#player div#details p#description {
+
+        font-size: var(--size14);
+
+    }
+
+    section#modals div#video.modal button#close {
+
+        transform: scale(0.7);
+
+    }
+
+}
+
+@media only screen and (max-width: 1366px) {
+
+    section#options {
+
+        margin-top: 165px;
+
+    }
+
+    section#search {
+
+        height: 120px;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+}
+
+@media only screen and (max-width: 1024px) {
+
+    section#options {
+
+        margin-top: 165px;
+
+    }
+
+    section#search {
+
+        height: 120px;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+}
+
+@media only screen and (max-width: 768px) {
+
+    header {
+
+        height: 70px;
+
+    }
+
+    main#content ul#cards li#card {
+
+        width: 200px;
+
+    }
+
+    main#content ul#cards li#card div#thumbnail {
+
+        height: 170px;
+
+    }
+
+}
+
+@media only screen and (max-width: 640px) {
+
+
+
+    header a#logo {
+
+        display: none;
+
+    }
+
+    header nav {
+
+        display: none;
+
+    }
+
+    header div#username div#photo, header div#username div#indicator, header div#username div#name {
+
+        display: none;
+
+    }
+
+    header div#username {
+
+        width: 100%;
+        margin-right: 0px;
+        
+    }
+
+    header div#username div#menu {
+
+        display: inline-flex;
+        justify-self: center;
+        margin-left: 0px;
+        height: 70px;
+        margin: auto;
+        
+    }
+    
+    section#options p#counters {
+
+        display: none;
+
+    }
+
+    section#options ul#filters {
+
+        position: relative;
+
+    }
+
+    section#options div#views {
+
+        display: none;
+
+    }
+
+    main#content {
+
+        margin-top: 80px;
+
+    }
+
+    main#content ul#cards li#card {
+
+        width: 370px;
+        margin-bottom: 80px;
+
+    }
+
+    main#content ul#cards li#card div#thumbnail {
+
+        height: 240px;
+
+    }
+
+    section#search input#searchBox {
+
+        font-size: var(--size38);
+
+    }
+
+    section#search div#searchIcon {
+
+        width: 30px;
+        height: 30px;
+
+    }
+
+    main#content ul#cards li#card ul#statistics {
+
+        visibility: visible;
+
+    }
+
+}

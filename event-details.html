@@ -34,9 +34,9 @@
         <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/youtubetracker-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
 
         <!-- Stylesheets -->
-        <link rel="stylesheet" href="assets/presentation/events.css"/>
+        <link rel="stylesheet" href="assets/presentation/event-details.css"/>
         
-        <script src="assets/behavior/events.js"></script>
+        <script src="assets/behavior/event-details.js"></script>
 
     </head>
     <body>
@@ -102,7 +102,7 @@
         <section id="search">
             <div id="wrapper">
                 <div id="searchIcon"></div>
-                <input type="text" id="searchBox" placeholder="Search Events" autocomplete="off">
+                <input type="text" id="searchBox" placeholder="Capitol Attack" autocomplete="off">
             </div>
         </section>
 
@@ -136,9 +136,15 @@
                 <button id="listView" class="viewButton"></button>
             </div>
         </section>
-    
+
         <!-- Content -->
         <main id="content">
+            
+            <!-- Events Barcode -->
+            <div id="events-barcode">
+                <div id="cursor"></div>
+            </div>
+
             <ul id="cards">
                 <li id="card" class="video">
                     <ul id="statistics">
