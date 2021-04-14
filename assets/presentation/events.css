@@ -1079,7 +1079,7 @@ main#content ul#cards li#card div#details span#separator {
 
 #eventbarcode {
 
-    height: 20px;
+    height: 15px;
     width: 100%;
     background-image: url(/vtracker/assets/images/eventsbar.png);
     border-radius: var(--radius13);
