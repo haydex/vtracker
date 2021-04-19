@@ -839,11 +839,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
             }
             
-            this.videoTitle.forEach(function(item) {
+            /* this.videoTitle.forEach(function(item) {
 
                 item.addEventListener("click", this.videoTitleClickListener.bind(this));
 
-            }.bind(this));
+            }.bind(this)); */
 
             this.channelTitle.forEach(function (item) {
 
