@@ -879,7 +879,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             } else {
 
-                this.thumbnailClick(event);
+                // this.thumbnailClick(event);
 
             }
 

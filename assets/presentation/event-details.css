@@ -793,7 +793,6 @@ main#content ul#cards li#card {
 main#content ul#cards li#card ul#statistics {
 
     display: flex;
-    display: none;
     justify-content: center;
     width: 100%;
     visibility: hidden;
@@ -1098,6 +1097,28 @@ div#events-barcode {
     border-radius: var(--radius13);
     margin:0px auto;
     margin-bottom: 90px;
+
+}
+
+div#events-barcode div#events-dates {
+
+    display: flex;
+    position: absolute;
+    top: 110%;
+    width: 100%;
+
+}
+
+div#events-barcode div#events-dates .events-dates {
+
+    display: inline-flex;
+
+}
+
+div#events-barcode div#events-dates #end-date {
+
+    position: absolute;
+    right: 0px;
 
 }
 

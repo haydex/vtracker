@@ -1143,7 +1143,7 @@ document.addEventListener("DOMContentLoaded", function() {
             if (cards.numberOfSelectedVideos > 1) multiVideos = "s";
             if (cards.numberOfSelectedChannels > 1) multiChannels = "s";
             if ((cards.numberOfSelectedVideos >= 1) && (cards.numberOfSelectedChannels)) separator = " · ";
-            if (cards.numberOfSelectedVideos > 0) videosLabel = cards.numberOfSelectedVideos + " Event" + multiVideos;
+            if (cards.numberOfSelectedVideos > 0) videosLabel = cards.numberOfSelectedVideos + " Video" + multiVideos;
             if (cards.numberOfSelectedChannels > 0) channelsLabel = cards.numberOfSelectedChannels + " Channel" + multiChannels;
             return videosLabel + separator + channelsLabel + " selected";
 
