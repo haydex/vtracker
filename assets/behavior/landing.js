@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
     /** Search END **/
 
-    /** Staff START **/
+    /** Staff START
 
     var staffSlider = undefined;
 
@@ -117,6 +117,6 @@ document.addEventListener("DOMContentLoaded", function() {
     $("#staff #slider #HAYDEXSlider #wrapper #scroller #page div.slide #title").css("color", staffSliderTitleColor);
     $("#staff #slider #HAYDEXSlider #wrapper #scroller #page div.slide #subtitle").css("color", staffSliderSubtitleColor);
 
-    /** Staff START **/
+    Staff END **/
 
 });

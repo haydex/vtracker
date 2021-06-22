@@ -607,8 +607,15 @@ section#sponsors ul#items li div#logo {
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+    filter: grayscale(1);
+    /* transition: all 1s ease; */
     cursor: hand;
     cursor: pointer;
+}
+
+section#sponsors ul#items li div#logo:hover {
+    filter: grayscale(0);
+    /* transition: all 0.1s ease; */
 }
 
 section#sponsors ul#items li#item1 div#logo {
