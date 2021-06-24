@@ -31,6 +31,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.document2 = document.documentElement;
             this.menuButton = document.querySelector("header div#username div#menu");
             this.sideMenu = document.querySelector("div#sideMenu");
+            this.photos = document.querySelectorAll("div#thumbnail img#photo");
             this.scrollClass = "scroll";
             this.displayedClass = "displayed";
             this.range = 100;
@@ -43,6 +44,19 @@ document.addEventListener("DOMContentLoaded", function() {
             window.addEventListener("scroll", this.windowScroll.bind(this));
             this.menuButton.addEventListener("click", this.menuButtonClickHandler.bind(this));
             this.sideMenu.addEventListener("click", this.sideMenuClickHandler.bind(this));
+
+            for (var i=0; i < this.photos.length; i++) {
+
+                this.photos[i].addEventListener("click", this.photosClickHandler.bind(this));
+
+            }
+
+
+        }
+
+        photosClickHandler(event) {
+
+            window.location.href ="event-details.html";
 
         }
 
