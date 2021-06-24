@@ -530,12 +530,12 @@ section#search input#searchBox:focus::placeholder {
 section#search div#searchIcon {
 
     display: none;
-    width: 45px;
+    /* width: 45px; */
     height: 45px;
-    background-image: var(--homeInterface);
+    /* background-image: var(--homeInterface); */
     background-repeat: no-repeat;
     background-position: -11px -422px;
-    margin-right: 20px;
+    /* margin-right: 20px; */
 
 }
 
