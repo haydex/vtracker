@@ -1,0 +1,885 @@
+/*
+
+
+
+    " Reimplement the wheel to either learn, or make it better. "
+
+    http://www.hayder.io/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: YouTubeTracker,
+	Description: Tracking YouTube"s data.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2021 HAYDER, All Rights Reserved.
+	
+	
+	
+*/
+
+
+
+/** Global settings **/
+
+:root {
+    
+    /* theme */
+
+    --reddish: #ff0000;
+    --reddishLight: rgb(255, 113, 113);
+    --reddishLight2: rgb(253, 68, 68, 0.4);
+    --blackish: #242120;
+    --blackish2: #2c2928;
+    --shadow: rgb(0, 0, 0, 0.5);
+    --blackishTransparent0: rgb(36, 33, 32, 0.9);
+    --blackishTransparent1: rgb(36, 33, 32, 0.3);
+    --blackishTransparent2: rgb(36, 33, 32, 0.2);
+    --blackishTransparent3: rgb(36, 33, 32, 0);
+    --blackishTransparent4: rgb(36, 33, 32, 0);
+    --blackishTransparent5: rgba(36, 33, 32, 0.90);
+    --blackishShadow: hsla(15, 6%, 13%, 0.3);
+    --littleGrey: hsla(15, 6%, 20%, 0.9);
+    --littleGrey2: hsla(15, 6%, 25%, 1);
+    --greyishDark: hsla(15, 6%, 40%, 0.3);
+    --greyishDark2: hsla(15, 6%, 40%, 0.1);
+    --greyish: hsla(15, 6%, 40%, 1);
+    --lightGreyish: hsla(15, 6%, 60%, 1);
+    --lighterGreyish: rgb(230, 230, 230);
+    --whitish: hsla(15, 6%, 100%, 1);
+    --whitishTransparent1: hsla(15, 6%, 100%, 0.9);
+    --blueish: #2C8DFF;
+    --lightBlueish: rgb(136, 191, 255);
+    --lightBlueish1: rgb(75, 159, 255);
+
+    /* fonts */
+
+    --size12: 12px;
+    --size14: 14px;
+    --size16: 16px;
+    --size17: 17px;
+    --size18: 18px;
+    --size22: 22px;
+    --size28: 28px;
+    --size30: 30px;
+    --size34: 34px;
+    --size38: 38px;
+    --size48: 48px;
+    --size58: 58px;
+
+    /* radius */
+
+    --radius5: 5px;
+    --radius13: 13px;
+    --radius15: 15px;
+    --radius25: 25px;
+    --radius1000: 1000px;
+
+    /* interface */
+
+    --homeInterface: url(/vtracker/assets/images/home-interface.svg);
+    
+}
+
+html {
+
+    color: var(--whitish);
+    font-family: "Arial", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    box-sizing: border-box; /* https://www.w3schools.com/css/css3_box-sizing.asp   https://www.youtube.com/watch?v=ADDvQlerEx4&list=PLu8EoSxDXHP5CIFvt9-ze3IngcdAc2xKG&index=2 */
+
+}
+
+body {
+
+    display: grid;
+    justify-content: center;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(5, auto);
+    grid-template-areas:
+        "Header"
+        "Search"
+        "Options"
+        "Content"
+        "Footer";
+    
+	background-color:var(--blackish);
+    margin: 0px;
+    box-sizing: inherit;
+
+}
+
+body.noScroll {
+
+    overflow: hidden;
+    
+}
+
+a {
+
+    text-decoration: none;
+    color: inherit;
+
+}
+
+a:hover {
+
+    color: inherit;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent; /* make scrollbar transparent */
+}
+
+* {
+
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+
+}
+
+ul {
+
+    list-style: none;
+
+}
+
+button {
+
+    border: none;
+    background-color: transparent;
+    color: var(--whitish);
+    font-family: "Arial", sans-serif;
+    cursor: pointer;
+
+}
+
+
+
+/* Side Menu */
+
+div#sideMenu {
+    position: fixed;
+    right: -300px;
+    top: 0px;
+    background-color: var(--reddish);
+    z-index: 40000;
+    height: 100vh;
+    width: 300px;
+    padding: 30px;
+    text-align: center;
+    transition: right 0.3s;
+}
+
+div#sideMenu.displayed {
+    right: 0px;
+    transition: right 0.3s;
+}
+
+div#sideMenu div#user {
+
+    width: 100%;
+
+}
+
+div#sideMenu div#user div#photo {
+
+    margin: 0px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius1000);
+    border: 2px solid var(--whitish);
+    margin-bottom: 20px;
+    margin-top: 20px;
+
+}
+
+div#sideMenu div#user p#name {
+
+    font-weight: 800;
+
+}
+
+div#sideMenu button#closeSideMenuButton {
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: 0px;
+    border-radius: var(--radius1000);
+    background-image: var(--homeInterface);
+    background-position: -130px -197px;
+    outline: none;
+    cursor: pointer;
+
+}
+
+div#sideMenu button#closeSideMenuButton:hover {
+
+    opacity: 0.5;
+
+}
+
+div#sideMenu ul#sideMenuList {
+
+    margin-top: 30px;
+
+}
+
+div#sideMenu ul#sideMenuList li {
+
+    padding: 10px;
+    font-size: var(--size22);
+
+}
+
+div#sideMenu ul#sideMenuList li:hover {
+
+    opacity: 0.5;
+    cursor: pointer;
+
+}
+
+
+
+/* Header */
+
+header {
+
+    display: flex;
+    position: fixed;
+    grid-area: Header;
+    justify-content: center;
+    text-align: center;
+    top:0px;
+    width: 100%;
+    background-color: var(--blackish);
+    height: 60px;
+
+    z-index: 10000;
+
+}
+
+header.scroll {
+
+    z-index: 10000;
+
+}
+
+header a#logo {
+
+    position: absolute;
+    align-self: center;
+    left: 0px;
+    margin-left: 20px;
+    width: 22px;
+    height: 27px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -11px;
+
+}
+
+header a#logo:hover {
+
+    opacity: 0.8;
+
+}
+
+header nav {
+
+    white-space: nowrap;
+
+}
+
+header nav ul {
+
+    height: 100%;
+    display: flex;
+
+}
+
+header nav ul a {
+
+    display: flex;
+
+}
+
+header nav li.navigationButton p {
+
+    display: none;
+
+}
+
+header div.navIcon {
+    
+    display: inline-flex;
+    align-self: center;
+    background-repeat: no-repeat;
+
+}
+
+header div#homeIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -38px -337px;
+    
+
+}
+
+header div#trackersIcon {
+
+    width: 22px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -11px -336px;
+
+}
+
+header div#eventsIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -88px -337px;
+
+}
+
+header div#favoritesIcon {
+
+    width: 20px;
+    height: 19px;
+    background-image: var(--homeInterface);
+    background-position: -63px -336px;
+
+}
+
+li.navigationButton {
+
+    color: var(--whitish);
+    display: flex;
+    background-color: var(--greyishDark);
+    width: 45px;
+    height: 45px;
+    font-size: var(--size22);
+    font-weight: 400;
+    margin-left: 15px;
+    margin-right: 15px;
+    border-radius: var(--radius1000);
+    align-self: center;
+    justify-content: center;
+    cursor: pointer;
+    
+}
+
+li.navigationButton:hover {
+
+    background-color: var(--greyish);
+
+}
+
+li.navigationButton.selected {
+
+    background-color: var(--reddish);
+
+}
+
+li.navigationButton p {
+
+    display: inline-block;
+    line-height: 45px;
+    vertical-align: top;
+
+}
+
+header div#username {
+
+    display: flex;
+    position: absolute;
+    align-self: center;
+    white-space: nowrap;
+    right: 0px;
+    margin-right: 20px;
+
+}
+
+header div#username div#photo {
+
+    align-self: center;
+    position: relative;
+    display: inline-flex;
+    width: 30px;
+    height: 30px;
+    border: 2px solid var(--whitish);
+    border-radius: var(--radius1000);
+
+}
+
+header div#username div#indicator.active {
+
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    top: -3px;
+    right: -3px;
+    border-radius: var(--radius1000);
+    background-color: var(--reddish);
+
+}
+
+header div#username div#name {
+
+    display: inline-block;
+    display: none;
+    font-weight: 600;
+    height: 50px;
+    line-height: 50px;
+    vertical-align: top;
+    margin-left: 10px;
+
+}
+
+header div#username div#menu {
+
+    display: inline-flex;
+    align-self: center;
+    width: 20px;
+    height: 17px;
+    margin-left: 20px;
+    background-image: var(--homeInterface);
+    background-position: -74px -291px;
+    background-repeat: no-repeat;
+    cursor: hand;
+    cursor: pointer;
+    
+}
+
+header div#username div#menu:hover {
+
+    opacity: 0.5;
+
+}
+
+/* Content */
+
+main#content {
+
+    min-height: 1200px;
+    margin-top: 100px;
+
+}
+
+main#content div#dashboard {
+
+    max-width: 1000px;
+    margin: 0px auto;
+
+}
+
+main#content div#dashboard section#navigation p {
+
+    font-size: var(--size34);
+    font-weight: 100;
+
+}
+
+main#content div#dashboard section#navigation p span {
+
+    font-size: var(--size34);
+    font-weight: 800;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper {
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrumbs {
+
+    font-size: var(--size17);
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrumbs li {
+
+    display: inline-block;
+    opacity: 0.5;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrumbs li.link {
+
+    cursor: pointer;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrumbs li.link:hover {
+
+    opacity: 1;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrumbs li.selected {
+
+    font-weight: 800;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton {
+
+    display: flex;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton p {
+
+    font-size: var(--size17);
+    font-weight: 400;
+    border-radius: var(--radius5);
+    padding: 4px 8px;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#arrowIcon {
+
+    width: 17px;
+    height: 17px;
+    background-image: var(--homeInterface);
+    background-position: -286px -576px;
+    justify-self: center;
+    align-self: center;
+    margin-right: 5px;
+    transform: rotate(-90deg);
+    transition: all 0.1s ease-in-out;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton:hover div#arrowIcon {
+
+    transform: rotate(0deg);
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton:hover p {
+
+    background-color: var(--greyishDark);
+
+}
+
+main#content div#dashboard section#statistics ul#statisticsWrapper {
+
+    display: flex;
+    margin-top: 20px;
+
+}
+
+main#content div#dashboard section#statistics ul#statisticsWrapper li {
+
+    background-color: var(--greyishDark2);
+    border-radius: var(--radius15);
+    padding: 15px 20px;
+    margin-right: 10px;
+
+}
+
+main#content div#dashboard section#statistics ul#statisticsWrapper li h3 {
+
+    font-size: var(--size17);
+    font-weight: 400;
+
+}
+
+main#content div#dashboard section#statistics ul#statisticsWrapper li p {
+
+    font-size: var(--size30);
+    font-weight: 600;
+
+}
+
+main#content div#dashboard section#visualizations {
+
+    margin-top: 40px;
+
+}
+
+main#content div#dashboard section#visualizations figure {
+
+    position: relative;
+    height: 380px;
+    margin-top: 20px;
+    border-radius: var(--radius15);
+    background-color: var(--greyishDark2);
+
+}
+
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram div#navigationWrapper {
+
+    position: absolute;
+    top: 10px;
+
+}
+
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram img {
+
+    width: 100%;
+    height: 100%;
+
+}
+
+
+
+/* Footer */
+
+footer {
+
+    grid-area: Footer;
+
+}
+
+footer div#copyright {
+
+    width: 300px;
+    margin: 0px auto;
+    text-align: center;
+
+}
+
+footer div#copyright a#cosmos {
+
+    display: inline-block;
+    margin: 0px auto;
+    margin-top: 0px;
+    width: 200px;
+    height: 38px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -482px;
+    opacity: 0.3;
+
+}
+
+footer div#copyright a#cosmos:hover {
+
+    opacity: 1;
+
+}
+
+footer div#copyright p#description {
+
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+    margin-bottom: 160px;
+    font-size: var(--size12);
+    opacity: 0.3;
+
+}
+
+
+
+/* Overlay */
+
+div#overlay {
+
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blackish);
+    opacity: 0.3;
+    z-index: 10200;
+
+}
+
+div#overlay.displayed {
+
+    display: block;
+
+}
+
+
+
+/* General Message */
+
+div#generalMessage {
+
+    display: none;
+    position: fixed;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20000;
+
+}
+
+div#generalMessage.displayed {
+
+    display: flex;
+
+}
+
+div#generalMessage div#overlayBackground {
+
+    background-color: var(--blackish);
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+}
+
+div#generalMessage div#messageBox {
+
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    width: 500px;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 60px 40px;
+    z-index: 20002;
+
+}
+
+div#generalMessage div#messageBox button {
+
+    border: 0px;
+    outline: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#generalMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 20px;
+    right: 20px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.7);
+
+}
+
+div#generalMessage div#messageBox p#message {
+
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+div#generalMessage div#messageBox div#action {
+
+    width: 100%;
+    text-align: center;
+
+}
+
+div#generalMessage div#messageBox div#action button {
+
+    background-color: var(--lighterGreyish);
+    width: 100px;
+    padding: 10px 0px;
+    margin: 0px 5px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button:hover {
+
+    background-color: var(--lighterGreyish);
+    width: 100px;
+    padding: 10px 0px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button.negative {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+
+
+/* Notification Message */
+
+div#notificationMessage {
+
+    display: none;
+    position: fixed;
+    width: 20vw;
+    top: 20px;
+    right: 20px;
+    z-index: 20000;
+
+}
+
+div#notificationMessage.displayed {
+
+    display: inline-block;
+
+}
+
+div#notificationMessage div#messageBox {
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 30px;
+
+}
+
+div#notificationMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 15px;
+    right: 15px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.6);
+    outline: 0px;
+    border: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#notificationMessage div#messageBox h1#title {
+
+    font-size: 18px;
+
+}
+
+div#notificationMessage div#messageBox p#message {
+
+    width: 100%;
+    font-size: 14px;
+
+}

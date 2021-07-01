@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<!--
+
+
+
+	" Reimplement the wheel to either learn, or make it better. "
+
+    http://www.haydex.io/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: Vtracker,
+	Description: Tracking data from videos.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2021 HAYDEX, All Rights Reserved.
+	
+	
+	
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="author" content="HAYDEX">
+        <meta name="description" content="Tracking data from videos.">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+        <title>Dashboard - Vtracker</title>
+        
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/youtubetracker-apple-touch-favicon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/youtubetracker-favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/youtubetracker-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/presentation/dashboard.css"/>
+        
+        <script src="assets/behavior/dashboard.js"></script>
+
+    </head>
+    <body>
+        
+        <!-- Side Menu -->
+
+        <div id="sideMenu">
+            <button id="closeSideMenuButton"></button>
+            <div id="user">
+                <div id="photo"></div>
+                <p id="name">Hayder Al Rubaye</p>
+                <p id="email">hayddex@gmail.com</p>
+            </div>
+            <ul id="sideMenuList">
+                <li id="apikey" class="item">API Key</li>
+                <li id="logout" class="item">Logout</li>
+            </ul>
+        </div>
+
+
+        <!-- Header -->
+        <header>
+            <a href="landing.html" id="logo"></a>
+            <nav>
+                <ul>
+                    <a href="">
+                        <li id="homeLink" class="navigationButton selected" title="Home">
+                            <div id="homeIcon" class="navIcon"></div>
+                            <p id="home">Home</p>
+                        </li>
+                    </a>
+                    <a href="trackers.html">
+                        <li id="trackersLink" class="navigationButton" title="Trackers">
+                            <div id="trackersIcon" class="navIcon"></div>
+                            <p id="trackers">Trackers</p>
+                        </li>
+                    </a>
+                    <a href="events.html">
+                        <li id="eventsLink" class="navigationButton" title="Events">
+                            <div id="eventsIcon" class="navIcon"></div>
+                            <p id="events">Events</p>
+                        </li>
+                    </a>
+                    <a href="favorites.html">
+                        <li id="favoritesLink" class="navigationButton" title="Favorites">
+                            <div id="favoritesIcon" class="navIcon"></div>
+                            <p id="favorites">Favorites</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+            <div id="username">
+                <div id="photo" title="Steven M">
+                    <div id="indicator" class="active"></div>
+                </div>
+                <div id="name">Steven</div>
+                <div id="menu" title="Menu"></div>
+                <div id="arrow"></div>
+            </div>
+        </header>
+
+
+    
+        <!-- Content -->
+        <main id="content">
+            <div id="dashboard">
+                <section id="navigation">
+                    <p id="title">
+                        <span>China Tracker</span>
+                        Dashboard
+                    </p>
+                    <div id="navigationWrapper">
+                        <ul id="breadcrumbs">
+                            <li class="link">Trackers</li>
+                            <li> / </li>
+                            <li class="link">China Tracker</li>
+                            <li> / </li>
+                            <li class="link selected">Dashboard</li>
+                        </ul>
+                        <button id="datePickerButton">
+                            <div id="arrowIcon"></div>
+                            <p>Jan 5 2020 - Jun 12 2021</p>
+                        </button>
+                    </div>
+                </section>
+                <section id="statistics">
+                    <ul id="statisticsWrapper">
+                        <li>
+                            <h3>Videos</h3>
+                            <p>40M</p>
+                        </li>
+                        <li>
+                            <h3>Channels</h3>
+                            <p>20</p>
+                        </li>
+                        <li>
+                            <h3>Views</h3>
+                            <p>102M</p>
+                        </li>
+                        <li>
+                            <h3>Comments</h3>
+                            <p>3M</p>
+                        </li>
+                        <li>
+                            <h3>Subscribers</h3>
+                            <p>732K</p>
+                        </li>
+                        <li>
+                            <h3>Likes</h3>
+                            <p>54K</p>
+                        </li>
+                        <li>
+                            <h3>Dislikes</h3>
+                            <p>3K</p>
+                        </li>
+                    </ul>
+                </section>
+                <section id="visualizations">
+                    <figure id="postingFrequencyDiagram">
+                        <div id="navigationWrapper">
+                            <h3 id="diagramTitle">Posting Frequency</h3>
+                            <button id="information"></button>
+                        </div>
+                        <img src="assets/images/figures/posting-frequency.svg">
+                    </figure>
+                </section>
+            </div>
+        </main>
+
+
+        
+        <!-- Copyright -->
+        <footer>
+            <div id="copyright">
+                <a id="cosmos" href="http://cosmos.ualr.edu"></a>
+                <p id="description">
+                    COLLABORATORIUM FOR SOCIAL MEDIA AND ONLINE BEHAVIORAL STUDIES
+                </p>
+            </div>
+        </footer>
+
+
+
+        <!-- Overlay -->
+        <div id="overlay"></div>
+
+
+
+        <!-- Date Selector -->
+        <div id="dateSelector">
+            <ul id="list"></ul>
+        </div>
+
+
+
+        <!-- General Message -->
+        <div id="generalMessage" class="">
+            <div id="messageBox">
+                <button id="closeButton"></button>
+                <p id="message">Are you sure that you want to delete this item?</p>
+                <div id="action">
+                    <button id="button1">Yes</button>
+                    <button id="button2" class="negative">No</button>
+                </div>
+            </div>
+            <div id="overlayBackground"></div>
+        </div>
+
+
+
+        <!-- Notification Message -->
+        <div id="notificationMessage" class="">
+            <div id="messageBox">
+                <button id="closeButton"></button>
+                <h1 id="title">Notification Title</h1>
+                <p id="message">This is a description of the notification, this can hold two lines. This is just a test of the notification box.</p>
+            </div>
+        </div>
+
+    </body>
+</html>
