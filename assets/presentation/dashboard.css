@@ -642,7 +642,7 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
     width: 100%;
     height: 100%;
     filter: grayscale(100%);
-    opacity: 0.5;
+    /* opacity: 0.5; */
 
 }
 
