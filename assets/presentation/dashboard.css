@@ -47,6 +47,7 @@
     --lighterGreyish: rgb(230, 230, 230);
     --whitish: hsla(15, 6%, 100%, 1);
     --whitishTransparent1: hsla(15, 6%, 100%, 0.9);
+    --whitishTransparent2: rgba(255, 255, 255, 0.50);
     --blueish: #2C8DFF;
     --lightBlueish: rgb(136, 191, 255);
     --lightBlueish1: rgb(75, 159, 255);
@@ -484,17 +485,19 @@ main#content div#dashboard {
 
 }
 
-main#content div#dashboard section#navigation p {
+main#content div#dashboard section#navigation p#title {
 
-    font-size: var(--size34);
+    font-size: var(--size30);
     font-weight: 100;
+    color: var(--whitishTransparent2);
 
 }
 
-main#content div#dashboard section#navigation p span {
+main#content div#dashboard section#navigation p#title span {
 
-    font-size: var(--size34);
+    font-size: var(--size48);
     font-weight: 800;
+    color: var(--whitish);
 
 }
 
@@ -646,11 +649,17 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 
 }
 
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.timeout img {
+
+    filter: none;
+
+}
+
 
 
 /* Spinner */
 
-div#spinner {
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram div#spinner {
 
     position: absolute;
     width: 50px;
@@ -663,6 +672,12 @@ div#spinner {
     background-position: -430px -550px;
     animation: spin 0.4s linear infinite;
     z-index: 1000;
+
+}
+
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.timeout div#spinner {
+
+    display: none;
 
 }
 
