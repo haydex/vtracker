@@ -660,8 +660,8 @@ div#spinner {
     margin-left: -25px;
     margin-top: -25px;
     background-image: var(--homeInterface);
-    background-position: -340px -550px;
-    animation: spin 0.5s linear infinite;
+    background-position: -430px -550px;
+    animation: spin 0.4s linear infinite;
     z-index: 1000;
 
 }
