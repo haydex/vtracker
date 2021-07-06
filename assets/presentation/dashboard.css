@@ -590,6 +590,7 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
 
+    display: none;
     position: absolute;
     width: 330px;
     top: 30px;
@@ -600,6 +601,12 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
     padding: 25px;
     padding-bottom: 15px;
     z-index: 10000;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton.selected div#datePicker {
+
+    display: block;
 
 }
 

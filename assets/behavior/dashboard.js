@@ -28,7 +28,11 @@ document.addEventListener("DOMContentLoaded", function() {
         constructor() {
 
             this.figure = document.querySelector("main#content div#dashboard section#visualizations figure#postingFrequencyDiagram");
+            this.datePickerButton = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton");
+            this.submenu = document.querySelectorAll(".submenu");
             this.timeoutClass = "timeout";
+            this.selectedClass = "selected";
+            this.submenuClass = "submenu"
             this.initialize();
 
         }
@@ -36,12 +40,38 @@ document.addEventListener("DOMContentLoaded", function() {
         initialize() {
 
             setTimeout(this.timeout.bind(this), 3000);
+            this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
+            window.addEventListener("click", this.windowClickHandler.bind(this));
 
         }
 
         timeout() {
 
             this.figure.classList.add(this.timeoutClass);
+
+        }
+
+        datePickerButtonClickHandler(event) {
+
+            this.hideAllSubmenus();
+            event.currentTarget.classList.add(this.selectedClass);
+            event.stopPropagation();
+
+        }
+
+        windowClickHandler(event) {
+
+            this.hideAllSubmenus();
+
+        }
+
+        hideAllSubmenus() {
+
+            for (var i = 0; i < this.submenu.length; i++) {
+
+                this.submenu[i].parentElement.classList.remove(this.selectedClass);
+
+            }
 
         }
 
