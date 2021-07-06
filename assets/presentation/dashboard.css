@@ -260,7 +260,7 @@ header {
     text-align: center;
     top:0px;
     width: 100%;
-    background-color: var(--blackish);
+    background-color: var(--blackishTransparent0);
     height: 60px;
 
     z-index: 10000;
