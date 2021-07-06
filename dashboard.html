@@ -118,7 +118,58 @@
                         </ul>
                         <button id="datePickerButton">
                             <div id="arrowIcon"></div>
-                            <p>Jan 5 2020 - Jun 12 2021</p>
+                            <p id="dateRange">Jan 5 2020 - Jun 12 2021</p>
+
+                            <!-- Date Picker -->
+                            <div id="datePicker">
+                                <div id="monthYearSelector">
+                                    <div id="arrowLeft" class="dateArrow"></div>
+                                    <p id="monthYear">January <span>2021</span></p>
+                                    <div id="arrowRight" class="dateArrow"></div>
+                                </div>
+                                <ul id="dayNames">
+                                    <li>Mon</li>
+                                    <li>Tue</li>
+                                    <li>Wed</li>
+                                    <li>Thu</li>
+                                    <li>Fri</li>
+                                    <li>Sat</li>
+                                    <li>Sun</li>
+                                </ul>
+                                <ul id="days">
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                    <li>7</li>
+                                    <li>8</li>
+                                    <li>9</li>
+                                    <li>10</li>
+                                    <li class="selected">11</li>
+                                    <li class="inRange">12</li>
+                                    <li class="inRange">13</li>
+                                    <li class="inRange">14</li>
+                                    <li class="inRange">15</li>
+                                    <li class="inRange">16</li>
+                                    <li class="inRange">17</li>
+                                    <li class="inRange">18</li>
+                                    <li class="inRange">19</li>
+                                    <li class="inRange">20</li>
+                                    <li class="inRange">21</li>
+                                    <li class="inRange">22</li>
+                                    <li class="selected">23</li>
+                                    <li>24</li>
+                                    <li>25</li>
+                                    <li>26</li>
+                                    <li>27</li>
+                                    <li>28</li>
+                                    <li>29</li>
+                                    <li>30</li>
+                                    <li>31</li>
+                                </ul>
+                            </div>
                         </button>
                     </div>
                 </section>
@@ -187,37 +238,6 @@
         <div id="overlay"></div>
 
 
-
-        <!-- Date Selector -->
-        <div id="dateSelector">
-            <ul id="list"></ul>
-        </div>
-
-
-
-        <!-- General Message -->
-        <div id="generalMessage" class="">
-            <div id="messageBox">
-                <button id="closeButton"></button>
-                <p id="message">Are you sure that you want to delete this item?</p>
-                <div id="action">
-                    <button id="button1">Yes</button>
-                    <button id="button2" class="negative">No</button>
-                </div>
-            </div>
-            <div id="overlayBackground"></div>
-        </div>
-
-
-
-        <!-- Notification Message -->
-        <div id="notificationMessage" class="">
-            <div id="messageBox">
-                <button id="closeButton"></button>
-                <h1 id="title">Notification Title</h1>
-                <p id="message">This is a description of the notification, this can hold two lines. This is just a test of the notification box.</p>
-            </div>
-        </div>
 
     </body>
 </html>

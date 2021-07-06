@@ -59,6 +59,7 @@
     --size16: 16px;
     --size17: 17px;
     --size18: 18px;
+    --size20: 20px;
     --size22: 22px;
     --size28: 28px;
     --size30: 30px;
@@ -70,6 +71,7 @@
     /* radius */
 
     --radius5: 5px;
+    --radius10: 10px;
     --radius13: 13px;
     --radius15: 15px;
     --radius25: 25px;
@@ -543,10 +545,11 @@ main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrum
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton {
 
     display: flex;
+    position: relative;
 
 }
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton p {
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton p#dateRange {
 
     font-size: var(--size17);
     font-weight: 400;
@@ -575,11 +578,123 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 }
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton:hover p {
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton:hover p#dateRange {
 
     background-color: var(--greyishDark);
 
 }
+
+
+
+/** Date Picker START **/
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
+
+    position: absolute;
+    width: 330px;
+    top: 30px;
+    right: 0px;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius10);
+    padding: 25px;
+    padding-bottom: 15px;
+    z-index: 10000;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector {
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector div.dateArrow {
+
+    align-self: center;
+    width: 20px;
+    height: 20px;
+    background-image: var(--homeInterface);
+    background-position: -180px -680px;
+    cursor: pointer;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector div#arrowRight {
+
+    transform: rotate(180deg);
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector p#monthYear {
+
+    font-size: var(--size20);
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector p#monthYear span {
+
+    font-weight: bold;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#dayNames {
+
+    display: flex;
+    font-weight: bold;
+    margin-top: 20px;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#dayNames li {
+
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days {
+
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li {
+
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 2px 5px;
+    border-radius: var(--radius1000);
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li.selected {
+
+    background-color:var(--reddish);
+    color: var(--whitish);
+    font-weight: bold;
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li.inRange {
+
+    background-color:var(--reddishLight2);
+
+}
+
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li:not(.selected):hover {
+
+    background-color:var(--blackishTransparent2);
+    
+}
+
+/** Date Picker END **/
+
+
 
 main#content div#dashboard section#statistics ul#statisticsWrapper {
 
@@ -590,10 +705,11 @@ main#content div#dashboard section#statistics ul#statisticsWrapper {
 
 main#content div#dashboard section#statistics ul#statisticsWrapper li {
 
-    background-color: var(--greyishDark2);
+    /* background-color: var(--greyishDark2); */
     border-radius: var(--radius15);
     padding: 15px 20px;
-    margin-right: 10px;
+    padding-left: 0px;
+    margin-right: 40px;
 
 }
 
