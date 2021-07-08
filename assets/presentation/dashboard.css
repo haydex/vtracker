@@ -656,20 +656,20 @@ main#content div#dashboard section#statistics ul#statisticsWrapper li p {
 
 main#content div#dashboard section#visualizations {
 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
     margin-top: 20px;
-
-}
-
-main#content div#dashboard section#visualizations figure {
-
-    position: relative;
-    margin-bottom: 40px;
+    margin-bottom: 100px;
 
 }
 
 main#content div#dashboard section#visualizations figure.figure {
 
     position: relative;
+    margin-bottom: 40px;
+    width: 100%;
+
 
 }
 
@@ -693,20 +693,68 @@ main#content div#dashboard section#visualizations figure.figure div#titleWrapper
 
 }
 
-main#content div#dashboard section#visualizations figure.figure img {
+main#content div#dashboard section#visualizations figure.figure div#figureWrapper {
 
     margin-top: 2px;
+    height: 350px;
+    background-color: var(--greyishDark2);
+    border-radius: var(--radius15);
+    overflow: hidden;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure img {
+
     width: 100%;
     height: 100%;
     filter: grayscale(100%);
-    background-color: var(--greyishDark2);
-    border-radius: var(--radius15);
 
 }
 
 main#content div#dashboard section#visualizations figure.figure.timeout img {
 
     filter: none;
+
+}
+
+main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure {
+
+    width: 35%;
+
+}
+
+main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper {
+
+    padding: 20px;
+
+}
+
+main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul {
+
+    height: 100%;
+    overflow-y: scroll;
+
+}
+
+main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li {
+
+    padding: 15px;
+    border-radius: var(--radius10);
+    background-color: var(--greyishDark);
+    margin-bottom: 2px;
+    cursor: pointer;
+
+}
+
+main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li:hover {
+
+    background-color: var(--reddish);
+
+}
+
+main#content div#dashboard section#visualizations figure#dailyVideoViewsDiagram.figure {
+
+    width: 64%;
 
 }
 
