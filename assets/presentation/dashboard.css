@@ -706,7 +706,6 @@ main#content div#dashboard section#visualizations figure.figure div#figureWrappe
 main#content div#dashboard section#visualizations figure.figure img {
 
     width: 100%;
-    height: 100%;
     filter: grayscale(100%);
 
 }
@@ -754,7 +753,7 @@ main#content div#dashboard section#visualizations figure#socialMediaDiagram.figu
 
 main#content div#dashboard section#visualizations figure#dailyVideoViewsDiagram.figure {
 
-    width: 64%;
+    width: 61%;
 
 }
 
