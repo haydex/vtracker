@@ -48,6 +48,7 @@
     --whitish: hsla(15, 6%, 100%, 1);
     --whitishTransparent1: hsla(15, 6%, 100%, 0.9);
     --whitishTransparent2: rgba(255, 255, 255, 0.50);
+    --whitishTransparent3: rgba(255, 255, 255, 0.20);
     --blueish: #2C8DFF;
     --lightBlueish: rgb(136, 191, 255);
     --lightBlueish1: rgb(75, 159, 255);
@@ -80,6 +81,7 @@
     /* interface */
 
     --homeInterface: url(/vtracker/assets/images/home-interface.svg);
+    --profilePhoto: url(/vtracker/assets/images/profiles/elon.png);
     
 }
 
@@ -156,95 +158,6 @@ button {
     background-color: transparent;
     color: var(--whitish);
     font-family: "Arial", sans-serif;
-    cursor: pointer;
-
-}
-
-
-
-/* Side Menu */
-
-div#sideMenu {
-    position: fixed;
-    right: -300px;
-    top: 0px;
-    background-color: var(--reddish);
-    z-index: 40000;
-    height: 100vh;
-    width: 300px;
-    padding: 30px;
-    text-align: center;
-    transition: right 0.3s;
-}
-
-div#sideMenu.displayed {
-    right: 0px;
-    transition: right 0.3s;
-}
-
-div#sideMenu div#user {
-
-    width: 100%;
-
-}
-
-div#sideMenu div#user div#photo {
-
-    margin: 0px auto;
-    width: 100px;
-    height: 100px;
-    border-radius: var(--radius1000);
-    border: 2px solid var(--whitish);
-    margin-bottom: 20px;
-    margin-top: 20px;
-
-}
-
-div#sideMenu div#user p#name {
-
-    font-weight: 800;
-
-}
-
-div#sideMenu button#closeSideMenuButton {
-
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 20px;
-    right: 20px;
-    background-color: transparent;
-    border: 0px;
-    border-radius: var(--radius1000);
-    background-image: var(--homeInterface);
-    background-position: -130px -197px;
-    outline: none;
-    cursor: pointer;
-
-}
-
-div#sideMenu button#closeSideMenuButton:hover {
-
-    opacity: 0.5;
-
-}
-
-div#sideMenu ul#sideMenuList {
-
-    margin-top: 30px;
-
-}
-
-div#sideMenu ul#sideMenuList li {
-
-    padding: 10px;
-    font-size: var(--size22);
-
-}
-
-div#sideMenu ul#sideMenuList li:hover {
-
-    opacity: 0.5;
     cursor: pointer;
 
 }
@@ -476,7 +389,7 @@ header div#username div#menu:hover {
 main#content {
 
     min-height: 1200px;
-    margin-top: 100px;
+    margin-top: 80px;
 
 }
 
@@ -489,7 +402,7 @@ main#content div#dashboard {
 
 main#content div#dashboard section#navigation p#title {
 
-    font-size: var(--size30);
+    font-size: var(--size34);
     font-weight: 100;
     color: var(--whitishTransparent2);
 
@@ -497,7 +410,6 @@ main#content div#dashboard section#navigation p#title {
 
 main#content div#dashboard section#navigation p#title span {
 
-    font-size: var(--size48);
     font-weight: 800;
     color: var(--whitish);
 
@@ -553,7 +465,9 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
     font-size: var(--size17);
     font-weight: 400;
+    border: 2px solid transparent;
     border-radius: var(--radius5);
+    background-color: var(--greyishDark);
     padding: 4px 8px;
 
 }
@@ -572,15 +486,15 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 }
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton:hover div#arrowIcon {
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton.active div#arrowIcon {
 
     transform: rotate(0deg);
 
 }
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton:hover p#dateRange {
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton p#dateRange:hover {
 
-    background-color: var(--greyishDark);
+    border-color: var(--whitishTransparent3);
 
 }
 
@@ -590,23 +504,29 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
 
-    display: none;
+    opacity: 0;
     position: absolute;
     width: 330px;
-    top: 30px;
+    max-height: 0px;
+    overflow: hidden;
+    top: 40px;
     right: 0px;
     background-color: var(--whitish);
     color: var(--blackish);
     border-radius: var(--radius10);
     padding: 25px;
     padding-bottom: 15px;
+    font-size: var(--size14);
     z-index: 10000;
+    transition: all 0.1s ease-in-out;
 
 }
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton.selected div#datePicker {
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker.displayed {
 
-    display: block;
+    opacity: 1;
+    max-height: 500px;
+    transition: all 0.1s ease-in-out;
 
 }
 
@@ -736,43 +656,55 @@ main#content div#dashboard section#statistics ul#statisticsWrapper li p {
 
 main#content div#dashboard section#visualizations {
 
-    margin-top: 40px;
+    margin-top: 20px;
 
 }
 
 main#content div#dashboard section#visualizations figure {
 
     position: relative;
-    height: 380px;
-    margin-top: 20px;
-    border-radius: var(--radius15);
-    background-color: var(--greyishDark2);
+    margin-bottom: 40px;
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram {
+main#content div#dashboard section#visualizations figure.figure {
 
     position: relative;
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram div#navigationWrapper {
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper {
 
-    position: absolute;
-    top: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px;
+    background-color: var(--greyishDark2);
+    border-radius: var(--radius15);
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram img {
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper button#information {
 
+    width: 25px;
+    height: 25px;
+    background-image: var(--homeInterface);
+    background-position: -200px -572px;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure img {
+
+    margin-top: 2px;
     width: 100%;
     height: 100%;
     filter: grayscale(100%);
-    /* opacity: 0.5; */
+    background-color: var(--greyishDark2);
+    border-radius: var(--radius15);
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.timeout img {
+main#content div#dashboard section#visualizations figure.figure.timeout img {
 
     filter: none;
 
@@ -782,7 +714,7 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 
 /* Spinner */
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram div#spinner {
+main#content div#dashboard section#visualizations figure.figure div#spinner {
 
     position: absolute;
     width: 50px;
@@ -798,7 +730,7 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.timeout div#spinner {
+main#content div#dashboard section#visualizations figure.figure.timeout div#spinner {
 
     display: none;
 
@@ -1052,5 +984,113 @@ div#notificationMessage div#messageBox p#message {
 
     width: 100%;
     font-size: 14px;
+
+}
+
+
+
+/* Side Menu */
+
+div#sideMenu {
+    position: fixed;
+    right: -300px;
+    top: 0px;
+    background-color: var(--whitish);
+    z-index: 40000;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: right 0.1s;
+    border-radius: var(--radius10);
+    margin: 10px;
+    color: var(--blackish);
+}
+
+div#sideMenu.displayed {
+    right: 0px;
+    transition: right 0.1s;
+}
+
+div#sideMenu div#user {
+
+    width: 100%;
+
+}
+
+div#sideMenu div#user div#photo {
+
+    margin: 0px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius1000);
+    border: 2px solid var(--blackishTransparent2);
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-image: var(--profilePhoto);
+    background-size: contain;
+
+}
+
+div#sideMenu div#user p#name {
+
+    font-weight: 800;
+
+}
+
+div#sideMenu button#closeSideMenuButton {
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: 0px;
+    border-radius: var(--radius1000);
+    background-image: var(--homeInterface);
+    background-position: -130px -197px;
+    outline: none;
+    cursor: pointer;
+
+}
+
+div#sideMenu button#closeSideMenuButton:hover {
+
+    opacity: 0.5;
+
+}
+
+div#sideMenu ul#sideMenuList {
+
+    margin-top: 30px;
+
+}
+
+div#sideMenu ul#sideMenuList li {
+
+    padding: 10px;
+    font-size: var(--size16);
+    border-radius: var(--radius10);
+    background-color: var(--blackishTransparent2);
+    border: 2px solid transparent;
+    margin-top: 5px;
+    cursor: pointer;
+
+}
+
+div#sideMenu ul#sideMenuList li:hover {
+
+    background-color: transparent;
+    border-color: var(--blackishTransparent1);
+    
+
+}
+
+div#sideMenu ul#sideMenuList li.logout {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+    font-weight: bold;
+    
 
 }

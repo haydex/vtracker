@@ -40,23 +40,6 @@
 
     </head>
     <body>
-        
-
-
-        <!-- Side Menu -->
-
-        <div id="sideMenu">
-            <button id="closeSideMenuButton"></button>
-            <div id="user">
-                <div id="photo"></div>
-                <p id="name">Hayder Al Rubaye</p>
-                <p id="email">hayddex@gmail.com</p>
-            </div>
-            <ul id="sideMenuList">
-                <li id="apikey" class="item">API Key</li>
-                <li id="logout" class="item">Logout</li>
-            </ul>
-        </div>
 
 
 
@@ -209,17 +192,34 @@
                     </ul>
                 </section>
                 <section id="visualizations">
-                    <figure id="postingFrequencyDiagram">
 
-                        <!-- Spinner -->
-                        <div id="spinner"></div>
-
-                        <div id="navigationWrapper">
+                    <figure id="postingFrequencyDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
                             <h3 id="diagramTitle">Posting Frequency</h3>
-                            <button id="information"></button>
+                            <button id="information" title="More information about the current diagram will be provided here in this section."></button>
                         </div>
-                        <img src="assets/images/figures/posting-frequency.svg">
+                        <!-- Figure -->
+                        <div id="figureWrapper">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/posting-frequency.svg">
+                        </div>
                     </figure>
+
+                    <figure id="topKeywordsDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Top Keywords</h3>
+                            <button id="information" title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Figure -->
+                        <div id="figureWrapper">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/top-keywords.svg">
+                        </div>
+                    </figure>
+
+
                 </section>
             </div>
         </main>
@@ -239,6 +239,22 @@
 
         <!-- Overlay -->
         <div id="overlay"></div>
+
+
+
+        <!-- Side Menu -->
+        <div id="sideMenu" class="submenu">
+            <!-- <button id="closeSideMenuButton"></button> -->
+            <div id="user">
+                <div id="photo"></div>
+                <p id="name">Hayder Al Rubaye</p>
+                <p id="email">hayddex@gmail.com</p>
+            </div>
+            <ul id="sideMenuList">
+                <li id="apikey" class="item">API Key</li>
+                <li id="logout" class="item logout">Logout</li>
+            </ul>
+        </div>
 
 
 
