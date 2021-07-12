@@ -737,11 +737,17 @@ main#content div#dashboard section#visualizations figure#socialMediaDiagram.figu
 
 main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li {
 
-    padding: 15px;
+    padding: 13px;
     border-radius: var(--radius10);
     background-color: var(--greyishDark);
     margin-bottom: 2px;
     cursor: pointer;
+
+}
+
+main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li:nth-child(even) {
+
+    background-color: var(--greyishDark2);
 
 }
 
