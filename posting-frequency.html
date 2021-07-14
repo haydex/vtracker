@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<!--
+
+
+
+	" Reimplement the wheel to either learn, or make it better. "
+
+    http://www.haydex.io/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: Vtracker,
+	Description: Tracking data from videos.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2021 HAYDEX, All Rights Reserved.
+	
+	
+	
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="author" content="HAYDEX">
+        <meta name="description" content="Tracking data from videos.">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+        <title>Posting Frequency - Vtracker</title>
+        
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/vt-favicon-apple-touch.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/vt-favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/vt-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/presentation/posting-frequency.css"/>
+        
+        <script src="assets/behavior/posting-frequency.js"></script>
+
+    </head>
+    <body>
+
+
+
+        <!-- Header -->
+        <header>
+            <a href="landing.html" id="logo"></a>
+            <nav>
+                <ul>
+                    <a href="">
+                        <li id="homeLink" class="navigationButton selected" title="Home">
+                            <div id="homeIcon" class="navIcon"></div>
+                            <p id="home">Home</p>
+                        </li>
+                    </a>
+                    <a href="trackers.html">
+                        <li id="trackersLink" class="navigationButton" title="Trackers">
+                            <div id="trackersIcon" class="navIcon"></div>
+                            <p id="trackers">Trackers</p>
+                        </li>
+                    </a>
+                    <a href="events.html">
+                        <li id="eventsLink" class="navigationButton" title="Events">
+                            <div id="eventsIcon" class="navIcon"></div>
+                            <p id="events">Events</p>
+                        </li>
+                    </a>
+                    <a href="favorites.html">
+                        <li id="favoritesLink" class="navigationButton" title="Favorites">
+                            <div id="favoritesIcon" class="navIcon"></div>
+                            <p id="favorites">Favorites</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+            <div id="username">
+                <div id="photo" title="Steven M">
+                    <div id="indicator" class="active"></div>
+                </div>
+                <div id="name">Steven</div>
+                <div id="menu" title="Menu"></div>
+                <div id="arrow"></div>
+            </div>
+        </header>
+
+
+    
+        <!-- Content -->
+        <main id="content">
+            <div id="dashboard">
+                <section id="navigation">
+                    <p id="title">
+                        <span>China Tracker</span>
+                        Posting Frequency
+                    </p>
+                    <div id="navigationWrapper">
+                        <ul id="breadcrumbs">
+                            <li class="link">Trackers</li>
+                            <li> / </li>
+                            <li class="link">China Tracker</li>
+                            <li> / </li>
+                            <li class="link">Dashboard</li>
+                            <li> / </li>
+                            <li class="link selected">Posting Frequency</li>
+                        </ul>
+                        <button id="datePickerButton">
+                            <div id="arrowIcon"></div>
+                            <p id="dateRange">Jan 5 2020 - Jun 12 2021</p>
+
+                            <!-- Date Picker -->
+                            <div id="datePicker" class="submenu">
+                                <div id="monthYearSelector">
+                                    <div id="arrowLeft" class="dateArrow"></div>
+                                    <p id="monthYear">January <span>2021</span></p>
+                                    <div id="arrowRight" class="dateArrow"></div>
+                                </div>
+                                <ul id="dayNames">
+                                    <li>Mon</li>
+                                    <li>Tue</li>
+                                    <li>Wed</li>
+                                    <li>Thu</li>
+                                    <li>Fri</li>
+                                    <li>Sat</li>
+                                    <li>Sun</li>
+                                </ul>
+                                <ul id="days">
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                    <li>7</li>
+                                    <li>8</li>
+                                    <li>9</li>
+                                    <li>10</li>
+                                    <li class="selected">11</li>
+                                    <li class="inRange">12</li>
+                                    <li class="inRange">13</li>
+                                    <li class="inRange">14</li>
+                                    <li class="inRange">15</li>
+                                    <li class="inRange">16</li>
+                                    <li class="inRange">17</li>
+                                    <li class="inRange">18</li>
+                                    <li class="inRange">19</li>
+                                    <li class="inRange">20</li>
+                                    <li class="inRange">21</li>
+                                    <li class="inRange">22</li>
+                                    <li class="selected">23</li>
+                                    <li>24</li>
+                                    <li>25</li>
+                                    <li>26</li>
+                                    <li>27</li>
+                                    <li>28</li>
+                                    <li>29</li>
+                                    <li>30</li>
+                                    <li>31</li>
+                                </ul>
+                            </div>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Visualizations -->
+                <section id="visualizations">
+
+                    <figure id="postingFrequencyDiagram" class="figure">
+
+                        <!-- Channels -->
+                        <div id="channelsWrapper">
+                            <input id="searchChannels" placeholder="Search Channels">
+                            <ul id="channelsList">
+                                <li>Select All</li>
+                                <li>CNN</li>
+                                <li>NewYorkPost</li>
+                                <li>China Post</li>
+                                <li>Russia Today</li>
+                                <li>Nato</li>
+                                <li>Daily Beast</li>
+                                <li>Al Arabiya</li>
+                                <li>Engadget</li>
+                                <li>New York Times</li>
+                                <li>The Next News</li>
+                                <li>Dr. Shiva</li>
+                                <li>Al Jazeera</li>
+                            </ul>
+                        </div>
+
+                        <!-- Figure -->
+                        <div id="figureWrapper">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/posting-frequency-detailed.svg">
+                        </div>
+
+                        <!-- Statistics -->
+                        <div id="statistics">
+                            <ul id="statisticsWrapper">
+                                <li>
+                                    <h3>Videos</h3>
+                                    <p>40M</p>
+                                </li>
+                                <li>
+                                    <h3>Views</h3>
+                                    <p>20B</p>
+                                </li>
+                                <li>
+                                    <h3>Views</h3>
+                                    <p>102M</p>
+                                </li>
+                                <li>
+                                    <h3>Comments</h3>
+                                    <p>3M</p>
+                                </li>
+                                <li>
+                                    <h3>Top Location</h3>
+                                    <p>US</p>
+                                </li>
+                            </ul>
+                        </div>
+                    </figure>
+
+                    <figure id="topKeywordsDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Top Keywords</h3>
+                            <button id="information" title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Figure -->
+                        <div id="figureWrapper">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/top-keywords.svg">
+                        </div>
+                    </figure>
+
+                    <figure id="socialMediaDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Social Media</h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Figure -->
+                        <div id="figureWrapper">
+                            <ul>
+                                <li>Facebook</li>
+                                <li>Twitter</li>
+                                <li>YouTube</li>
+                                <li>Tumbler</li>
+                                <li>Instagram</li>
+                            </ul>
+                        </div>
+                    </figure>
+
+                    <figure id="dailyVideoViewsDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Daily Video Views</h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Figure -->
+                        <div id="figureWrapper">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/daily-video-views.svg">
+                        </div>
+                    </figure>
+
+                    <figure id="relatedVideosDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Related Videos</h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+
+                        <!-- Content -->
+                        <div id="contentWrapper">
+                            <table id="relatedVideosTable" class="tableDiagram">
+                                <colgroup>
+                                    <col id="imagesColumn"/>
+                                    <col id="titleColumn"/>
+                                    <col id="relatedToColumn"/>
+                                    <col id="tracksColumn"/>
+                                </colgroup>
+                                <thead>
+                                    <tr class="headRow">
+                                        <th id="imagesColumn"></th>
+                                        <th id="titleColumn">Title <button class="active">></button></th>
+                                        <th id="relatedToColumn">Related to <button>></button></th>
+                                        <th id="tracksColumn">Tracks <button>></button></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><img src="assets/images/search/1.jpg"></td>
+                                        <td>New tape shows Trump campaign aides discussing possibility of N-word tape</td>
+                                        <td>3 <span>Videos</span></td>
+                                        <td><button class="trackButton active">3 Tracks</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/search/2.jpg"></td>
+                                        <td>The Most Minimalist Phone</td>
+                                        <td>1 <span>Video</span></td>
+                                        <td><button class="trackButton active">5 Tracks</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/search/3.jpg"></td>
+                                        <td>Erdogan's 'Long Arm': The Turkish Nationals 'Kidnapped' From Europe</td>
+                                        <td>0 <span>Videos</span></td>
+                                        <td><button class="trackButton">0 Tracks</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/search/4.jpg"></td>
+                                        <td>Erdogan's 'Long Arm': The Turkish Nationals 'Kidnapped' From Europe</td>
+                                        <td>0 <span>Videos</span></td>
+                                        <td><button class="trackButton">0 Tracks</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td><img src="assets/images/search/6.jpg"></td>
+                                        <td>Erdogan's 'Long Arm': The Turkish Nationals 'Kidnapped' From Europe</td>
+                                        <td>0 <span>Videos</span></td>
+                                        <td><button class="trackButton">0 Tracks</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </figure>
+
+                </section>
+            </div>
+        </main>
+
+        
+        <!-- Copyright -->
+        <footer>
+            <div id="copyright">
+                <a id="cosmos" href="http://cosmos.ualr.edu"></a>
+                <p id="description">
+                    COLLABORATORIUM FOR SOCIAL MEDIA AND ONLINE BEHAVIORAL STUDIES
+                </p>
+            </div>
+        </footer>
+
+
+
+        <!-- Overlay -->
+        <div id="overlay"></div>
+
+
+
+        <!-- Side Menu -->
+        <div id="sideMenu" class="submenu">
+            <!-- <button id="closeSideMenuButton"></button> -->
+            <div id="user">
+                <div id="photo"></div>
+                <p id="name">Hayder Al Rubaye</p>
+                <p id="email">hayddex@gmail.com</p>
+            </div>
+            <ul id="sideMenuList">
+                <li id="apikey" class="item">API Key</li>
+                <li id="logout" class="item logout">Logout</li>
+            </ul>
+        </div>
+
+
+
+    </body>
+</html>
