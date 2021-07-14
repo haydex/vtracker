@@ -30,6 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.figure = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure");
             this.datePickerButton = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton");
             this.datePickerMenu = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker");
+            this.tableSortButtons = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button");
             this.sideMenuButton = document.querySelector("div#menu");
             this.sideMenu = document.querySelector("div#sideMenu");
             this.submenu = document.querySelectorAll(".submenu");
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.displayedClass = "displayed";
             this.activeClass = "active";
             this.submenuClass = "submenu";
+            this.reverseClass = "reverse";
 
             this.initialize();
 
@@ -47,7 +49,26 @@ document.addEventListener("DOMContentLoaded", function() {
             setTimeout(this.timeout.bind(this), 3000);
             this.sideMenuButton.addEventListener("click", this.sideMenuButtonClickHandler.bind(this));
             this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
+
+            for(var i=0; i< this.tableSortButtons.length; i++) {
+
+                this.tableSortButtons[i].addEventListener("click", this.tableSortButtonsClickHandler.bind(this));
+
+            }
+
             window.addEventListener("click", this.windowClickHandler.bind(this));
+
+        }
+
+        tableSortButtonsClickHandler(event) {
+
+            for (var i = 0; i < this.tableSortButtons.length; i++) {
+
+                this.tableSortButtons[i].classList.remove(this.reverseClass);
+
+            }
+
+            event.currentTarget.classList.add(this.reverseClass);
 
         }
 
