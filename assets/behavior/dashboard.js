@@ -62,13 +62,28 @@ document.addEventListener("DOMContentLoaded", function() {
 
         tableSortButtonsClickHandler(event) {
 
-            for (var i = 0; i < this.tableSortButtons.length; i++) {
+            /* for (var i = 0; i < this.tableSortButtons.length; i++) {
 
-                this.tableSortButtons[i].classList.remove(this.reverseClass);
+                this.tableSortButtons[i].classList.contains(this.reverseClass).remove(this.reverseClass);
+
+            } */
+
+            if (event.currentTarget.classList.contains(this.activeClass)) {
+
+                event.currentTarget.classList.toggle(this.reverseClass);
+
+            } else {
+
+                for (var i = 0; i < this.tableSortButtons.length; i++) {
+
+                    this.tableSortButtons[i].classList.remove(this.activeClass);
+                    this.tableSortButtons[i].classList.remove(this.reverseClass);
+
+                }
+
+                event.currentTarget.classList.add(this.activeClass);
 
             }
-
-            event.currentTarget.classList.add(this.reverseClass);
 
         }
 
