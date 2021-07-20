@@ -31,14 +31,76 @@ document.addEventListener("DOMContentLoaded", function() {
             this.datePickerButton = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton");
             this.datePickerMenu = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker");
             this.tableSortButtons = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button");
+            this.channelsList = document.querySelector("main#content div#dashboard section#visualizations figure#postingFrequencyDiagram div#channelsWrapper ul#channelsList");
             this.sideMenuButton = document.querySelector("div#menu");
             this.sideMenu = document.querySelector("div#sideMenu");
             this.submenu = document.querySelectorAll(".submenu");
             this.timeoutClass = "timeout";
             this.displayedClass = "displayed";
+            this.selectedClass = "selected";
             this.activeClass = "active";
             this.submenuClass = "submenu";
             this.reverseClass = "reverse";
+
+            this.selectedChannels = 0;
+            this.selectionLimit = 10;
+            this.selection = [
+                { 
+                    "backgroundColor": "hsla(15,6%,40%,0.3)",
+                    "color": "white",
+                    "index": -1
+                },
+                {
+                    "backgroundColor" : "#ff0000",
+                    "color": "white",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#2C8DFF",
+                    "color": "white",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#00B19C",
+                    "color": "white",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#FFF1D0",
+                    "color": "black",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#DD1C1A",
+                    "color": "white",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#643173",
+                    "color": "white",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#D9BBF9",
+                    "color" : "black",
+                    "index" : -1
+                },
+                {
+                    "backgroundColor": "#CCA7A2",
+                    "color": "black",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#AA9FB1",
+                    "color": "black",
+                    "index": -1
+                },
+                {
+                    "backgroundColor": "#320E3B",
+                    "color": "white",
+                    "index": -1
+                }
+            ];
 
             this.initialize();
 
@@ -56,7 +118,59 @@ document.addEventListener("DOMContentLoaded", function() {
 
             }
 
+            this.channelsList.addEventListener("click", this.channelsListClickHandler.bind(this));
+
             window.addEventListener("click", this.windowClickHandler.bind(this));
+
+        }
+
+        channelsListClickHandler(event) {
+
+            if (event.target.tagName == "LI") {
+                if (event.target.classList.contains(this.selectedClass)) {
+
+                    var targetIndex = (Array.from(event.currentTarget.children).indexOf(event.target)) + 1;
+
+                    event.target.style.backgroundColor = this.selection[0].backgroundColor;
+                    event.target.style.color = this.selection[0].color;
+
+                    for (var i = 1; i <= this.selection.length; i++) {
+
+                        if (this.selection[i].index == targetIndex) {
+
+                            this.selection[i].index = -1;
+                            i = this.selection.length + 1;
+
+                        }
+
+                    }
+
+                    event.target.classList.toggle(this.selectedClass);
+                    this.selectedChannels -= 1;
+
+                } else if (this.selectedChannels < this.selectionLimit) {
+
+                    var targetIndex = (Array.from(event.currentTarget.children).indexOf(event.target)) + 1;
+
+                    for (var i = 1; i <= this.selection.length; i++) {
+
+                        if (this.selection[i].index == -1) {
+
+                            event.target.style.backgroundColor = this.selection[i].backgroundColor;
+                            event.target.style.color = this.selection[i].color;
+                            this.selection[i].index = targetIndex;
+                            i = this.selection.length + 1;
+                            
+                        }
+
+                    }
+
+                    event.target.classList.toggle(this.selectedClass);
+                    this.selectedChannels += 1;
+
+                }
+            }
+            
 
         }
 
