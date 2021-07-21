@@ -702,6 +702,7 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper ul#channelsList li {
 
     background-color: var(--greyishDark);
+    border: 2px solid transparent;
     border-radius: var(--radius15);
     font-size: var(--size16);
     padding: 10px;
@@ -711,9 +712,18 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper ul#channelsList li:hover {
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper ul#channelsList li.disabled {
+
+    background-color: var(--greyishDark);
+    color: var(--whitishTransparent3);
+    cursor: default;
+
+}
+
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper ul#channelsList li:not(.disabled):hover {
 
     background-color: var(--whitishTransparent3);
+    border-color: var(--whitishTransparent3);
 
 }
 

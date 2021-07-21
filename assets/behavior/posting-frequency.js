@@ -38,67 +38,78 @@ document.addEventListener("DOMContentLoaded", function() {
             this.timeoutClass = "timeout";
             this.displayedClass = "displayed";
             this.selectedClass = "selected";
+            this.disabledClass = "disabled";
             this.activeClass = "active";
             this.submenuClass = "submenu";
             this.reverseClass = "reverse";
 
             this.selectedChannels = 0;
-            this.selectionLimit = 10;
             this.selection = [
                 { 
                     "backgroundColor": "hsla(15,6%,40%,0.3)",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor" : "#ff0000",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#2C8DFF",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#00B19C",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#FFF1D0",
                     "color": "black",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#DD1C1A",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#643173",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#D9BBF9",
-                    "color" : "black",
-                    "index" : -1
+                    "color": "black",
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#CCA7A2",
                     "color": "black",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#AA9FB1",
                     "color": "black",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 },
                 {
                     "backgroundColor": "#320E3B",
                     "color": "white",
-                    "index": -1
+                    "index": -1,
+                    "order": -1
                 }
             ];
 
@@ -126,29 +137,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
         channelsListClickHandler(event) {
 
-            if (event.target.tagName == "LI") {
+            if ((event.target.tagName == "LI") && (!event.target.classList.contains(this.disabledClass))) {
                 if (event.target.classList.contains(this.selectedClass)) {
 
+                    event.target.removeAttribute("style");
+                    event.target.classList.toggle(this.selectedClass);
+                    this.selectedChannels -= 1;
+                    
                     var targetIndex = (Array.from(event.currentTarget.children).indexOf(event.target)) + 1;
-
-                    event.target.style.backgroundColor = this.selection[0].backgroundColor;
-                    event.target.style.color = this.selection[0].color;
 
                     for (var i = 1; i <= this.selection.length; i++) {
 
                         if (this.selection[i].index == targetIndex) {
 
                             this.selection[i].index = -1;
+                            this.selection[i].order = -1;
                             i = this.selection.length + 1;
 
                         }
 
                     }
 
-                    event.target.classList.toggle(this.selectedClass);
-                    this.selectedChannels -= 1;
+                    var items = event.currentTarget.children;
 
-                } else if (this.selectedChannels < this.selectionLimit) {
+                    for (var i = 0; i < items.length; i++) {
+
+                        if (!items[i].classList.contains(this.selectedClass)) {
+
+                            items[i].classList.remove(this.disabledClass);
+
+                        }
+
+                    }
+
+                } else if (this.selectedChannels < (this.selection.length - 1)) {
+
+                    event.target.classList.toggle(this.selectedClass);
+                    this.selectedChannels += 1;
 
                     var targetIndex = (Array.from(event.currentTarget.children).indexOf(event.target)) + 1;
 
@@ -159,14 +184,28 @@ document.addEventListener("DOMContentLoaded", function() {
                             event.target.style.backgroundColor = this.selection[i].backgroundColor;
                             event.target.style.color = this.selection[i].color;
                             this.selection[i].index = targetIndex;
+                            this.selection[i].order = this.selectedChannels;
                             i = this.selection.length + 1;
                             
                         }
 
                     }
 
-                    event.target.classList.toggle(this.selectedClass);
-                    this.selectedChannels += 1;
+                    if (this.selectedChannels == (this.selection.length - 1)) {
+
+                        var items = event.currentTarget.children;
+
+                        for (var i = 0; i < items.length; i++) {
+
+                            if (!items[i].classList.contains(this.selectedClass)) {
+
+                                items[i].classList.add(this.disabledClass);
+
+                            }
+
+                        }
+
+                    }
 
                 }
             }
