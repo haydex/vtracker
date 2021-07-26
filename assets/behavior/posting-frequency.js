@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.reverseClass = "reverse";
 
             this.selectedChannels = 0;
+            this.defaultSelection = 3;
             this.selection = [
                 { 
                     "backgroundColor": "hsla(15,6%,40%,0.3)",
@@ -130,6 +131,17 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             this.channelsList.addEventListener("click", this.channelsListClickHandler.bind(this));
+
+
+            /* Select three channels when loading the page for the first time. */
+
+            var children = this.channelsList.children;
+
+            for (i = 0; i < this.defaultSelection; i++) {
+
+                children[i].click();
+
+            }
 
             window.addEventListener("click", this.windowClickHandler.bind(this));
 
