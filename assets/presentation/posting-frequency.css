@@ -384,6 +384,8 @@ header div#username div#menu:hover {
 
 }
 
+
+
 /* Content */
 
 main#content {
@@ -395,7 +397,9 @@ main#content {
 
 main#content div#dashboard {
 
-    max-width: 1000px;
+    width: 80%;
+    min-width: 1000px;
+    max-width: 1200px;
     margin: 0px auto;
 
 }
@@ -623,46 +627,104 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 
 
-main#content div#dashboard section#statistics ul#statisticsWrapper {
+/* Visualizations */
+
+section#visualizations {
+
+    margin-top: 40px;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure {
+
+    display: grid;
+    position: relative;
+    margin-bottom: 40px;
+    grid-template-columns: auto;
+    grid-template-rows: 45px auto;
+    grid-row-gap: 4px;
+    grid-column-gap: 4px;
+    resize: both;
+    overflow: auto;
+    min-width: 100%;
+    min-height: 450px;
+    height: 450px;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper {
 
     display: flex;
-    margin-top: 20px;
-
-}
-
-main#content div#dashboard section#statistics ul#statisticsWrapper li {
-
-    /* background-color: var(--greyishDark2); */
-    border-radius: var(--radius15);
-    padding: 15px 20px;
-    padding-left: 0px;
-    margin-right: 40px;
-
-}
-
-main#content div#dashboard section#statistics ul#statisticsWrapper li h3 {
-
-    font-size: var(--size17);
-    font-weight: 400;
-
-}
-
-main#content div#dashboard section#statistics ul#statisticsWrapper li p {
-
-    font-size: var(--size30);
-    font-weight: 600;
-
-}
-
-main#content div#dashboard section#visualizations {
-
-    display: flex;
-    flex-wrap: wrap;
+    align-items: center;
     justify-content: space-between;
-    margin-top: 20px;
-    margin-bottom: 100px;
+    padding: 10px;
+    background-color: var(--greyishDark2);
+    border-radius: var(--radius15);
 
 }
+
+main#content div#dashboard section#visualizations figure.figure .component {
+
+    background-color: var(--greyishDark2);
+    border-radius: var(--radius15);
+
+}
+
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper button#information {
+
+    width: 25px;
+    height: 25px;
+    background-image: var(--homeInterface);
+    background-position: -200px -572px;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure div#figureWrapper {
+
+    overflow: hidden;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure img {
+
+    width: 100%;
+    height: 100%;
+    filter: grayscale(100%);
+
+}
+
+main#content div#dashboard section#visualizations figure.figure.timeout img {
+
+    filter: none;
+
+}
+
+
+/** Spinner START **/
+
+main#content div#dashboard section#visualizations figure.figure div#spinner {
+
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    top: 50%;
+    left: 50%;
+    margin-left: -25px;
+    margin-top: -25px;
+    background-image: var(--homeInterface);
+    background-position: -430px -550px;
+    animation: spin 0.4s linear infinite;
+    z-index: 1000;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure.timeout div#spinner {
+
+    display: none;
+
+}
+
+/** Spinner END **/
 
 
 
@@ -670,22 +732,17 @@ main#content div#dashboard section#visualizations {
 
 main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure {
 
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-column-gap: 4px;
-    grid-row-gap: 4px;
+    grid-template-columns: 250px auto;
+    grid-template-rows: auto 90px;
 
 }
 
 main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper {
 
-    background-color: var(--greyishDark2);
-    border-radius: var(--radius15);
     padding: 10px;
     grid-row: 1/3;
     grid-column: 1;
     overflow-y: scroll;
-    height: 440px;
 
 }
 
@@ -734,8 +791,10 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure ul#statisticsWrapper {
     
     display: flex;
-    background-color: var(--greyishDark2);
-    border-radius: var(--radius15);
+    height: 100%;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
 
 }
 
@@ -765,211 +824,88 @@ ul#statisticsWrapper li p {
 
 
 
-main#content div#dashboard section#visualizations figure.figure {
+/** Channel Location Diagram START **/
 
-    position: relative;
-    margin-bottom: 40px;
-    border-radius: var(--radius15);
-    width: 100%;
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure {
+
+    grid-template-columns: 350px auto;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure div#titleWrapper {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#titleWrapper {
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    grid-column: 1/3;
+
+}
+
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#figureWrapper {
+
+    grid-column: 2;
+
+}
+
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#contentWrapper {
+
     padding: 10px;
-    background-color: var(--greyishDark2);
-    border-radius: var(--radius15);
+    overflow-x: hidden;
+    overflow-y: scroll;
+    grid-column: 1;
+    grid-row: 2;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure div#titleWrapper button#information {
-
-    width: 25px;
-    height: 25px;
-    background-image: var(--homeInterface);
-    background-position: -200px -572px;
-
-}
-
-main#content div#dashboard section#visualizations figure.figure div#figureWrapper {
-
-    margin-top: 2px;
-    height: 350px;
-    background-color: var(--greyishDark2);
-    border-radius: var(--radius15);
-    overflow: hidden;
-
-}
-
-main#content div#dashboard section#visualizations figure.figure img {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram {
 
     width: 100%;
-    filter: grayscale(100%);
+    text-align: left;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0px 4px;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure.timeout img {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody tr {
 
-    filter: none;
-
-}
-
-main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure {
-
-    width: 35%;
+    border-radius: var(--radius15);
 
 }
 
-main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tr:nth-child(odd) {
 
-    padding: 20px;
-
-}
-
-main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul {
-
-    height: 100%;
-    overflow-y: scroll;
-
-}
-
-main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li {
-
-    padding: 13px;
-    border-radius: var(--radius10);
     background-color: var(--greyishDark);
-    margin-bottom: 2px;
-    cursor: pointer;
 
 }
 
-main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li:nth-child(even) {
-
-    background-color: var(--greyishDark2);
-
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
 }
 
-main#content div#dashboard section#visualizations figure#socialMediaDiagram.figure div#figureWrapper ul li:hover {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tr:hover {
 
     background-color: var(--reddish);
 
 }
 
-main#content div#dashboard section#visualizations figure#dailyVideoViewsDiagram.figure {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody td {
 
-    width: 61%;
-
-}
-
-
-
-/* Spinner */
-
-main#content div#dashboard section#visualizations figure.figure div#spinner {
-
-    position: absolute;
-    width: 50px;
-    height: 50px;
-    top: 50%;
-    left: 50%;
-    margin-left: -25px;
-    margin-top: -25px;
-    background-image: var(--homeInterface);
-    background-position: -430px -550px;
-    animation: spin 0.4s linear infinite;
-    z-index: 1000;
+    padding: 10px;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure.timeout div#spinner {
-
-    display: none;
-
-}
-
-
-/** Table **/
-
-main#content div#dashboard section#visualizations figure.figure div#contentWrapper {
-
-    margin-top: 2px;
-    background-color: var(--greyishDark2);
-    border-radius: var(--radius15);
-    overflow-x: hidden;
-    overflow-y: hidden;
-
-}
-
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram {
-
-    margin-top: 2px;
-    width: 100%;
-    text-align: left;
-    border: none;
-    border-collapse: collapse;
-    table-layout: fixed;
-
-}
-
-main#content div#dashboard section#visualizations figure#relatedVideosDiagram.figure table.tableDiagram col#imagesColumn {
-
-    width: 10%;
-
-}
-
-main#content div#dashboard section#visualizations figure#relatedVideosDiagram.figure table.tableDiagram col#titlesColumn {
-
-    width: 60%;
-
-}
-
-main#content div#dashboard section#visualizations figure#relatedVideosDiagram.figure table.tableDiagram col#relatedToColumn {
-
-    width: 15%;
-
-}
-
-main#content div#dashboard section#visualizations figure#relatedVideosDiagram.figure table.tableDiagram col#tracksColumn {
-
-    width: 15%;
-
-}
-
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram tbody tr {
-
-    border-radius: var(--radius15);
-
-}
-
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram tr:nth-child(odd){
-
-    background-color: var(--greyishDark);
-
-}
-
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram tr:hover {
-
-    background-color: var(--whitishTransparent3);
-
-}
-
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram tbody td {
-
-    padding: 2px;
-
-}
-
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th {
 
     background-color: #2b2827;
-    padding: 13px;
+    padding: 10px;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button {
 
     transform: rotate(90deg) scale(1,1.7);
     margin-left: 5px;
@@ -978,25 +914,25 @@ main#content div#dashboard section#visualizations figure.figure table.tableDiagr
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button.active {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button.active {
 
     opacity: 1;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button.reverse {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button.reverse {
 
     transform: rotate(270deg) scale(1,1.7);
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button:hover {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button:hover {
 
     opacity: 1;
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead:hover {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead:hover {
 
     background-color: var(--blackish);
 
@@ -1009,7 +945,7 @@ main#content div#dashboard section#visualizations figure#relatedVideosDiagram.fi
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram button.trackButton {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton {
 
     border-radius: var(--radius1000);
     border: 1px solid var(--whitish);
@@ -1021,7 +957,7 @@ main#content div#dashboard section#visualizations figure.figure table.tableDiagr
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram button.trackButton.active {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton.active {
 
     border-color: var(--reddish);
     background-color: var(--reddish);
@@ -1029,8 +965,8 @@ main#content div#dashboard section#visualizations figure.figure table.tableDiagr
 
 }
 
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram button.trackButton:hover,
-main#content div#dashboard section#visualizations figure.figure table.tableDiagram button.trackButton.active:hover {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton:hover,
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton.active:hover {
 
     border-color: var(--whitish);
     background-color: var(--whitish);
@@ -1038,6 +974,8 @@ main#content div#dashboard section#visualizations figure.figure table.tableDiagr
     opacity: 1;
 
 }
+
+/** Channel Location Diagram END **/
 
 
 

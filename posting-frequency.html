@@ -168,7 +168,7 @@
                     <figure id="postingFrequencyDiagram" class="figure">
 
                         <!-- Channels -->
-                        <div id="channelsWrapper">
+                        <div id="channelsWrapper" class="component">
                             <input id="searchChannels" placeholder="Search Channels">
                             <ul id="channelsList">
                                 <li>CNN</li>
@@ -192,13 +192,13 @@
                         </div>
 
                         <!-- Figure -->
-                        <div id="figureWrapper">
+                        <div id="figureWrapper" class="component">
                             <div id="spinner"></div>
                             <img src="assets/images/figures/posting-frequency-detailed.svg">
                         </div>
 
                         <!-- Statistics -->
-                        <div id="statistics">
+                        <div id="statistics" class="component">
                             <ul id="statisticsWrapper">
                                 <li>
                                     <h3>Videos</h3>
@@ -220,107 +220,102 @@
                         </div>
                     </figure>
 
-                    <figure id="topKeywordsDiagram" class="figure">
+                    <figure id="videoCategoryDistributionDiagram" class="figure">
                         <!-- Title -->
                         <div id="titleWrapper">
-                            <h3 id="diagramTitle">Top Keywords</h3>
-                            <button id="information" title="More information about the current diagram will be provided here in this section."></button>
+                            <h3 id="diagramTitle">Video Category Distribution</h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
                         </div>
                         <!-- Figure -->
-                        <div id="figureWrapper">
+                        <div id="figureWrapper" class="component">
                             <div id="spinner"></div>
-                            <img src="assets/images/figures/top-keywords.svg">
+                            <img src="assets/images/figures/video-category-distribution.svg">
                         </div>
                     </figure>
 
-                    <figure id="socialMediaDiagram" class="figure">
+                    <figure id="channelLocationDiagram" class="figure">
                         <!-- Title -->
                         <div id="titleWrapper">
-                            <h3 id="diagramTitle">Social Media</h3>
+                            <h3 id="diagramTitle">Channel Location</h3>
                             <button id="information"
                                 title="More information about the current diagram will be provided here in this section."></button>
                         </div>
                         <!-- Figure -->
-                        <div id="figureWrapper">
-                            <ul>
-                                <li>Facebook</li>
-                                <li>Twitter</li>
-                                <li>YouTube</li>
-                                <li>Tumbler</li>
-                                <li>Instagram</li>
-                            </ul>
-                        </div>
-                    </figure>
-
-                    <figure id="dailyVideoViewsDiagram" class="figure">
-                        <!-- Title -->
-                        <div id="titleWrapper">
-                            <h3 id="diagramTitle">Daily Video Views</h3>
-                            <button id="information"
-                                title="More information about the current diagram will be provided here in this section."></button>
-                        </div>
-                        <!-- Figure -->
-                        <div id="figureWrapper">
+                        <div id="figureWrapper" class="component">
                             <div id="spinner"></div>
-                            <img src="assets/images/figures/daily-video-views.svg">
+                            <img src="assets/images/figures/channel-location.svg">
                         </div>
-                    </figure>
-
-                    <figure id="relatedVideosDiagram" class="figure">
-                        <!-- Title -->
-                        <div id="titleWrapper">
-                            <h3 id="diagramTitle">Related Videos</h3>
-                            <button id="information"
-                                title="More information about the current diagram will be provided here in this section."></button>
-                        </div>
-
                         <!-- Content -->
-                        <div id="contentWrapper">
+                        <div id="contentWrapper" class="component">
                             <table id="relatedVideosTable" class="tableDiagram">
                                 <colgroup>
-                                    <col id="imagesColumn"/>
-                                    <col id="titleColumn"/>
-                                    <col id="relatedToColumn"/>
-                                    <col id="tracksColumn"/>
+                                    <col id="titleColumn" />
+                                    <col id="relatedToColumn" />
+                                    <col id="tracksColumn" />
                                 </colgroup>
                                 <thead>
                                     <tr class="headRow">
-                                        <th id="imagesColumn"></th>
-                                        <th id="titleColumn">Title <button class="active">></button></th>
-                                        <th id="relatedToColumn">Related to <button>></button></th>
-                                        <th id="tracksColumn">Tracks <button>></button></th>
+                                        <th id="titleColumn">Name <button class="active">></button></th>
+                                        <th id="relatedToColumn">Location <button>></button></th>
+                                        <th id="tracksColumn">Views <button>></button></th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td><img src="assets/images/search/1.jpg"></td>
-                                        <td>New tape shows Trump campaign aides discussing possibility of N-word tape</td>
-                                        <td>3 <span>Videos</span></td>
-                                        <td><button class="trackButton active">3 Tracks</button></td>
+                                        <td>CNN</td>
+                                        <td>US</td>
+                                        <td>2,700</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/images/search/2.jpg"></td>
-                                        <td>The Most Minimalist Phone</td>
-                                        <td>1 <span>Video</span></td>
-                                        <td><button class="trackButton active">5 Tracks</button></td>
+                                        <td>NewYorkPost</td>
+                                        <td>US</td>
+                                        <td>400</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/images/search/3.jpg"></td>
-                                        <td>Erdogan's 'Long Arm': The Turkish Nationals 'Kidnapped' From Europe</td>
-                                        <td>0 <span>Videos</span></td>
-                                        <td><button class="trackButton">0 Tracks</button></td>
+                                        <td>China Post</td>
+                                        <td>China</td>
+                                        <td>1,200</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/images/search/4.jpg"></td>
-                                        <td>Erdogan's 'Long Arm': The Turkish Nationals 'Kidnapped' From Europe</td>
-                                        <td>0 <span>Videos</span></td>
-                                        <td><button class="trackButton">0 Tracks</button></td>
+                                        <td>Russia Today</td>
+                                        <td>Russia</td>
+                                        <td>200</td>
                                     </tr>
                                     <tr>
-                                        <td><img src="assets/images/search/6.jpg"></td>
-                                        <td>Erdogan's 'Long Arm': The Turkish Nationals 'Kidnapped' From Europe</td>
-                                        <td>0 <span>Videos</span></td>
-                                        <td><button class="trackButton">0 Tracks</button></td>
+                                        <td>Nato</td>
+                                        <td>Europe</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Beast</td>
+                                        <td>Germany</td>
+                                        <td>3,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NewYorkPost</td>
+                                        <td>US</td>
+                                        <td>400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>China Post</td>
+                                        <td>China</td>
+                                        <td>1,200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Russia Today</td>
+                                        <td>Russia</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nato</td>
+                                        <td>Europe</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Beast</td>
+                                        <td>Germany</td>
+                                        <td>3,000</td>
                                     </tr>
                                 </tbody>
                             </table>
