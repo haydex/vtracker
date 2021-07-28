@@ -523,6 +523,7 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
     font-size: var(--size14);
     z-index: 10000;
     transition: all 0.1s ease-in-out;
+    box-shadow: 0px 0px 40px var(--blackish);
 
 }
 
@@ -734,6 +735,8 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 
     grid-template-columns: 250px auto;
     grid-template-rows: auto 90px;
+    min-height: 500px;
+    height: 500px;
 
 }
 
@@ -1249,6 +1252,7 @@ div#sideMenu {
     border-radius: var(--radius10);
     margin: 10px;
     color: var(--blackish);
+    box-shadow: 0px 0px 40px var(--blackish);
 }
 
 div#sideMenu.displayed {
