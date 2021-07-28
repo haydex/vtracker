@@ -664,6 +664,20 @@ main#content div#dashboard section#visualizations figure.figure div#titleWrapper
 
 }
 
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis a {
+
+    font-size: var(--size16);
+    color: var(--reddish);
+    font-weight: 600;
+
+}
+
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis a:hover {
+
+    color: var(--blueish);
+
+}
+
 main#content div#dashboard section#visualizations figure.figure .component {
 
     background-color: var(--greyishDark2);
