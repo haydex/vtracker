@@ -162,23 +162,647 @@ button {
 
 }
 
-input.searchBox {
+input {
 
     background-color: transparent;
     border-radius: var(--radius15);
     border: 2px solid var(--greyishDark);
     font-size: var(--size16);
     padding: 10px 10px;
-    width: 100%;
-    margin-right: 4px;
-    margin-bottom: 10px;
     color: var(--whitish);
 
 }
 
 
 
-/* Header */
+/* Table START */
+
+table.tableDiagram {
+
+    width: 100%;
+    text-align: left;
+    border: none;
+    border-collapse: separate;
+    border-spacing: 0px 4px;
+
+}
+
+table.tableDiagram tbody tr {
+
+    border-radius: var(--radius15);
+
+}
+
+table.tableDiagram tr:nth-child(odd) {
+
+    background-color: var(--greyishDark);
+
+}
+
+table.tableDiagram tbody tr td:first-child {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+table.tableDiagram tbody tr td:last-child {
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+table.tableDiagram tr:hover {
+
+    background-color: var(--whitishTransparent3);
+
+}
+
+table.tableDiagram tbody td {
+
+    padding: 10px;
+
+}
+
+table.tableDiagram thead th {
+
+    background-color: #2b2827;
+    padding: 10px;
+
+}
+
+table.tableDiagram thead th button {
+
+    transform: rotate(90deg) scale(1,1.7);
+    margin-left: 5px;
+    opacity: 0.2;
+    transition: transform ease-in-out 0.15s;
+
+}
+
+table.tableDiagram thead th button.active {
+
+    opacity: 1;
+
+}
+
+table.tableDiagram thead th button.reverse {
+
+    transform: rotate(270deg) scale(1,1.7);
+
+}
+
+table.tableDiagram thead th button:hover {
+
+    opacity: 1;
+
+}
+
+table.tableDiagram thead:hover {
+
+    background-color: var(--blackish);
+
+}
+
+table.tableDiagram img {
+
+    width: 100%;
+    border-radius: var(--radius5);
+
+}
+
+table.tableDiagram button.trackButton {
+
+    border-radius: var(--radius1000);
+    border: 1px solid var(--whitish);
+    padding: 5px 10px;
+    font-size: 12px;
+    font-weight: bold;
+    opacity: 0.5;
+    white-space: nowrap;
+
+}
+
+table.tableDiagram button.trackButton.active {
+
+    border-color: var(--reddish);
+    background-color: var(--reddish);
+    opacity: 1;
+
+}
+
+table.tableDiagram button.trackButton:hover,
+table.tableDiagram button.trackButton.active:hover {
+
+    border-color: var(--whitish);
+    background-color: var(--whitish);
+    color: var(--blackish);
+    opacity: 1;
+
+}
+
+/* Table END */
+
+
+
+/* Side Menu */
+
+div#sideMenu {
+    position: fixed;
+    right: -300px;
+    top: 0px;
+    background-color: var(--whitish);
+    z-index: 40000;
+    width: 250px;
+    padding: 20px;
+    text-align: center;
+    transition: right 0.1s;
+    border-radius: var(--radius10);
+    margin: 10px;
+    color: var(--blackish);
+    box-shadow: 0px 0px 40px var(--blackish);
+}
+
+div#sideMenu.displayed {
+    right: 0px;
+    transition: right 0.1s;
+}
+
+div#sideMenu div#user {
+
+    width: 100%;
+
+}
+
+div#sideMenu div#user div#photo {
+
+    margin: 0px auto;
+    width: 100px;
+    height: 100px;
+    border-radius: var(--radius1000);
+    border: 2px solid var(--blackishTransparent2);
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-image: var(--profilePhoto);
+    background-size: contain;
+
+}
+
+div#sideMenu div#user p#name {
+
+    font-weight: 800;
+
+}
+
+div#sideMenu button#closeSideMenuButton {
+
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 20px;
+    right: 20px;
+    background-color: transparent;
+    border: 0px;
+    border-radius: var(--radius1000);
+    background-image: var(--homeInterface);
+    background-position: -130px -197px;
+    outline: none;
+    cursor: pointer;
+
+}
+
+div#sideMenu button#closeSideMenuButton:hover {
+
+    opacity: 0.5;
+
+}
+
+div#sideMenu ul#sideMenuList {
+
+    margin-top: 30px;
+
+}
+
+div#sideMenu ul#sideMenuList li {
+
+    padding: 10px;
+    font-size: var(--size16);
+    border-radius: var(--radius10);
+    background-color: var(--blackishTransparent2);
+    border: 2px solid transparent;
+    margin-top: 5px;
+    cursor: pointer;
+
+}
+
+div#sideMenu ul#sideMenuList li:hover {
+
+    background-color: transparent;
+    border-color: var(--blackishTransparent1);
+    
+
+}
+
+div#sideMenu ul#sideMenuList li.logout {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+    font-weight: bold;
+    
+
+}
+
+/* Side Menu END */
+
+
+
+/* Date Picker START */
+
+div#datePicker {
+
+    opacity: 0;
+    position: absolute;
+    width: 330px;
+    max-height: 0px;
+    overflow: hidden;
+    top: 40px;
+    right: 0px;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius10);
+    padding: 25px;
+    padding-bottom: 15px;
+    font-size: var(--size14);
+    z-index: 10000;
+    transition: all 0.1s ease-in-out;
+    box-shadow: 0px 0px 40px var(--blackish);
+
+}
+
+div#datePicker.displayed {
+
+    opacity: 1;
+    max-height: 500px;
+    transition: all 0.1s ease-in-out;
+
+}
+
+div#datePicker div#monthYearSelector {
+
+    display: flex;
+    justify-content: space-between;
+
+}
+
+div#datePicker div#monthYearSelector div.dateArrow {
+
+    align-self: center;
+    width: 20px;
+    height: 20px;
+    background-image: var(--homeInterface);
+    background-position: -180px -680px;
+    cursor: pointer;
+
+}
+
+div#datePicker div#monthYearSelector div#arrowRight {
+
+    transform: rotate(180deg);
+
+}
+
+div#datePicker div#monthYearSelector p#monthYear {
+
+    font-size: var(--size20);
+
+}
+
+div#datePicker div#monthYearSelector p#monthYear span {
+
+    font-weight: bold;
+
+}
+
+div#datePicker ul#dayNames {
+
+    display: flex;
+    font-weight: bold;
+    margin-top: 20px;
+
+}
+
+div#datePicker ul#dayNames li {
+
+    width: 40px;
+    height: 30px;
+    line-height: 30px;
+
+}
+
+div#datePicker ul#days {
+
+    display: flex;
+    flex-wrap: wrap;
+
+}
+
+div#datePicker ul#days li {
+
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    margin: 2px 5px;
+    border-radius: var(--radius1000);
+
+}
+
+div#datePicker ul#days li.selected {
+
+    background-color:var(--reddish);
+    color: var(--whitish);
+    font-weight: bold;
+
+}
+
+div#datePicker ul#days li.inRange {
+
+    background-color:var(--reddishLight2);
+
+}
+
+div#datePicker ul#days li:not(.selected):hover {
+
+    background-color:var(--blackishTransparent2);
+    
+}
+
+/** Date Picker END **/
+
+
+
+/* Footer START */
+
+footer {
+
+    grid-area: Footer;
+
+}
+
+footer div#copyright {
+
+    width: 300px;
+    margin: 0px auto;
+    text-align: center;
+
+}
+
+footer div#copyright a#cosmos {
+
+    display: inline-block;
+    margin: 0px auto;
+    margin-top: 0px;
+    width: 200px;
+    height: 38px;
+    background-image: var(--homeInterface);
+    background-repeat: no-repeat;
+    background-position: -11px -482px;
+    opacity: 0.3;
+
+}
+
+footer div#copyright a#cosmos:hover {
+
+    opacity: 1;
+
+}
+
+footer div#copyright p#description {
+
+    display: inline-block;
+    margin: 0px auto;
+    text-align: center;
+    margin-bottom: 160px;
+    font-size: var(--size12);
+    opacity: 0.3;
+
+}
+
+/* Footer END */
+
+
+
+/* Overlay START */
+
+div#overlay {
+
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--blackish);
+    opacity: 0.3;
+    z-index: 10200;
+
+}
+
+div#overlay.displayed {
+
+    display: block;
+
+}
+
+/* Overlay END */
+
+
+
+/* General Message START */
+
+div#generalMessage {
+
+    display: none;
+    position: fixed;
+    justify-content: center;
+    width: 100vw;
+    height: 100vh;
+    z-index: 20000;
+
+}
+
+div#generalMessage.displayed {
+
+    display: flex;
+
+}
+
+div#generalMessage div#overlayBackground {
+
+    background-color: var(--blackish);
+    width: 100%;
+    height: 100%;
+    opacity: 0.5;
+
+}
+
+div#generalMessage div#messageBox {
+
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    align-self: center;
+    justify-self: center;
+    width: 500px;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 60px 40px;
+    z-index: 20002;
+
+}
+
+div#generalMessage div#messageBox button {
+
+    border: 0px;
+    outline: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#generalMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 20px;
+    right: 20px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.7);
+
+}
+
+div#generalMessage div#messageBox p#message {
+
+    width: 100%;
+    text-align: center;
+    margin-bottom: 40px;
+
+}
+
+div#generalMessage div#messageBox div#action {
+
+    width: 100%;
+    text-align: center;
+
+}
+
+div#generalMessage div#messageBox div#action button {
+
+    background-color: var(--lighterGreyish);
+    width: 100px;
+    padding: 10px 0px;
+    margin: 0px 5px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button:hover {
+
+    background-color: var(--lighterGreyish);
+    width: 100px;
+    padding: 10px 0px;
+    border-radius: var(--radius1000);
+    font-size: 16px;
+
+}
+
+div#generalMessage div#messageBox div#action button.negative {
+
+    background-color: var(--reddish);
+    color: var(--whitish);
+
+}
+
+/*  General Message END */
+
+
+
+/* Notification Message START */
+
+div#notificationMessage {
+
+    display: none;
+    position: fixed;
+    width: 20vw;
+    top: 20px;
+    right: 20px;
+    z-index: 20000;
+
+}
+
+div#notificationMessage.displayed {
+
+    display: inline-block;
+
+}
+
+div#notificationMessage div#messageBox {
+
+    width: 100%;
+    height: 100%;
+    background-color: var(--whitish);
+    color: var(--blackish);
+    border-radius: var(--radius15);
+    padding: 30px;
+
+}
+
+div#notificationMessage div#messageBox button#closeButton {
+
+    display: flex;
+    position: absolute;
+    width: 28px;
+    height: 28px;
+    top: 15px;
+    right: 15px;
+    background-image: var(--homeInterface);
+    background-position: -252px -430px;
+    transform: scale(0.6);
+    outline: 0px;
+    border: 0px;
+    cursor: pointer;
+    cursor: hand;
+
+}
+
+div#notificationMessage div#messageBox h1#title {
+
+    font-size: 18px;
+
+}
+
+div#notificationMessage div#messageBox p#message {
+
+    width: 100%;
+    font-size: 14px;
+
+}
+
+/* Notification Message  END */
+
+
+
+/* Key Frames START */
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Key Frames END */
+
+
+
+/* Header START */
 
 header {
 
@@ -292,7 +916,7 @@ header div#favoritesIcon {
 
 }
 
-li.navigationButton {
+header li.navigationButton {
 
     color: var(--whitish);
     display: flex;
@@ -310,19 +934,19 @@ li.navigationButton {
     
 }
 
-li.navigationButton:hover {
+header li.navigationButton:hover {
 
     background-color: var(--greyish);
 
 }
 
-li.navigationButton.selected {
+header li.navigationButton.selected {
 
     background-color: var(--reddish);
 
 }
 
-li.navigationButton p {
+header li.navigationButton p {
 
     display: inline-block;
     line-height: 45px;
@@ -398,9 +1022,11 @@ header div#username div#menu:hover {
 
 }
 
+/* Header END */
 
 
-/* Content */
+
+/* Content START */
 
 main#content {
 
@@ -408,6 +1034,12 @@ main#content {
     margin-top: 80px;
 
 }
+
+/* Content END */
+
+
+
+/** Dashboard START **/
 
 main#content div#dashboard {
 
@@ -417,6 +1049,11 @@ main#content div#dashboard {
     margin: 0px auto;
 
 }
+
+/** Dashboard END **/
+
+
+/*** Navigation START ***/
 
 main#content div#dashboard section#navigation p#title {
 
@@ -516,139 +1153,24 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 }
 
-
-
-/** Date Picker START **/
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
-
-    opacity: 0;
-    position: absolute;
-    width: 330px;
-    max-height: 0px;
-    overflow: hidden;
-    top: 40px;
-    right: 0px;
-    background-color: var(--whitish);
-    color: var(--blackish);
-    border-radius: var(--radius10);
-    padding: 25px;
-    padding-bottom: 15px;
-    font-size: var(--size14);
-    z-index: 10000;
-    transition: all 0.1s ease-in-out;
-    box-shadow: 0px 0px 40px var(--blackish);
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker.displayed {
-
-    opacity: 1;
-    max-height: 500px;
-    transition: all 0.1s ease-in-out;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector {
-
-    display: flex;
-    justify-content: space-between;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector div.dateArrow {
-
-    align-self: center;
-    width: 20px;
-    height: 20px;
-    background-image: var(--homeInterface);
-    background-position: -180px -680px;
-    cursor: pointer;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector div#arrowRight {
-
-    transform: rotate(180deg);
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector p#monthYear {
-
-    font-size: var(--size20);
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector p#monthYear span {
-
-    font-weight: bold;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#dayNames {
-
-    display: flex;
-    font-weight: bold;
-    margin-top: 20px;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#dayNames li {
-
-    width: 40px;
-    height: 30px;
-    line-height: 30px;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days {
-
-    display: flex;
-    flex-wrap: wrap;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li {
-
-    width: 30px;
-    height: 30px;
-    line-height: 30px;
-    margin: 2px 5px;
-    border-radius: var(--radius1000);
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li.selected {
-
-    background-color:var(--reddish);
-    color: var(--whitish);
-    font-weight: bold;
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li.inRange {
-
-    background-color:var(--reddishLight2);
-
-}
-
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li:not(.selected):hover {
-
-    background-color:var(--blackishTransparent2);
-    
-}
-
-/** Date Picker END **/
+/*** Navigation END ***/
 
 
 
-/* Visualizations */
+/*** Visualizations START ***/
 
 section#visualizations {
 
     margin-top: 40px;
+    margin-bottom: 100px;
 
 }
+
+/*** Visualizations END ***/
+
+
+
+/**** Figures START ****/
 
 main#content div#dashboard section#visualizations figure.figure {
 
@@ -734,8 +1256,11 @@ main#content div#dashboard section#visualizations figure.figure.timeout img {
 
 }
 
+/**** Figures END ****/
 
-/** Spinner START **/
+
+
+/**** Spinner START ****/
 
 main#content div#dashboard section#visualizations figure.figure div#spinner {
 
@@ -759,11 +1284,11 @@ main#content div#dashboard section#visualizations figure.figure.timeout div#spin
 
 }
 
-/** Spinner END **/
+/**** Spinner END ****/
 
 
 
-/** Posting Frequecy Diagram START **/
+/***** Posting Frequecy Diagram START *****/
 
 main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure {
 
@@ -786,6 +1311,8 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper input#searchChannelsFrequency {
 
     width: 100%;
+    margin-right: 4px;
+    margin-bottom: 10px;
 
 }
 
@@ -849,11 +1376,11 @@ ul#statisticsWrapper li p {
     
 }
 
-/** Posting Frequecy Diagram END **/
+/***** Posting Frequecy Diagram END *****/
 
 
 
-/** Channel Location Diagram START **/
+/***** Channel Location Diagram START *****/
 
 main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure {
 
@@ -883,489 +1410,31 @@ main#content div#dashboard section#visualizations figure#channelLocationDiagram.
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram {
+main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#contentWrapper input#searchChannelsLocation {
 
     width: 100%;
-    text-align: left;
-    border: none;
-    border-collapse: separate;
-    border-spacing: 0px 4px;
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody tr {
+/***** Channel Location Diagram END *****/
 
-    border-radius: var(--radius15);
 
-}
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tr:nth-child(odd) {
+/***** Channel Details Diagram START *****/
 
-    background-color: var(--greyishDark);
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody tr td:first-child {
-    border-top-left-radius: 10px;
-    border-bottom-left-radius: 10px;
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody tr td:last-child {
-    border-top-right-radius: 10px;
-    border-bottom-right-radius: 10px;
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tr:hover {
-
-    background-color: var(--reddish);
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram tbody td {
+main#content div#dashboard section#visualizations figure#channelDetailsDiagram.figure div#contentWrapper {
 
     padding: 10px;
+    overflow-x: hidden;
+    overflow-y: scroll;
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th {
-
-    background-color: #2b2827;
-    padding: 10px;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button {
-
-    transform: rotate(90deg) scale(1,1.7);
-    margin-left: 5px;
-    opacity: 0.2;
-    transition: transform ease-in-out 0.15s;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button.active {
-
-    opacity: 1;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button.reverse {
-
-    transform: rotate(270deg) scale(1,1.7);
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead th button:hover {
-
-    opacity: 1;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram thead:hover {
-
-    background-color: var(--blackish);
-
-}
-
-main#content div#dashboard section#visualizations figure#relatedVideosDiagram.figure table.tableDiagram img {
-
-    width: 100%;
-    border-radius: var(--radius5);
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton {
-
-    border-radius: var(--radius1000);
-    border: 1px solid var(--whitish);
-    padding: 5px 10px;
-    font-size: 14px;
-    font-weight: bold;
-    opacity: 0.5;
-    white-space: nowrap;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton.active {
-
-    border-color: var(--reddish);
-    background-color: var(--reddish);
-    opacity: 1;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton:hover,
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure table.tableDiagram button.trackButton.active:hover {
-
-    border-color: var(--whitish);
-    background-color: var(--whitish);
-    color: var(--blackish);
-    opacity: 1;
-
-}
-
-/** Channel Location Diagram END **/
-
-
-
-/* Key Frames */
-
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-
-
-/* Footer */
-
-footer {
-
-    grid-area: Footer;
-
-}
-
-footer div#copyright {
-
-    width: 300px;
-    margin: 0px auto;
-    text-align: center;
-
-}
-
-footer div#copyright a#cosmos {
+main#content div#dashboard section#visualizations figure#channelDetailsDiagram.figure div#contentWrapper p#channelDetailsCounter {
 
     display: inline-block;
-    margin: 0px auto;
-    margin-top: 0px;
-    width: 200px;
-    height: 38px;
-    background-image: var(--homeInterface);
-    background-repeat: no-repeat;
-    background-position: -11px -482px;
-    opacity: 0.3;
+    padding-left: 10px;
 
 }
 
-footer div#copyright a#cosmos:hover {
-
-    opacity: 1;
-
-}
-
-footer div#copyright p#description {
-
-    display: inline-block;
-    margin: 0px auto;
-    text-align: center;
-    margin-bottom: 160px;
-    font-size: var(--size12);
-    opacity: 0.3;
-
-}
-
-
-
-/* Overlay */
-
-div#overlay {
-
-    display: none;
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background-color: var(--blackish);
-    opacity: 0.3;
-    z-index: 10200;
-
-}
-
-div#overlay.displayed {
-
-    display: block;
-
-}
-
-
-
-/* General Message */
-
-div#generalMessage {
-
-    display: none;
-    position: fixed;
-    justify-content: center;
-    width: 100vw;
-    height: 100vh;
-    z-index: 20000;
-
-}
-
-div#generalMessage.displayed {
-
-    display: flex;
-
-}
-
-div#generalMessage div#overlayBackground {
-
-    background-color: var(--blackish);
-    width: 100%;
-    height: 100%;
-    opacity: 0.5;
-
-}
-
-div#generalMessage div#messageBox {
-
-    display: flex;
-    flex-wrap: wrap;
-    position: absolute;
-    align-self: center;
-    justify-self: center;
-    width: 500px;
-    background-color: var(--whitish);
-    color: var(--blackish);
-    border-radius: var(--radius15);
-    padding: 60px 40px;
-    z-index: 20002;
-
-}
-
-div#generalMessage div#messageBox button {
-
-    border: 0px;
-    outline: 0px;
-    cursor: pointer;
-    cursor: hand;
-
-}
-
-div#generalMessage div#messageBox button#closeButton {
-
-    display: flex;
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    top: 20px;
-    right: 20px;
-    background-image: var(--homeInterface);
-    background-position: -252px -430px;
-    transform: scale(0.7);
-
-}
-
-div#generalMessage div#messageBox p#message {
-
-    width: 100%;
-    text-align: center;
-    margin-bottom: 40px;
-
-}
-
-div#generalMessage div#messageBox div#action {
-
-    width: 100%;
-    text-align: center;
-
-}
-
-div#generalMessage div#messageBox div#action button {
-
-    background-color: var(--lighterGreyish);
-    width: 100px;
-    padding: 10px 0px;
-    margin: 0px 5px;
-    border-radius: var(--radius1000);
-    font-size: 16px;
-
-}
-
-div#generalMessage div#messageBox div#action button:hover {
-
-    background-color: var(--lighterGreyish);
-    width: 100px;
-    padding: 10px 0px;
-    border-radius: var(--radius1000);
-    font-size: 16px;
-
-}
-
-div#generalMessage div#messageBox div#action button.negative {
-
-    background-color: var(--reddish);
-    color: var(--whitish);
-
-}
-
-
-
-/* Notification Message */
-
-div#notificationMessage {
-
-    display: none;
-    position: fixed;
-    width: 20vw;
-    top: 20px;
-    right: 20px;
-    z-index: 20000;
-
-}
-
-div#notificationMessage.displayed {
-
-    display: inline-block;
-
-}
-
-div#notificationMessage div#messageBox {
-
-    width: 100%;
-    height: 100%;
-    background-color: var(--whitish);
-    color: var(--blackish);
-    border-radius: var(--radius15);
-    padding: 30px;
-
-}
-
-div#notificationMessage div#messageBox button#closeButton {
-
-    display: flex;
-    position: absolute;
-    width: 28px;
-    height: 28px;
-    top: 15px;
-    right: 15px;
-    background-image: var(--homeInterface);
-    background-position: -252px -430px;
-    transform: scale(0.6);
-    outline: 0px;
-    border: 0px;
-    cursor: pointer;
-    cursor: hand;
-
-}
-
-div#notificationMessage div#messageBox h1#title {
-
-    font-size: 18px;
-
-}
-
-div#notificationMessage div#messageBox p#message {
-
-    width: 100%;
-    font-size: 14px;
-
-}
-
-
-
-/* Side Menu */
-
-div#sideMenu {
-    position: fixed;
-    right: -300px;
-    top: 0px;
-    background-color: var(--whitish);
-    z-index: 40000;
-    width: 250px;
-    padding: 20px;
-    text-align: center;
-    transition: right 0.1s;
-    border-radius: var(--radius10);
-    margin: 10px;
-    color: var(--blackish);
-    box-shadow: 0px 0px 40px var(--blackish);
-}
-
-div#sideMenu.displayed {
-    right: 0px;
-    transition: right 0.1s;
-}
-
-div#sideMenu div#user {
-
-    width: 100%;
-
-}
-
-div#sideMenu div#user div#photo {
-
-    margin: 0px auto;
-    width: 100px;
-    height: 100px;
-    border-radius: var(--radius1000);
-    border: 2px solid var(--blackishTransparent2);
-    margin-bottom: 20px;
-    overflow: hidden;
-    background-image: var(--profilePhoto);
-    background-size: contain;
-
-}
-
-div#sideMenu div#user p#name {
-
-    font-weight: 800;
-
-}
-
-div#sideMenu button#closeSideMenuButton {
-
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    top: 20px;
-    right: 20px;
-    background-color: transparent;
-    border: 0px;
-    border-radius: var(--radius1000);
-    background-image: var(--homeInterface);
-    background-position: -130px -197px;
-    outline: none;
-    cursor: pointer;
-
-}
-
-div#sideMenu button#closeSideMenuButton:hover {
-
-    opacity: 0.5;
-
-}
-
-div#sideMenu ul#sideMenuList {
-
-    margin-top: 30px;
-
-}
-
-div#sideMenu ul#sideMenuList li {
-
-    padding: 10px;
-    font-size: var(--size16);
-    border-radius: var(--radius10);
-    background-color: var(--blackishTransparent2);
-    border: 2px solid transparent;
-    margin-top: 5px;
-    cursor: pointer;
-
-}
-
-div#sideMenu ul#sideMenuList li:hover {
-
-    background-color: transparent;
-    border-color: var(--blackishTransparent1);
-    
-
-}
-
-div#sideMenu ul#sideMenuList li.logout {
-
-    background-color: var(--reddish);
-    color: var(--whitish);
-    font-weight: bold;
-    
-
-}
+/***** Channel Details Diagram END *****/
