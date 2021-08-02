@@ -162,6 +162,20 @@ button {
 
 }
 
+input.searchBox {
+
+    background-color: transparent;
+    border-radius: var(--radius15);
+    border: 2px solid var(--greyishDark);
+    font-size: var(--size16);
+    padding: 10px 10px;
+    width: 100%;
+    margin-right: 4px;
+    margin-bottom: 10px;
+    color: var(--whitish);
+
+}
+
 
 
 /* Header */
@@ -659,22 +673,28 @@ main#content div#dashboard section#visualizations figure.figure div#titleWrapper
     align-items: center;
     justify-content: space-between;
     padding: 10px;
-    background-color: var(--greyishDark2);
+    background-color: var(--greyishDark);
     border-radius: var(--radius15);
+
+}
+
+main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis {
+
+    display: none;
 
 }
 
 main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis a {
 
-    font-size: var(--size16);
-    color: var(--reddish);
-    font-weight: 600;
+    /* font-size: var(--size16); */
+    font-weight: 400;
+    opacity: 0.5;
 
 }
 
 main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis a:hover {
 
-    color: var(--blueish);
+    opacity: 1;
 
 }
 
@@ -763,17 +783,9 @@ main#content div#dashboard section#visualizations figure#postingFrequencyDiagram
 
 }
 
-main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper input#searchChannels {
+main#content div#dashboard section#visualizations figure#postingFrequencyDiagram.figure div#channelsWrapper input#searchChannelsFrequency {
 
-    background-color: transparent;
-    border-radius: var(--radius15);
-    border: 2px solid var(--greyishDark);
-    font-size: var(--size16);
-    padding: 10px 10px;
     width: 100%;
-    margin-right: 4px;
-    margin-bottom: 10px;
-    color: var(--whitish);
 
 }
 
