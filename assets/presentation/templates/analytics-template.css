@@ -164,12 +164,19 @@ button {
 
 input {
 
-    background-color: transparent;
+    background-color: var(--blackish);
     border-radius: var(--radius15);
-    border: 2px solid var(--greyishDark);
+    border: 2px solid var(--whitishTransparent3);
     font-size: var(--size16);
     padding: 10px 10px;
     color: var(--whitish);
+    outline: none;
+
+}
+
+input:focus {
+
+    border-color: var(--blueish);
 
 }
 
@@ -326,7 +333,7 @@ div#sideMenu {
     border-radius: var(--radius10);
     margin: 10px;
     color: var(--blackish);
-    box-shadow: 0px 0px 40px var(--blackish);
+    box-shadow: 0px 0px 100px var(--blackishShadow);
 }
 
 div#sideMenu.displayed {
@@ -441,7 +448,7 @@ div#datePicker {
     font-size: var(--size14);
     z-index: 10000;
     transition: all 0.1s ease-in-out;
-    box-shadow: 0px 0px 40px var(--blackish);
+    box-shadow: 0px 0px 100px var(--blackishShadow);
 
 }
 
@@ -1217,7 +1224,6 @@ main#content div#dashboard section#visualizations figure.figure div#titleWrapper
 
 main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis a {
 
-    /* font-size: var(--size16); */
     font-weight: 400;
     opacity: 0.5;
 
