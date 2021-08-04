@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+
+<!--
+
+
+
+	" Reimplement the wheel to either learn, or make it better. "
+
+    http://www.haydex.io/
+    https://www.youtube.com/watch?v=QOlTGA3RE8I
+    
+    Product Name: Vtracker,
+	Description: Tracking data from videos.
+	Beneficiary: COSMOS
+	
+	Copyright © 1992 - 2021 HAYDEX, All Rights Reserved.
+	
+	
+	
+-->
+
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="author" content="HAYDEX">
+        <meta name="description" content="Tracking data from videos.">
+        <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900" rel="stylesheet">
+        <title>Content Analysis - Vtracker</title>
+        
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="assets/images/favicon/vt-favicon-apple-touch.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="assets/images/favicon/vt-favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="assets/images/favicon/vt-favicon-16x16.png"> <!-- https://mobiforge.com/design-development/adding-favicons-in-a-multi-browser-multi-platform-world -->
+
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="assets/presentation/content-analysis.css"/>
+        
+        <script src="assets/behavior/content-analysis.js"></script>
+
+    </head>
+    <body>
+
+
+
+        <!-- Header -->
+        <header>
+            <a href="landing.html" id="logo"></a>
+            <nav>
+                <ul>
+                    <a href="">
+                        <li id="homeLink" class="navigationButton selected" title="Home">
+                            <div id="homeIcon" class="navIcon"></div>
+                            <p id="home">Home</p>
+                        </li>
+                    </a>
+                    <a href="trackers.html">
+                        <li id="trackersLink" class="navigationButton" title="Trackers">
+                            <div id="trackersIcon" class="navIcon"></div>
+                            <p id="trackers">Trackers</p>
+                        </li>
+                    </a>
+                    <a href="events.html">
+                        <li id="eventsLink" class="navigationButton" title="Events">
+                            <div id="eventsIcon" class="navIcon"></div>
+                            <p id="events">Events</p>
+                        </li>
+                    </a>
+                    <a href="favorites.html">
+                        <li id="favoritesLink" class="navigationButton" title="Favorites">
+                            <div id="favoritesIcon" class="navIcon"></div>
+                            <p id="favorites">Favorites</p>
+                        </li>
+                    </a>
+                </ul>
+            </nav>
+            <div id="username">
+                <div id="photo" title="Steven M">
+                    <div id="indicator" class="active"></div>
+                </div>
+                <div id="name">Steven</div>
+                <div id="menu" title="Menu"></div>
+                <div id="arrow"></div>
+            </div>
+        </header>
+
+
+    
+        <!-- Content -->
+        <main id="content">
+            <div id="dashboard">
+                <section id="navigation">
+                    <p id="title">
+                        <span>China Tracker</span>
+                        Content Analysis
+                    </p>
+                    <div id="navigationWrapper">
+                        <ul id="breadcrumbs">
+                            <li class="link">Trackers</li>
+                            <li> / </li>
+                            <li class="link">China Tracker</li>
+                            <li> / </li>
+                            <li class="link">Dashboard</li>
+                            <li> / </li>
+                            <li class="link selected">Content Analysis</li>
+                        </ul>
+                        <button id="datePickerButton">
+                            <div id="arrowIcon"></div>
+                            <p id="dateRange">Jan 5 2020 - Jun 12 2021</p>
+
+                            <!-- Date Picker -->
+                            <div id="datePicker" class="submenu">
+                                <div id="monthYearSelector">
+                                    <div id="arrowLeft" class="dateArrow"></div>
+                                    <p id="monthYear">January <span>2021</span></p>
+                                    <div id="arrowRight" class="dateArrow"></div>
+                                </div>
+                                <ul id="dayNames">
+                                    <li>Mon</li>
+                                    <li>Tue</li>
+                                    <li>Wed</li>
+                                    <li>Thu</li>
+                                    <li>Fri</li>
+                                    <li>Sat</li>
+                                    <li>Sun</li>
+                                </ul>
+                                <ul id="days">
+                                    <li>1</li>
+                                    <li>2</li>
+                                    <li>3</li>
+                                    <li>4</li>
+                                    <li>5</li>
+                                    <li>6</li>
+                                    <li>7</li>
+                                    <li>8</li>
+                                    <li>9</li>
+                                    <li>10</li>
+                                    <li class="selected">11</li>
+                                    <li class="inRange">12</li>
+                                    <li class="inRange">13</li>
+                                    <li class="inRange">14</li>
+                                    <li class="inRange">15</li>
+                                    <li class="inRange">16</li>
+                                    <li class="inRange">17</li>
+                                    <li class="inRange">18</li>
+                                    <li class="inRange">19</li>
+                                    <li class="inRange">20</li>
+                                    <li class="inRange">21</li>
+                                    <li class="inRange">22</li>
+                                    <li class="selected">23</li>
+                                    <li>24</li>
+                                    <li>25</li>
+                                    <li>26</li>
+                                    <li>27</li>
+                                    <li>28</li>
+                                    <li>29</li>
+                                    <li>30</li>
+                                    <li>31</li>
+                                </ul>
+                            </div>
+                        </button>
+                    </div>
+                </section>
+
+                <!-- Visualizations -->
+                <section id="visualizations">
+
+                    <figure id="contentAnalysisDiagram" class="figure">
+
+                        <!-- Leading Statistics -->
+                        <div id="languageComponent" class="component selectable">
+                            <h3>Leading Language</h3>
+                            <p>English</p>
+                        </div>
+                        <div id="categoryComponent" class="component selectable">
+                            <h3>Leading Category</h3>
+                            <p>Entertainment</p>
+                        </div>
+                        <div id="opinionComponent" class="component selectable">
+                            <h3>Leading Opinion</h3>
+                            <p>Negative</p>
+                        </div>
+                        <div id="keywordComponent" class="component selectable">
+                            <h3>Leading Keyword</h3>
+                            <p>Channel</p>
+                        </div>
+                        <div id="emotionComponent" class="component selectable">
+                            <h3>Leading Emotion</h3>
+                            <p>Joy</p>
+                        </div>
+
+                        <!-- Figure -->
+                        <div id="figureWrapper" class="component">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/language-content-analysis.svg">
+                        </div>
+
+                    </figure>
+
+                    <figure id="videoCategoryDistributionDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Video Category Distribution<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span></h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Figure -->
+                        <div id="figureWrapper" class="component">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/video-category-distribution.svg">
+                        </div>
+                    </figure>
+
+                    <figure id="channelLocationDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Channel Location<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span></h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Figure -->
+                        <div id="figureWrapper" class="component">
+                            <div id="spinner"></div>
+                            <img src="assets/images/figures/channel-location.svg">
+                        </div>
+                        <!-- Content -->
+                        <div id="contentWrapper" class="component">
+                            <input id="searchChannelsLocation" placeholder="Search Channels" class="searchBox">
+                            <table id="relatedVideosTable">
+                                <colgroup>
+                                    <col id="titleColumn" />
+                                    <col id="relatedToColumn" />
+                                    <col id="tracksColumn" />
+                                </colgroup>
+                                <thead>
+                                    <tr class="headRow">
+                                        <th id="titleColumn"><div class="tableHeadWrapper active">Name <button>></button></div></th>
+                                        <th id="relatedToColumn"><div class="tableHeadWrapper">Location <button>></button></div></th>
+                                        <th id="tracksColumn"><div class="tableHeadWrapper">Views <button>></button></div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CNN</td>
+                                        <td>US</td>
+                                        <td>2,700</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NewYorkPost</td>
+                                        <td>US</td>
+                                        <td>400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>China Post</td>
+                                        <td>China</td>
+                                        <td>1,200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Russia Today</td>
+                                        <td>Russia</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nato</td>
+                                        <td>Europe</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Beast</td>
+                                        <td>Germany</td>
+                                        <td>3,000</td>
+                                    </tr>
+                                    <tr>
+                                        <td>NewYorkPost</td>
+                                        <td>US</td>
+                                        <td>400</td>
+                                    </tr>
+                                    <tr>
+                                        <td>China Post</td>
+                                        <td>China</td>
+                                        <td>1,200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Russia Today</td>
+                                        <td>Russia</td>
+                                        <td>200</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nato</td>
+                                        <td>Europe</td>
+                                        <td>800</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Beast</td>
+                                        <td>Germany</td>
+                                        <td>3,000</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </figure>
+
+                    <figure id="channelDetailsDiagram" class="figure">
+                        <!-- Title -->
+                        <div id="titleWrapper">
+                            <h3 id="diagramTitle">Channels<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span>
+                            </h3>
+                            <button id="information"
+                                title="More information about the current diagram will be provided here in this section."></button>
+                        </div>
+                        <!-- Content -->
+                        <div id="contentWrapper" class="component">
+                            <input id="searchChannelsDetails" placeholder="Search Channels" class="searchBox">
+                            <p id="channelDetailsCounter"><span>34</span> Channels</p>
+                            <table id="relatedVideosTable">
+                                <colgroup>
+                                    <col id="nameColumn" />
+                                    <col id="subscribersColumn" />
+                                    <col id="videosColumn" />
+                                    <col id="viewsColumn" />
+                                    <col id="locationColumn" />
+                                    <col id="tracksColumn" />
+                                </colgroup>
+                                <thead>
+                                    <tr class="headRow">
+                                        <th><div class="tableHeadWrapper active">Name <button>></button></div></th>
+                                        <th><div class="tableHeadWrapper">Subscribers <button>></button></div></th>
+                                        <th><div class="tableHeadWrapper">Videos <button>></button></div></th>
+                                        <th><div class="tableHeadWrapper">Views <button>></button></div></th>
+                                        <th><div class="tableHeadWrapper">Location <button>></button></div></th>
+                                        <th><div class="tableHeadWrapper">Tracks <button>></button></div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>CNN</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>NewYorkPost</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton active">5 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>China Post</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton active">7 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Russia Today</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nato</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Beast</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>NewYorkPost</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>China Post</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Russia Today</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Nato</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                    <tr>
+                                        <td>Daily Beast</td>
+                                        <td>44,000</td>
+                                        <td>500</td>
+                                        <td>30,000</td>
+                                        <td>US</td>
+                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </figure>
+
+                </section>
+            </div>
+        </main>
+
+        
+        <!-- Copyright -->
+        <footer>
+            <div id="copyright">
+                <a id="cosmos" href="http://cosmos.ualr.edu"></a>
+                <p id="description">
+                    COLLABORATORIUM FOR SOCIAL MEDIA AND ONLINE BEHAVIORAL STUDIES
+                </p>
+            </div>
+        </footer>
+
+
+
+        <!-- Overlay -->
+        <div id="overlay"></div>
+
+
+
+        <!-- Side Menu -->
+        <div id="sideMenu" class="submenu">
+            <!-- <button id="closeSideMenuButton"></button> -->
+            <div id="user">
+                <div id="photo"></div>
+                <p id="name">Hayder Al Rubaye</p>
+                <p id="email">hayddex@gmail.com</p>
+            </div>
+            <ul id="sideMenuList">
+                <li id="apikey" class="item">API Key</li>
+                <li id="logout" class="item logout">Logout</li>
+            </ul>
+        </div>
+
+
+
+    </body>
+</html>
