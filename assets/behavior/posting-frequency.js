@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.figure = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure");
             this.datePickerButton = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton");
             this.datePickerMenu = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker");
-            this.tableSortButtons = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button");
+            this.figureTables = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure table");
             this.channelsList = document.querySelector("main#content div#dashboard section#visualizations figure#postingFrequencyDiagram div#channelsWrapper ul#channelsList");
             this.sideMenuButton = document.querySelector("div#menu");
             this.sideMenu = document.querySelector("div#sideMenu");
@@ -42,6 +42,7 @@ document.addEventListener("DOMContentLoaded", function() {
             this.activeClass = "active";
             this.submenuClass = "submenu";
             this.reverseClass = "reverse";
+            this.tableHeadWrapperClass = "tableHeadWrapper";
 
             this.selectedChannels = 0;
             this.defaultSelection = 3;
@@ -124,16 +125,16 @@ document.addEventListener("DOMContentLoaded", function() {
             this.sideMenuButton.addEventListener("click", this.sideMenuButtonClickHandler.bind(this));
             this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
 
-            for(var i=0; i< this.tableSortButtons.length; i++) {
+            for (var i = 0; i < this.figureTables.length; i++) {
 
-                this.tableSortButtons[i].addEventListener("click", this.tableSortButtonsClickHandler.bind(this));
+                this.figureTables[i].addEventListener("click", this.figureTablesClickHandler.bind(this));
 
             }
 
             this.channelsList.addEventListener("click", this.channelsListClickHandler.bind(this));
 
 
-            /* Select three channels when loading the page for the first time. */
+            /* Select three channels when loading the page for the first time */
 
             var children = this.channelsList.children;
 
@@ -225,28 +226,29 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        tableSortButtonsClickHandler(event) {
+        figureTablesClickHandler(event) {
 
-            /* for (var i = 0; i < this.tableSortButtons.length; i++) {
+            if ((event.target.classList.contains(this.tableHeadWrapperClass)) || (event.target.parentElement.classList.contains(this.tableHeadWrapperClass))) {
 
-                this.tableSortButtons[i].classList.contains(this.reverseClass).remove(this.reverseClass);
+                var tableHeads = event.currentTarget.querySelectorAll("th div");
+                var target = event.target.classList.contains(this.tableHeadWrapperClass) ? event.target : event.target.parentElement;
 
-            } */
+                if (target.classList.contains(this.activeClass)) {
 
-            if (event.currentTarget.classList.contains(this.activeClass)) {
+                    target.classList.toggle(this.reverseClass);
 
-                event.currentTarget.classList.toggle(this.reverseClass);
+                } else {
 
-            } else {
+                    for (var i = 0; i < tableHeads.length; i++) {
 
-                for (var i = 0; i < this.tableSortButtons.length; i++) {
+                        tableHeads[i].classList.remove(this.activeClass);
+                        tableHeads[i].classList.remove(this.reverseClass);
 
-                    this.tableSortButtons[i].classList.remove(this.activeClass);
-                    this.tableSortButtons[i].classList.remove(this.reverseClass);
+                    }
+
+                    target.classList.add(this.activeClass);
 
                 }
-
-                event.currentTarget.classList.add(this.activeClass);
 
             }
 
