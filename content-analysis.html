@@ -197,106 +197,124 @@
 
                     </figure>
 
-                    <figure id="videoCategoryDistributionDiagram" class="figure">
+                    <figure id="videoDescriptionLanguageDiagram" class="figure">
                         <!-- Title -->
                         <div id="titleWrapper">
-                            <h3 id="diagramTitle">Video Category Distribution<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span></h3>
+                            <h3 id="diagramTitle">Video Description Language<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span></h3>
                             <button id="information"
                                 title="More information about the current diagram will be provided here in this section."></button>
                         </div>
-                        <!-- Figure -->
-                        <div id="figureWrapper" class="component">
-                            <div id="spinner"></div>
-                            <img src="assets/images/figures/video-category-distribution.svg">
-                        </div>
-                    </figure>
-
-                    <figure id="channelLocationDiagram" class="figure">
-                        <!-- Title -->
-                        <div id="titleWrapper">
-                            <h3 id="diagramTitle">Channel Location<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span></h3>
-                            <button id="information"
-                                title="More information about the current diagram will be provided here in this section."></button>
-                        </div>
-                        <!-- Figure -->
-                        <div id="figureWrapper" class="component">
-                            <div id="spinner"></div>
-                            <img src="assets/images/figures/channel-location.svg">
-                        </div>
-                        <!-- Content -->
-                        <div id="contentWrapper" class="component">
-                            <input id="searchChannelsLocation" placeholder="Search Channels" class="searchBox">
-                            <table id="relatedVideosTable">
+                        <!-- Videos -->
+                        <div id="videosWrapper" class="component">
+                            <input id="searchVideos" placeholder="Search Videos" class="searchBox">
+                            <table id="videoDescriptionLanguageTable">
                                 <colgroup>
-                                    <col id="titleColumn" />
-                                    <col id="relatedToColumn" />
-                                    <col id="tracksColumn" />
+                                    <col class="title" />
+                                    <col class="language" />
                                 </colgroup>
                                 <thead>
                                     <tr class="headRow">
-                                        <th id="titleColumn"><div class="tableHeadWrapper active">Name <button>></button></div></th>
-                                        <th id="relatedToColumn"><div class="tableHeadWrapper">Location <button>></button></div></th>
-                                        <th id="tracksColumn"><div class="tableHeadWrapper">Views <button>></button></div></th>
+                                        <th>
+                                            <div class="tableHeadWrapper active">Title <button>></button></div>
+                                        </th>
+                                        <th>
+                                            <div class="tableHeadWrapper">Language <button>></button></div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>CNN</td>
-                                        <td>US</td>
-                                        <td>2,700</td>
+                                        <td>The Hard-Core “STIMULUS PACKAGE</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
-                                        <td>NewYorkPost</td>
-                                        <td>US</td>
-                                        <td>400</td>
+                                        <td>RED ALERT MISSOURI</td>
+                                        <td>English</td>
+                                    </tr>
+                                    <tr class="active">
+                                        <td>HIGHLY UNPOPULAR/DANGEROUS VIDEO</td>
+                                        <td>Chinese</td>
                                     </tr>
                                     <tr>
-                                        <td>China Post</td>
-                                        <td>China</td>
-                                        <td>1,200</td>
+                                        <td>DO EXACTLY WHAT GOVERNMENT TELLS YOU TO DO</td>
+                                        <td>Russian</td>
                                     </tr>
                                     <tr>
-                                        <td>Russia Today</td>
-                                        <td>Russia</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Nato</td>
-                                        <td>Europe</td>
-                                        <td>800</td>
+                                        <td>L of CALIFORNIA on LOCKDOWN!</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
                                         <td>Daily Beast</td>
-                                        <td>Germany</td>
-                                        <td>3,000</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
                                         <td>NewYorkPost</td>
-                                        <td>US</td>
-                                        <td>400</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
                                         <td>China Post</td>
-                                        <td>China</td>
-                                        <td>1,200</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
                                         <td>Russia Today</td>
-                                        <td>Russia</td>
-                                        <td>200</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
                                         <td>Nato</td>
-                                        <td>Europe</td>
-                                        <td>800</td>
+                                        <td>English</td>
                                     </tr>
                                     <tr>
                                         <td>Daily Beast</td>
-                                        <td>Germany</td>
-                                        <td>3,000</td>
+                                        <td>English</td>
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                        <!-- Comments -->
+                        <div id="commentsWrapper" class="component">
+                            <h3>Comments</h3>
+                            <ul id="commentsList">
+                                <li>
+                                    <h4>Title of comment 1</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 2</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 3</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 4</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 5</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 6</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 7</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 8</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 9</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                                <li>
+                                    <h4>Title of comment 10</h4>
+                                    <p>Details of the comment here.</p>
+                                </li>
+                            </ul>
                         </div>
                     </figure>
 

@@ -82,27 +82,50 @@ main#content div#dashboard section#visualizations figure#contentAnalysisDiagram.
 
 
 
-/***** Channel Location Diagram START *****/
+/***** Video Description Language Diagram START *****/
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure {
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure {
 
-    grid-template-columns: 350px auto;
+    grid-template-columns: 400px auto;
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#titleWrapper {
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#titleWrapper {
 
     grid-column: 1/3;
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#figureWrapper {
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#commentsWrapper {
 
     grid-column: 2;
+    padding: 20px;
+    overflow-y: scroll;
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#contentWrapper {
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#commentsWrapper ul#commentsList {
+
+    margin-top: 10px;
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#commentsWrapper ul#commentsList li {
+
+    background-color: var(--greyishDark);
+    border-radius: var(--radius10);
+    padding: 20px;
+    margin-bottom: 4px;
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#commentsWrapper ul#commentsList li:hover {
+
+    background-color: var(--whitishTransparent3);
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper {
 
     padding: 10px;
     overflow-x: hidden;
@@ -112,13 +135,44 @@ main#content div#dashboard section#visualizations figure#channelLocationDiagram.
 
 }
 
-main#content div#dashboard section#visualizations figure#channelLocationDiagram.figure div#contentWrapper input#searchChannelsLocation {
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper input#searchVideos {
 
     width: 100%;
 
 }
 
-/***** Channel Location Diagram END *****/
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper table {
+
+    table-layout: fixed;
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper table tr {
+
+    cursor: pointer;
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper table tr.active {
+
+    background-color: var(--reddish);
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper table col.title {
+
+    width: 60%;
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDescriptionLanguageDiagram.figure div#videosWrapper table tbody td {
+
+    overflow: hidden;
+    white-space: nowrap;
+
+}
+
+/***** Video Description Language Diagram END *****/
 
 
 
