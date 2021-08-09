@@ -318,130 +318,250 @@
                         </div>
                     </figure>
 
-                    <figure id="channelDetailsDiagram" class="figure">
+                    <figure id="videoDetailsDiagram" class="figure">
                         <!-- Title -->
                         <div id="titleWrapper">
-                            <h3 id="diagramTitle">Channels<span class="deeperAnalysis"> · <a href="#">Deeper Analysis</a></span>
-                            </h3>
+                            <h3 id="diagramTitle">Video Details<span class="deeperAnalysis"> · <a href="#">Deeper
+                                        Analysis</a></span></h3>
                             <button id="information"
                                 title="More information about the current diagram will be provided here in this section."></button>
                         </div>
-                        <!-- Content -->
-                        <div id="contentWrapper" class="component">
-                            <input id="searchChannelsDetails" placeholder="Search Channels" class="searchBox">
-                            <p id="channelDetailsCounter"><span>34</span> Channels</p>
-                            <table id="relatedVideosTable">
+                        <!-- Videos -->
+                        <div id="videosWrapper" class="component">
+                            <input id="searchVideos" placeholder="Search Videos" class="searchBox">
+                            <table>
                                 <colgroup>
-                                    <col id="nameColumn" />
-                                    <col id="subscribersColumn" />
-                                    <col id="videosColumn" />
-                                    <col id="viewsColumn" />
-                                    <col id="locationColumn" />
-                                    <col id="tracksColumn" />
+                                    <col class="title" />
+                                    <col class="category" />
+                                    <col class="language" />
+                                    <col class="emotion" />
+                                    <col class="opinionDistribution" />
+                                    <col class="Likes/Dislikes" />
                                 </colgroup>
                                 <thead>
                                     <tr class="headRow">
-                                        <th><div class="tableHeadWrapper active">Name <button>></button></div></th>
-                                        <th><div class="tableHeadWrapper">Subscribers <button>></button></div></th>
-                                        <th><div class="tableHeadWrapper">Videos <button>></button></div></th>
-                                        <th><div class="tableHeadWrapper">Views <button>></button></div></th>
-                                        <th><div class="tableHeadWrapper">Location <button>></button></div></th>
-                                        <th><div class="tableHeadWrapper">Tracks <button>></button></div></th>
+                                        <th>
+                                            <div class="tableHeadWrapper active">Title <button>></button></div>
+                                        </th>
+                                        <th>
+                                            <div class="tableHeadWrapper">Category <button>></button></div>
+                                        </th>
+                                        <th>
+                                            <div class="tableHeadWrapper">Language <button>></button></div>
+                                        </th>
+                                        <th>
+                                            <div class="tableHeadWrapper">Emotion <button>></button></div>
+                                        </th>
+                                        <th>
+                                            <div class="tableHeadWrapper">Opinion Distribution <button>></button></div>
+                                        </th>
+                                        <th>
+                                            <div class="tableHeadWrapper">Likes/Dislikes <button>></button></div>
+                                        </th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
-                                        <td>CNN</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>U.S. teacher’s union shifts stance to back vaccine mandate</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>NewYorkPost</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton active">5 TRACKS</button></td>
+                                        <td>Chuck Todd On Challenges Facing Biden Administration Due To Delta Variant</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>China Post</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton active">7 TRACKS</button></td>
+                                        <td>Taliban Advance On Major Afghan City</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Russia Today</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>Dixie Fire, still raging, is now California's second-largest wildfire ever</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Nato</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>Chicago Police Department, Lightfoot Hold Press Briefing Following Officer Killed In Line Of Duty</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Daily Beast</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>'The Trump Monkeys Were Really Running The Show': DOJ Roiled By Trump's Big Lie</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>NewYorkPost</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>BREAKING: Senate Votes To Invoke Cloture On Bipartisan Infrastructure Bill</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>China Post</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>Cuomo accuser Brittany Commisso speaks publicly for the first time</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Russia Today</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>6 dead after plane crashes in Alaska</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Nato</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>The Hard-Core “STIMULUS PACKAGE</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                     <tr>
-                                        <td>Daily Beast</td>
-                                        <td>44,000</td>
-                                        <td>500</td>
-                                        <td>30,000</td>
-                                        <td>US</td>
-                                        <td><button class="trackButton">0 TRACKS</button></td>
+                                        <td>The Hard-Core “STIMULUS PACKAGE</td>
+                                        <td>Entertainment</td>
+                                        <td>English</td>
+                                        <td>Negative</td>
+                                        <td class="opinionField">
+                                            <div class="opinionWrapper">
+                                                <div class="opinion1"></div>
+                                                <div class="opinion2"></div>
+                                            </div>
+                                        </td>
+                                        <td class="likesDislikesField">
+                                            <div class="likesDislikesWrapper">
+                                                <div class="likes"></div>
+                                                <div class="dislikes"></div>
+                                            </div>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
-                    </figure>
 
                 </section>
             </div>

@@ -176,27 +176,57 @@ main#content div#dashboard section#visualizations figure#videoDescriptionLanguag
 
 
 
-/***** Channel Details Diagram START *****/
+/***** Video Details Diagram START *****/
 
-main#content div#dashboard section#visualizations figure#channelDetailsDiagram.figure div#contentWrapper {
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper {
 
     padding: 10px;
-    overflow-x: hidden;
     overflow-y: scroll;
 
 }
 
-main#content div#dashboard section#visualizations figure#channelDetailsDiagram.figure div#contentWrapper p#channelDetailsCounter {
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper table td div.opinionWrapper {
 
-    display: inline-block;
-    padding-left: 10px;
-
-}
-
-main#content div#dashboard section#visualizations figure#channelDetailsDiagram.figure div#contentWrapper tbody td {
-
-    padding: 7px 10px;
+    display: grid;
+    grid-template-columns: 20% auto;
+    height: 5px;
+    border-radius: var(--radius5);
+    overflow: hidden;
 
 }
 
-/***** Channel Details Diagram END *****/
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper table td div.opinionWrapper div.opinion1 {
+
+    background-color: var(--reddish);
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper table td div.opinionWrapper div.opinion2 {
+
+    background-color: var(--blueish);
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper table td div.likesDislikesWrapper {
+
+    display: grid;
+    grid-template-columns: 35% auto;
+    height: 5px;
+    border-radius: var(--radius5);
+    overflow: hidden;
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper table td div.likesDislikesWrapper div.likes {
+
+    background-color: var(--reddish);
+
+}
+
+main#content div#dashboard section#visualizations figure#videoDetailsDiagram.figure div#videosWrapper table td div.likesDislikesWrapper div.dislikes {
+
+    background-color: var(--greenish);
+
+}
+
+/***** Video Details Diagram END *****/

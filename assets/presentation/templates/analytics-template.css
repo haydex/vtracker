@@ -28,6 +28,7 @@
     --reddish: #ff0000;
     --reddishLight: rgb(255, 113, 113);
     --reddishLight2: rgb(253, 68, 68, 0.4);
+    --greenish: rgba(0 , 177, 156, 1);
     --blackish: #242120;
     --blackish2: #2c2928;
     --shadow: rgb(0, 0, 0, 0.5);
@@ -233,6 +234,7 @@ table thead th {
 
     background-color: #2b2827;
     padding: 10px;
+    white-space: nowrap;
 
 }
 
