@@ -189,7 +189,7 @@ main#content div#dashboard section#visualizations figure#videoDetailsDiagram.fig
 
     display: grid;
     grid-template-columns: 20% auto;
-    height: 5px;
+    height: 10px;
     border-radius: var(--radius5);
     overflow: hidden;
 
@@ -211,7 +211,7 @@ main#content div#dashboard section#visualizations figure#videoDetailsDiagram.fig
 
     display: grid;
     grid-template-columns: 35% auto;
-    height: 5px;
+    height: 10px;
     border-radius: var(--radius5);
     overflow: hidden;
 

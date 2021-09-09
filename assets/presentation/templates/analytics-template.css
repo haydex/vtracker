@@ -1221,7 +1221,7 @@ main#content div#dashboard section#visualizations figure.figure div#titleWrapper
 
 main#content div#dashboard section#visualizations figure.figure div#titleWrapper h3#diagramTitle span.deeperAnalysis {
 
-    display: none;
+    /* display: none; */
 
 }
 
