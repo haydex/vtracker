@@ -213,11 +213,11 @@
     border-radius: 4px;
   }
   
-  .daterangepicker td.active, .daterangepicker td.active:hover {
+  /* .daterangepicker td.active, .daterangepicker td.active:hover {
     background-color: #357ebd;
     border-color: transparent;
     color: #fff;
-  }
+  } */
   
   .daterangepicker th.month {
     width: auto;
@@ -348,6 +348,25 @@
 td.active.end-date.in-range.available {
     background: #ff0000;
     border-radius: 50%;
+}
+
+td.available, th, .drp-buttons  {
+  color: black;
+}
+
+.drp-buttons button {
+  border-radius: 5px;
+}
+
+.applyBtn {
+  background: #ff0000;
+  border: 1px solid #ff0000;
+  color: white;
+}
+
+.cancelBtn {
+  border: 1px solid #ff0000;
+  color: black;
 }
   /* NEW STYLES */
   

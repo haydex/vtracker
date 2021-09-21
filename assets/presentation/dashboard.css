@@ -518,11 +518,12 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 /* Date Picker START */
 input[name="daterange"] {
     padding: 10px 20px;
-    border-radius: 5px;
-    border: transparent;
+    border-radius: var(--radius5);
+    border: 2px solid transparent;
     color: white;
-    background: var(--greyish);
-    font-size: 16px;
+    background-color: var(--greyishDark);
+    font-size: var(--size17);
+    font-weight: 400;
 }
 
 input[name="daterange"]:hover {
@@ -646,11 +647,11 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 }
 */
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li:not(.selected):hover {
+/* main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li:not(.selected):hover {
 
     background-color:var(--blackishTransparent2);
     
-} 
+}  */
 
 /* Date Picker END */
 
