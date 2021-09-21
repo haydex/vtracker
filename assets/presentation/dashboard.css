@@ -516,6 +516,18 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 
 /* Date Picker START */
+input[name="daterange"] {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: transparent;
+    color: white;
+    background: var(--greyish);
+    font-size: 16px;
+}
+
+input[name="daterange"]:hover {
+    cursor: pointer;
+}
 
 /* main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
 
