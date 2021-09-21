@@ -340,22 +340,14 @@
   }
 
   /* NEW STYLES */
-  td.active.start-date.available {
+  td.active.start-date.available, td.active.end-date.in-range.available {
     background: #ff0000;
     border-radius: 50%;
-}
-
-td.active.end-date.in-range.available {
-    background: #ff0000;
-    border-radius: 50%;
+    color: white;
 }
 
 td.available, th, .drp-buttons  {
   color: black;
-}
-
-.drp-buttons button {
-  border-radius: 5px;
 }
 
 .applyBtn {
