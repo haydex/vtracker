@@ -19,7 +19,7 @@
 
 
 
-document.addEventListener("DOMContentLoaded", function() {
+document.addEventListener("DOMContentLoaded", function () {
 
     // General
 
@@ -31,6 +31,14 @@ document.addEventListener("DOMContentLoaded", function() {
             this.datePickerButton = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton");
             this.datePickerMenu = document.querySelector("main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker");
             this.tableSortButtons = document.querySelectorAll("main#content div#dashboard section#visualizations figure.figure table.tableDiagram thead th button");
+
+            this.nextMonthButton = document.querySelector("#arrowRight");
+            this.prevMonthButton = document.querySelector("#arrowLeft");
+            this.dateRangeViewer = document.querySelector("#dateRange");
+            this.daysContainer = document.querySelector("#days");
+            this.monthHolder = document.querySelector('#monthYear');
+            this.yearHolder = document.querySelector('#theYear');
+
             this.sideMenuButton = document.querySelector("div#menu");
             this.sideMenu = document.querySelector("div#sideMenu");
             this.submenu = document.querySelectorAll(".submenu");
@@ -39,6 +47,8 @@ document.addEventListener("DOMContentLoaded", function() {
             this.activeClass = "active";
             this.submenuClass = "submenu";
             this.reverseClass = "reverse";
+            this.allMonths = ["January", "Feburary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+
 
             this.initialize();
 
@@ -48,16 +58,15 @@ document.addEventListener("DOMContentLoaded", function() {
 
             setTimeout(this.timeout.bind(this), 3000);
             this.sideMenuButton.addEventListener("click", this.sideMenuButtonClickHandler.bind(this));
-            this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
+            // this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
 
-            for(var i=0; i< this.tableSortButtons.length; i++) {
+            for (var i = 0; i < this.tableSortButtons.length; i++) {
 
                 this.tableSortButtons[i].addEventListener("click", this.tableSortButtonsClickHandler.bind(this));
 
             }
 
             window.addEventListener("click", this.windowClickHandler.bind(this));
-
         }
 
         tableSortButtonsClickHandler(event) {
@@ -98,11 +107,11 @@ document.addEventListener("DOMContentLoaded", function() {
         }
 
         datePickerButtonClickHandler(event) {
-
-            this.hideAllSubmenus();
-            this.datePickerMenu.parentElement.classList.add(this.activeClass);
-            this.datePickerMenu.classList.add(this.displayedClass);
-            event.stopPropagation();
+            // this.hideAllSubmenus();
+            // this.datePickerMenu.parentElement.classList.add(this.activeClass);
+            // this.datePickerMenu.classList.add(this.displayedClass);
+            // this.populateCalender()
+            // event.stopPropagation();
 
         }
 
@@ -132,8 +141,48 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
+
+        populateCalender() {
+            let date = new Date()
+            let day = date.getDate()
+            let month = date.getMonth()
+            let year = date.getFullYear()
+
+            this.daysContainer.innerHTML = ''
+            this.monthHolder.innerText = ''
+            this.yearHolder.innerText = ''
+
+            let amountOfDays;
+            
+
+            if (month == 1 && (year % 4 == 0)) {
+                amountOfDays = 29
+            }
+            else if (month == 1) {
+                amountOfDays = 28
+            } else if (month == 3 || 5 || 8 || 10) {
+                amountOfDays = 30
+            } else {
+                amountOfDays = 31
+            }
+            
+
+            console.log(amountOfDays, month)
+            for (let i = 0; i < amountOfDays; i++) {
+                const dayElement = document.createElement('li');
+                dayElement.textContent = i + 1
+
+                this.daysContainer.appendChild(dayElement)
+            }
+            this.monthHolder.innerText = this.allMonths[month]
+            this.yearHolder.innerText = year
+
+        }
+
+
     }
 
     let general = new General();
 
 });
+

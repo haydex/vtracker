@@ -79,8 +79,7 @@
     --radius1000: 1000px;
 
     /* interface */
-
-    --homeInterface: url(/vtracker/assets/images/home-interface.svg);
+    --homeInterface: url(\vtracker\assets\images\home-interface.svg);
     --profilePhoto: url(/vtracker/assets/images/profiles/elon.png);
     
 }
@@ -108,7 +107,7 @@ body {
         "Content"
         "Footer";
     
-	background-color:var(--blackish);
+    background-color:var(--blackish);
     margin: 0px;
     box-sizing: inherit;
 
@@ -454,6 +453,22 @@ main#content div#dashboard section#navigation div#navigationWrapper ul#breadcrum
 
 }
 
+button#datePickerButton {
+    cursor: default;
+}
+
+button#datePickerButton {
+    cursor: default;
+}
+
+#arrowRight {
+    transform: scale(-1, 1);
+}
+
+.dateArrow {
+    
+}
+
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton {
 
     display: flex;
@@ -500,9 +515,9 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 
 
-/** Date Picker START **/
+/* Date Picker START */
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
+/* main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
 
     opacity: 0;
     position: absolute;
@@ -522,7 +537,7 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 }
 
-main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker.displayed {
+main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker.displayDate {
 
     opacity: 1;
     max-height: 500px;
@@ -533,8 +548,14 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector {
 
     display: flex;
+    align-items: center;
     justify-content: space-between;
 
+}
+
+#theYear {
+    font-size: 20px;
+    font-weight: bold;
 }
 
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker div#monthYearSelector div.dateArrow {
@@ -612,14 +633,14 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
     background-color:var(--reddishLight2);
 
 }
-
+*/
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker ul#days li:not(.selected):hover {
 
     background-color:var(--blackishTransparent2);
     
-}
+} 
 
-/** Date Picker END **/
+/* Date Picker END */
 
 
 
@@ -632,7 +653,7 @@ main#content div#dashboard section#statistics ul#statisticsWrapper {
 
 main#content div#dashboard section#statistics ul#statisticsWrapper li {
 
-    /* background-color: var(--greyishDark2); */
+    background-color: var(--greyishDark2); 
     border-radius: var(--radius15);
     padding: 15px 20px;
     padding-left: 0px;
