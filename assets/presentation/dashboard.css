@@ -502,6 +502,20 @@ main#content div#dashboard section#navigation div#navigationWrapper button#dateP
 
 /** Date Picker START **/
 
+#newdatepicker {
+    font-size: var(--size17);
+    font-weight: 400;
+    border: 2px solid transparent;
+    border-radius: var(--radius5);
+    background-color: var(--greyishDark);
+    padding: 4px 8px;
+    color: white;
+}
+
+#newdatepicker:hover {
+    cursor: pointer;
+}
+
 main#content div#dashboard section#navigation div#navigationWrapper button#datePickerButton div#datePicker {
 
     opacity: 0;

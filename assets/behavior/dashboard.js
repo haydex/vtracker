@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
             setTimeout(this.timeout.bind(this), 3000);
             this.sideMenuButton.addEventListener("click", this.sideMenuButtonClickHandler.bind(this));
-            this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
+            // this.datePickerButton.addEventListener("click", this.datePickerButtonClickHandler.bind(this));
 
             for(var i=0; i< this.tableSortButtons.length; i++) {
 
@@ -97,14 +97,14 @@ document.addEventListener("DOMContentLoaded", function() {
 
         }
 
-        datePickerButtonClickHandler(event) {
+        // datePickerButtonClickHandler(event) {
 
-            this.hideAllSubmenus();
-            this.datePickerMenu.parentElement.classList.add(this.activeClass);
-            this.datePickerMenu.classList.add(this.displayedClass);
-            event.stopPropagation();
+        //     this.hideAllSubmenus();
+        //     this.datePickerMenu.parentElement.classList.add(this.activeClass);
+        //     this.datePickerMenu.classList.add(this.displayedClass);
+        //     event.stopPropagation();
 
-        }
+        // }
 
         sideMenuButtonClickHandler(event) {
 
