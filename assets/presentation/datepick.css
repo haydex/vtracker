@@ -267,7 +267,7 @@
 
 .litepicker .container__days .day-item:hover {
     background: var(--lighterGreyish);
-    color: white;
+    color: black;
 }
 
 .litepicker .container__days .day-item.is-today {
