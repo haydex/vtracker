@@ -9,7 +9,7 @@
     --litepicker-button-next-month-color: #9e9e9e;
     --litepicker-button-prev-month-color-hover: #2196f3;
     --litepicker-button-next-month-color-hover: #2196f3;
-    --litepicker-month-width: calc(var(--litepicker-day-width) * 7.5);
+    --litepicker-month-width: calc(var(--litepicker-day-width) * 8);
     --litepicker-month-weekday-color: #9e9e9e;
     --litepicker-month-week-number-color: #9e9e9e;
     --litepicker-day-width: 35px;
@@ -90,7 +90,7 @@
 }
 
 .litepicker .container__months .month-item {
-    padding: 5px;
+    padding: 10px 10px 40px 10px;
     width: var(--litepicker-month-width);
     -webkit-box-sizing: content-box;
     box-sizing: content-box
@@ -119,13 +119,13 @@
 }
 
 .litepicker .container__months .month-item-header div>.month-item-name {
-    margin-right: 5px;
-    font-size: 16px;
+    /* margin-right: 5px; */
+    /* font-size: 16px; */
 }
 
 .litepicker .container__months .month-item-header div>.month-item-year {
-    padding: 0;
-    font-size: 16px;
+    /* padding: 0; */
+    /* font-size: 16px; */
 }
 
 .litepicker .container__months .month-item-header .reset-button {
@@ -141,11 +141,12 @@
 }
 
 .litepicker .container__months .month-item-header .reset-button:hover {
-    color: var(--litepicker-button-reset-color-hover)
+    color: var(--reddish);
 }
 
 .litepicker .container__months .month-item-header .reset-button:hover>svg {
-    fill: var(--litepicker-button-reset-color-hover)
+    fill: var(--reddish);
+    transition: all ease-in 0.2s;
 }
 
 .litepicker .container__months .month-item-header .button-previous-month,
@@ -342,27 +343,26 @@
 }
 
 .litepicker .container__footer {
-    text-align: right;
-    padding: 10px 5px;
-    margin: 0 5px;
-    background-color: var(--litepicker-footer-color-bg);
-    -webkit-box-shadow: inset 0px 3px 3px 0px var(--litepicker-footer-box-shadow-color);
-    box-shadow: inset 0px 3px 3px 0px var(--litepicker-footer-box-shadow-color);
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px
+    position: relative;
+    z-index: 9;
+    top: -35px;
+    margin-left: 10px;
+   text-align: center;
 }
 
 .litepicker .container__footer .preview-date-range {
     margin-right: 10px;
-    font-size: 90%
+    font-size: 90%;
+    display: none;
 }
 
 .litepicker .container__footer .button-cancel {
-    background-color: var(--litepicker-button-cancel-color-bg);
-    color: var(--litepicker-button-cancel-color);
-    border: 0;
-    padding: 3px 7px 4px;
-    border-radius: 3px
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
+    padding: 4px 9px;
+    border-radius: 5px;
+    margin: 0 5px;
 }
 
 .litepicker .container__footer .button-cancel * {
@@ -370,13 +370,13 @@
 }
 
 .litepicker .container__footer .button-apply {
-    background-color: var(--litepicker-button-apply-color-bg);
-    color: var(--litepicker-button-apply-color);
-    border: 0;
-    padding: 3px 7px 4px;
-    border-radius: 3px;
-    margin-left: 10px;
-    margin-right: 10px
+    background-color: var(--reddish);
+    color: white;
+    border: 1px solid var(--reddish);
+    padding: 4px 9px;
+    border-radius: 5px;
+    margin: 0 5px;
+    font-weight: bold;
 }
 
 .litepicker .container__footer .button-apply:disabled {
@@ -420,3 +420,24 @@
     border-left: 4px solid transparent;
     content: ""
 }
+
+/* STYLING THE SELECT  */
+.month-item-name, .month-item-year {
+    background-color: #EDECEC;
+    color: black;
+    padding: 5px;
+    border: none;
+    -webkit-appearance: button;
+    appearance: button;
+    outline: none;
+    border-radius: 15px;
+}
+
+.month-item-name {
+    margin: 5px;
+}
+
+.month-item-name, .month-item-year {
+    font-size: 14px;
+}
+/* STYLING THE SELECT  */

@@ -13,12 +13,15 @@ datePickerElement.innerText = `${defaultDate} - ${nextDefaultDate.toLocaleDateSt
 const picker = new Litepicker({
     element: document.getElementById('newdatepicker'),
     singleMode: false,
-    tooltipNumber: (totalDays) => {
-        return totalDays - 1;
-    },
+    autoApply: false,
+    resetButton: true,
+    showTooltip: false,
     setup: (picker) => {
         picker.on('selected', (date1, date2) => {
+            // console.log(date1, date2)
             newdatepicker.innerText = `${date1.dateInstance.toLocaleDateString("en-US", options)} - ${date2.dateInstance.toLocaleDateString("en-US", options)}`
         });
     },
+    buttonText: {"apply":"Update"},
+    dropdowns: {"minYear": 1921,"maxYear": 2040,"months":true,"years":true},
 })
