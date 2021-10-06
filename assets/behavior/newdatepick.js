@@ -17,7 +17,7 @@ const picker = new Litepicker({
     showTooltip: false,
     setup: (picker) => {
         picker.on('selected', (date1, date2) => {
-            // console.log(date1, date2)
+            console.log(date1, date2)
             newdatepicker.innerText = `${date1.dateInstance.toLocaleDateString("en-US", options)} - ${date2.dateInstance.toLocaleDateString("en-US", options)}`
         });
     },
