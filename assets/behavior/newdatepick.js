@@ -14,7 +14,6 @@ const picker = new Litepicker({
     element: document.getElementById('newdatepicker'),
     singleMode: false,
     autoApply: false,
-    resetButton: true,
     showTooltip: false,
     setup: (picker) => {
         picker.on('selected', (date1, date2) => {
