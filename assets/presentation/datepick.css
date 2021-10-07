@@ -123,11 +123,6 @@
     /* font-size: 16px; */
 }
 
-.litepicker .container__months .month-item-header div>.month-item-year {
-    /* padding: 0; */
-    /* font-size: 16px; */
-}
-
 .litepicker .container__months .month-item-header .reset-button {
     color: var(--litepicker-button-reset-color)
 }
@@ -151,13 +146,22 @@
 
 .litepicker .container__months .month-item-header .button-previous-month,
 .litepicker .container__months .month-item-header .button-next-month {
-    visibility: hidden;
-    text-decoration: none;
-    padding: 3px 5px;
-    border-radius: 3px;
-    -webkit-transition: color 0.3s, border 0.3s;
-    transition: color 0.3s, border 0.3s;
-    cursor: default
+    position: relative;
+}
+
+.litepicker .container__months .month-item-header .button-previous-month:after {
+    display: block;
+    content: "";
+    position: absolute;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    top: -2px;
+    left: 6px;
+    transition: all ease-in 0.2s;
 }
 
 .litepicker .container__months .month-item-header .button-previous-month *,
@@ -171,26 +175,56 @@
 
 .litepicker .container__months .month-item-header .button-previous-month>svg,
 .litepicker .container__months .month-item-header .button-previous-month>img {
-    fill: var(--litepicker-button-prev-month-color)
+    fill: var(--litepicker-button-prev-month-color);
+    display: none;
 }
 
-.litepicker .container__months .month-item-header .button-previous-month:hover {
-    color: var(--litepicker-button-prev-month-color-hover)
+.litepicker .container__months .month-item-header .button-previous-month:hover::after {
+    display: block;
+    content: "";
+    position: absolute;
+    border: solid var(--reddish);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
+    top: -2px;
+    left: 6px;
+    transition: all ease-in 0.2s;
 }
 
-.litepicker .container__months .month-item-header .button-previous-month:hover>svg {
+/* .litepicker .container__months .month-item-header .button-previous-month:hover>svg {
     fill: var(--greyish);
     transition: all ease-in 0.2s;
     cursor: pointer;
-}
+} */
+
 
 .litepicker .container__months .month-item-header .button-next-month {
     color: var(--litepicker-button-next-month-color)
 }
 
+.litepicker .container__months .month-item-header .button-next-month:after {
+    display: block;
+    content: "";
+    position: absolute;
+    border: solid black;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    top: -2px;
+    left: -14px;
+    transition: all ease-in 0.2s;
+}
+
+
 .litepicker .container__months .month-item-header .button-next-month>svg,
 .litepicker .container__months .month-item-header .button-next-month>img {
-    fill: var(--litepicker-button-next-month-color)
+    fill: var(--litepicker-button-next-month-color);
+    display: none;
 }
 
 .litepicker .container__months .month-item-header .button-next-month:hover {
@@ -201,6 +235,21 @@
     fill: var(--greyish);
     transition: all ease-in 0.2s;
     cursor: pointer;
+}
+
+.litepicker .container__months .month-item-header .button-next-month:hover::after {
+    display: block;
+    content: "";
+    position: absolute;
+    border: solid var(--reddish);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    top: -2px;
+    left: -14px;
+    transition: all ease-in 0.2s;
 }
 
 .litepicker .container__months .month-item-weekdays-row {
@@ -245,6 +294,7 @@
 .litepicker .container__days {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
+    grid-template-rows: repeat(6, 1fr);
     grid-gap: 1.5px;
     box-sizing: content-box;
 }
@@ -435,6 +485,10 @@
 
 .month-item-name {
     margin: 5px;
+}
+
+.month-item-year {
+    font-weight: bold;
 }
 
 .month-item-name, .month-item-year {
