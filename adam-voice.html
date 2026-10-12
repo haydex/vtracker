@@ -55,6 +55,12 @@ body[data-state="thinking"] .ring2,body[data-state="transcribing"] .ring2{opacit
 .adam .ad-lidline{fill:none;stroke:#0b1433;stroke-width:2.6;stroke-linecap:round}
 :root[data-dark="1"] .adam .ad-mood{filter:drop-shadow(0 0 1.2px rgba(255,255,255,.8))}
 .adam .placeholder{position:absolute;inset:12%;border-radius:50%;background:var(--tint);display:grid;place-items:center;color:var(--ink-3);font-size:.85rem}
+.ears{display:flex;align-items:center;justify-content:center;gap:10px;padding:2px 20px 0;font-size:.8rem;color:var(--ink-3)}
+.ears .bar{width:min(220px,50%);height:8px;border-radius:999px;background:var(--surface);border:1px solid var(--line);overflow:hidden;position:relative}
+.ears .bar i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--ink-3);transition:width .08s linear}
+.ears .bar i.sp{background:var(--good)}
+.diag{font:12px/1.4 ui-monospace,Menlo,monospace;color:var(--ink-3);text-align:center;padding:0 20px 4px;white-space:pre-wrap}
+.wake{display:block;margin:6px auto 0;font-size:1rem;font-weight:700;border:0;border-radius:999px;padding:12px 20px;background:var(--good);color:#fff;cursor:pointer}
 .caps{display:grid;gap:6px;padding:4px 20px 10px;text-align:center;min-height:92px;align-content:start}
 .you{font-size:.92rem;color:var(--ink-3);min-height:1.3em;overflow:hidden;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
 .you b{color:var(--ink-2);font-weight:600}
@@ -121,6 +127,9 @@ body[data-state="thinking"] .ring2,body[data-state="transcribing"] .ring2{opacit
     </div>
   </div>
   <div>
+    <div class="ears"><span>Your mic</span><div class="bar"><i id="lvl2"></i></div><span id="ears-t">waiting…</span></div>
+    <button type="button" class="wake" id="b-wake" hidden>Tap here to turn on my ears</button>
+    <div class="diag" id="diag" hidden></div>
     <div class="caps"><div class="you" id="cap-you"></div><div class="say" id="cap-adam"></div></div>
     <p class="note" id="note"></p>
     <div class="type" id="type" hidden><input id="type-in" placeholder="Type to Adam instead…" autocomplete="off"><button type="button" class="btn" id="type-send">Send</button></div>
@@ -134,6 +143,9 @@ body[data-state="thinking"] .ring2,body[data-state="transcribing"] .ring2{opacit
       <select id="engine"><option value="local">On this computer (private)</option><option value="browser">Chrome’s speech service (faster, online)</option></select>
       <label for="lang">Language</label><select id="lang"><option value="en">English</option><option value="ar">العربية</option></select>
       <label for="voice">His voice</label><select id="voice"></select>
+      <label for="boost">Mic boost <span id="boost-v"></span></label><input type="range" id="boost" min="1" max="10" step="0.5">
+      <label for="sens">Sensitivity</label><select id="sens"><option value="high">High (quiet room, far mic)</option><option value="mid">Normal</option><option value="low">Low (noisy room)</option></select>
+      <label class="tog"><input type="checkbox" id="showdiag"> Show what my ears are getting (for fixing problems)</label>
       <label for="rate">Speed <span id="rate-v"></span></label><input type="range" id="rate" min="0.8" max="1.4" step="0.05">
       <label class="tog"><input type="checkbox" id="barge"> Let me interrupt him by talking</label>
       <label class="tog"><input type="checkbox" id="sounds"> Little sounds when he hears me</label>
@@ -161,9 +173,9 @@ body[data-state="thinking"] .ring2,body[data-state="transcribing"] .ring2{opacit
 const HUB = 'https://f95c5575-c672-42dd-9d1b-0e151a7067dc.frame.claudeusercontent.com';
 const CDN = { ort: 'https://cdn.jsdelivr.net/npm/onnxruntime-web@1.22.0/dist/', vad: 'https://cdn.jsdelivr.net/npm/@ricky0123/vad-web@0.0.31/dist/', tf: 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.2' };
 const $ = id => document.getElementById(id);
-const el = { pill: $('pill-t'), note: $('note'), ring: $('ring'), adam: $('adam'), you: $('cap-you'), say: $('cap-adam'), lvl: $('lvl'), heard: $('heard'), mic: $('mic'), engine: $('engine'), lang: $('lang'), voice: $('voice'), rate: $('rate'), rateV: $('rate-v'), barge: $('barge'), sounds: $('sounds'), autogo: $('autogo'), help: $('help'), engNote: $('engine-note'), sheet: $('sheet'), trans: $('trans'), log: $('log'), toast: $('toast'), lost: $('lost'), lostT: $('lost-t'), bMic: $('b-mic'), bStop: $('b-stop'), type: $('type'), typeIn: $('type-in') };
+const el = { pill: $('pill-t'), note: $('note'), ring: $('ring'), adam: $('adam'), you: $('cap-you'), say: $('cap-adam'), lvl: $('lvl'), lvl2: $('lvl2'), earsT: $('ears-t'), wakeB: $('b-wake'), diag: $('diag'), boost: $('boost'), boostV: $('boost-v'), sens: $('sens'), showdiag: $('showdiag'), heard: $('heard'), mic: $('mic'), engine: $('engine'), lang: $('lang'), voice: $('voice'), rate: $('rate'), rateV: $('rate-v'), barge: $('barge'), sounds: $('sounds'), autogo: $('autogo'), help: $('help'), engNote: $('engine-note'), sheet: $('sheet'), trans: $('trans'), log: $('log'), toast: $('toast'), lost: $('lost'), lostT: $('lost-t'), bMic: $('b-mic'), bStop: $('b-stop'), type: $('type'), typeIn: $('type-in') };
 const store = { get(k, d) { try { const v = localStorage.getItem('adam-voice:' + k); return v === null ? d : JSON.parse(v); } catch (e) { return d; } }, set(k, v) { try { localStorage.setItem('adam-voice:' + k, JSON.stringify(v)); } catch (e) { /* ignore */ } } };
-const SET = Object.assign({ mic: '', engine: 'local', lang: 'en', voice: 'af_heart', rate: 1, barge: true, sounds: true, autogo: true }, store.get('set', {}));
+const SET = Object.assign({ mic: '', engine: 'local', lang: 'en', voice: 'af_heart', rate: 1, barge: true, sounds: true, autogo: true, boost: 4, sens: 'high', diag: false }, store.get('set', {}));
 const save = () => store.set('set', SET);
 const opener = window.opener;
 const asked = new URLSearchParams(location.hash.slice(1)).get('o');
@@ -358,6 +370,14 @@ async function openMic() {
     return false;
   }
   el.help.hidden = true;
+  const ctx = audio();
+  try { S.chain && S.chain.src.disconnect(); } catch (e) { /* ignore */ }
+  const src = ctx.createMediaStreamSource(S.stream), comp = ctx.createDynamicsCompressor(), gain = ctx.createGain(), dest = ctx.createMediaStreamDestination();
+  comp.threshold.value = -40; comp.knee.value = 20; comp.ratio.value = 4; comp.attack.value = .005; comp.release.value = .2;
+  gain.gain.value = SET.boost;
+  src.connect(gain); gain.connect(comp); comp.connect(dest);
+  S.chain = { src, gain, comp, dest }; S.vadStream = dest.stream;
+  const tr = S.stream.getAudioTracks()[0]; S.micName = tr ? tr.label : '';
   await listMics();
   return true;
 }
@@ -369,11 +389,13 @@ async function setupVAD() {
   const ctx = audio();
   const make = processorType => window.vad.MicVAD.new({
     model: 'v5', baseAssetPath: CDN.vad, onnxWASMBasePath: CDN.ort, audioContext: ctx, startOnLoad: false, processorType,
-    getStream: async () => S.stream, pauseStream: async () => {}, resumeStream: async () => S.stream,
-    positiveSpeechThreshold: .5, negativeSpeechThreshold: .35, preSpeechPadMs: 500, redemptionMs: 900, minSpeechMs: 300, submitUserSpeechOnPause: false,
+    getStream: async () => S.vadStream || S.stream, pauseStream: async () => {}, resumeStream: async () => S.vadStream || S.stream,
+    positiveSpeechThreshold: SENS().on, negativeSpeechThreshold: SENS().off, preSpeechPadMs: 500, redemptionMs: 1000, minSpeechMs: 250, submitUserSpeechOnPause: false,
     onFrameProcessed: (p, frame) => {
       let s = 0; for (let i = 0; i < frame.length; i++) s += frame[i] * frame[i];
       const rms = Math.sqrt(s / frame.length); S.micLevel = Math.min(1, rms * 9);
+      S.frames = (S.frames || 0) + 1; S.prob = p.isSpeech; S.peak = Math.max((S.peak || 0) * .97, rms);
+      const w = Math.min(100, Math.round(Math.log10(1 + rms * 60) * 100)) + '%'; el.lvl2.style.width = w; el.lvl2.classList.toggle('sp', p.isSpeech > SENS().on);
       el.lvl.style.width = Math.min(100, Math.round(Math.log10(1 + rms * 40) * 100)) + '%';
       if (p.isSpeech > .5) { S.lastHeardAt = Date.now(); el.heard.textContent = 'I can hear you ✓'; }
       else if (Date.now() - S.lastHeardAt > 1500) el.heard.textContent = 'Sound level: say something and the bar should move.';
@@ -397,7 +419,25 @@ async function setupVAD() {
   catch (e) { /* some browsers cannot load the small audio worklet; the older script processor works everywhere */ if (v) { try { await v.destroy(); } catch (e2) { /* ignore */ } } v = await make('ScriptProcessor'); }
   S.vad = v; S.vadReady = true;
 }
-function vadTuned(speaking) { if (!S.vad) return; S.vad.setOptions(speaking ? { positiveSpeechThreshold: .75, negativeSpeechThreshold: .55, minSpeechMs: 550 } : { positiveSpeechThreshold: .5, negativeSpeechThreshold: .35, minSpeechMs: 300 }); }
+const SENS = () => ({ high: { on: .3, off: .18 }, mid: { on: .5, off: .35 }, low: { on: .65, off: .5 } }[SET.sens] || { on: .3, off: .18 });
+function vadTuned(speaking) { if (!S.vad) return; S.vad.setOptions(speaking ? { positiveSpeechThreshold: .75, negativeSpeechThreshold: .55, minSpeechMs: 550 } : { positiveSpeechThreshold: SENS().on, negativeSpeechThreshold: SENS().off, minSpeechMs: 250 }); }
+/* ears check: every second, say plainly what the ears are getting, and fix a sleeping audio engine with one tap */
+setInterval(() => {
+  const ctx = S.ctx, f = S.frames || 0, df = f - (S.lastF || 0); S.lastF = f;
+  const asleep = ctx && ctx.state !== 'running';
+  el.wakeB.hidden = !(asleep && S.stream);
+  let t;
+  if (!S.stream) t = 'no microphone yet';
+  else if (asleep) t = 'my ears are asleep: tap the green button';
+  else if ((S.state === 'listening' || S.state === 'hearing') && df === 0) t = 'no sound is reaching me';
+  else if ((S.peak || 0) < .004 && (S.state === 'listening' || S.state === 'hearing')) t = 'very quiet: raise Mic boost in Settings or move closer';
+  else if (S.state === 'hearing') t = 'hearing you…';
+  else if ((S.prob || 0) > SENS().on) t = 'that sounds like speech';
+  else t = 'sound OK';
+  el.earsT.textContent = t;
+  if (SET.diag) { el.diag.hidden = false; el.diag.textContent = `mic: ${S.micName || '?'} · audio engine: ${ctx ? ctx.state + ' ' + ctx.sampleRate + ' Hz' : 'none'} · detector frames/s: ${df * 1} · speech chance: ${((S.prob || 0) * 100).toFixed(0)}% · loudness: ${((S.peak || 0) * 1000).toFixed(1)} · boost ×${SET.boost} · state: ${S.state} · hearing: ${SET.engine}${S.asr ? (S.asrGpu ? ' (graphics chip)' : ' (ready)') : S.asrLoading ? ' (loading)' : ''}`; }
+  else el.diag.hidden = true;
+}, 1000);
 
 /* ---------- speech to text ---------- */
 const BAD = /^(\[.*\]|\(.*\)|you|thank you\.?|thanks\.?|thanks for watching!?|bye\.?|\.+|…)$/i;
@@ -556,6 +596,7 @@ function applyTheme(t) {
 /* ---------- settings ---------- */
 function paintSettings() {
   el.engine.value = SET.engine; el.lang.value = SET.lang; el.rate.value = SET.rate; el.rateV.textContent = Number(SET.rate).toFixed(2) + '×';
+  el.boost.value = SET.boost; el.boostV.textContent = '×' + SET.boost; el.sens.value = SET.sens; el.showdiag.checked = !!SET.diag;
   el.barge.checked = !!SET.barge; el.sounds.checked = !!SET.sounds; el.autogo.checked = !!SET.autogo;
   if (S.voices.length) el.voice.value = S.voices.some(v => v.id === SET.voice) ? SET.voice : S.voices[0].id;
   if (!SR) { el.engine.querySelector('[value=browser]').disabled = true; if (SET.engine === 'browser') SET.engine = 'local'; }
@@ -566,6 +607,9 @@ el.lang.addEventListener('change', () => { SET.lang = el.lang.value; save(); if 
 el.voice.addEventListener('change', () => { SET.voice = el.voice.value; save(); post('set', { voice: SET.voice, rate: SET.rate }); });
 el.rate.addEventListener('input', () => { SET.rate = +el.rate.value; el.rateV.textContent = SET.rate.toFixed(2) + '×'; save(); post('set', { voice: SET.voice, rate: SET.rate }); });
 el.barge.addEventListener('change', () => { SET.barge = el.barge.checked; save(); });
+el.boost.addEventListener('input', () => { SET.boost = +el.boost.value; el.boostV.textContent = '×' + SET.boost; save(); if (S.chain) S.chain.gain.gain.value = SET.boost; });
+el.sens.addEventListener('change', () => { SET.sens = el.sens.value; save(); vadTuned(S.state === 'speaking' || S.state === 'thinking'); });
+el.showdiag.addEventListener('change', () => { SET.diag = el.showdiag.checked; save(); });
 el.sounds.addEventListener('change', () => { SET.sounds = el.sounds.checked; save(); });
 el.autogo.addEventListener('change', () => { SET.autogo = el.autogo.checked; save(); });
 el.mic.addEventListener('change', async () => { SET.mic = el.mic.value; save(); const was = S.state; if (await openMic()) { await setupVAD(); if (was === 'listening' || was === 'hearing' || was === 'error') listen(); } });
@@ -578,6 +622,8 @@ $('b-clear').addEventListener('click', () => { LOG.length = 0; paintLog(); });
 $('b-full').addEventListener('click', () => { if (document.fullscreenElement) document.exitFullscreen(); else document.documentElement.requestFullscreen().catch(() => {}); });
 el.bMic.addEventListener('click', () => { if (S.state === 'paused' || S.state === 'error') { if (!S.stream) openMic().then(ok => ok && setupVAD().then(listen)); else listen(); } else pause(); });
 el.bStop.addEventListener('click', stopTalking);
+el.wakeB.addEventListener('click', async () => { try { await audio().resume(); } catch (e) { /* ignore */ } if (S.vadReady && S.state !== 'speaking') listen(); });
+document.addEventListener('pointerdown', () => { if (S.ctx && S.ctx.state !== 'running') S.ctx.resume().catch(() => {}); }, true);
 el.adam.addEventListener('click', () => { if (S.state === 'speaking' || S.state === 'thinking') stopTalking(); else hop(); });
 $('b-end').addEventListener('click', () => { post('closed'); window.close(); });
 $('b-type').addEventListener('click', () => { el.type.hidden = !el.type.hidden; if (!el.type.hidden) el.typeIn.focus(); });
