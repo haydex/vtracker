@@ -17,21 +17,27 @@ header{display:flex;align-items:center;gap:12px}
 .ear::after{content:"";position:absolute;inset:-6px;border-radius:50%;border:3px solid var(--acc);opacity:0}
 body.on .ear{background:var(--acc)}
 body.on .ear::after{animation:ring 1.6s ease-out infinite}
-body.heard .ear::after{animation-duration:.7s}
 @keyframes ring{0%{transform:scale(.85);opacity:.9}100%{transform:scale(1.25);opacity:0}}
 h1{font-size:1.05rem;margin:0;line-height:1.2}
 #state{margin:2px 0 0;color:var(--ink-2);font-size:.86rem}
-#words{flex:1;min-height:64px;margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;overflow:auto;font-size:1rem;color:var(--ink)}
+.field{display:grid;grid-template-columns:auto 1fr;gap:6px 10px;align-items:center;font-size:.84rem;color:var(--ink-2)}
+select,button{font:inherit;font-size:.86rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer;min-width:0}
+select{width:100%;border-radius:10px}
+button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
+button.big{font-size:1rem;padding:10px 18px}
+.meter{height:12px;border-radius:999px;background:var(--surface);border:1px solid var(--line);overflow:hidden;position:relative}
+.meter i{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--good);transition:width .08s linear}
+#heard{font-size:.8rem;color:var(--ink-3)}
+#heard.yes{color:var(--good);font-weight:600}
+#words{flex:1;min-height:56px;margin:0;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px;overflow:auto;font-size:1rem}
 #words:empty::before{content:"Your words will show here, and in Adam's box.";color:var(--ink-3)}
 #words i{color:var(--ink-3);font-style:normal}
 .row{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
-button,select{font:inherit;font-size:.86rem;border:1px solid var(--line);background:var(--surface);color:var(--ink);border-radius:999px;padding:6px 12px;cursor:pointer}
-button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);font-weight:600}
 #mode{margin-left:auto;font-size:.78rem;color:var(--ink-3)}
-#mode b{color:var(--good)}
-#mode.online b{color:var(--warn)}
-#note{margin:0;font-size:.8rem;color:var(--ink-2)}
+#note{margin:0;font-size:.82rem;color:var(--ink-2)}
 #note.err{color:var(--risk)}
+#help{margin:0;font-size:.82rem;background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:10px 12px}
+#help ol{margin:4px 0 0;padding-left:18px}
 [hidden]{display:none!important}
 @media (prefers-reduced-motion:reduce){body.on .ear::after{animation:none;opacity:.6}}
 </style>
@@ -39,167 +45,260 @@ button.primary{background:var(--ink);color:var(--bg);border-color:var(--ink);fon
 <body>
 <header>
   <div class="ear" aria-hidden="true"><svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="12" rx="3"/><path d="M5 10v1a7 7 0 0 0 14 0v-1"/><path d="M12 18v4"/></svg></div>
-  <div><h1 id="title">Adam's ears</h1><p id="state" aria-live="polite">Getting ready…</p></div>
+  <div><h1>Adam's ears</h1><p id="state" aria-live="polite">Getting ready…</p></div>
 </header>
+
+<button type="button" id="allow" class="primary big" hidden>Allow the microphone</button>
+
+<div class="field">
+  <label for="mic">Microphone</label><select id="mic"><option value="">Your Mac's default microphone</option></select>
+  <label for="engine">Turn speech into text</label>
+  <select id="engine">
+    <option value="local">On this computer (private, works everywhere)</option>
+    <option value="browser">Chrome's speech service (shows words live)</option>
+  </select>
+  <label for="lang">Language</label>
+  <select id="lang"><option value="en">English</option><option value="ar">العربية</option></select>
+</div>
+<div><div class="meter" aria-hidden="true"><i id="lvl"></i></div><div id="heard">Sound level. Say something: the bar should move.</div></div>
+
 <p id="words" aria-live="polite"></p>
 <div class="row">
   <button type="button" id="pause" class="primary">Pause</button>
-  <label for="lang" style="position:absolute;left:-999px">Language</label>
-  <select id="lang" title="Which language you speak">
-    <option value="en-US">English (US)</option>
-    <option value="en-GB">English (UK)</option>
-    <option value="ar-IQ">العربية (العراق)</option>
-  </select>
-  <button type="button" id="dl" hidden title="Download the speech model so your voice never leaves this computer">Keep my voice on this computer</button>
   <span id="mode"></span>
 </div>
-<p id="note">Leave this small window open. Adam sends your words two seconds after you stop, and stops listening while he talks.</p>
-<script>
-(() => {
-  'use strict';
-  /* Only Hayder's PhD hub may receive what is said here. */
-  const HUB = 'https://f95c5575-c672-42dd-9d1b-0e151a7067dc.frame.claudeusercontent.com';
-  const $ = id => document.getElementById(id);
-  const stateEl = $('state'), words = $('words'), note = $('note'), modeEl = $('mode'), pauseBtn = $('pause'), langSel = $('lang'), dlBtn = $('dl');
-  const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } } };
+<p id="note">Leave this window open. Adam sends your words two seconds after you stop, and stops listening while he talks.</p>
+<div id="help" hidden></div>
 
-  const opener = window.opener;
-  const asked = new URLSearchParams(location.hash.slice(1)).get('o');
-  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+<script type="module">
+/* Only Hayder's PhD hub may receive what is said here. */
+const HUB = 'https://f95c5575-c672-42dd-9d1b-0e151a7067dc.frame.claudeusercontent.com';
+const TF = 'https://cdn.jsdelivr.net/npm/@huggingface/transformers@3.0.2';
+const $ = id => document.getElementById(id);
+const stateEl = $('state'), words = $('words'), note = $('note'), modeEl = $('mode'), pauseBtn = $('pause'),
+      micSel = $('mic'), engSel = $('engine'), langSel = $('lang'), allowBtn = $('allow'), lvl = $('lvl'), heardEl = $('heard'), help = $('help');
+const store = { get(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }, set(k, v) { try { localStorage.setItem(k, v); } catch (e) { /* ignore */ } } };
+const opener = window.opener;
+const asked = new URLSearchParams(location.hash.slice(1)).get('o');
+const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+const S = { n: 0, want: false, stream: null, track: null, ctx: null, src: null, proc: null, rate: 48000,
+  engine: store.get('adam-ears-engine') || 'local', finalText: '', rec: null, recOn: false, restarts: [],
+  pcm: [], speaking: false, quietMs: 0, loudMs: 0, busy: false, asr: null, asrKey: '', lastHeard: 0, srHeardAt: 0 };
 
-  const S = { want: false, running: false, n: 0, finalText: '', local: false, restarts: [], rec: null, heardT: 0 };
+try { window.resizeTo(440, 560); } catch (e) { /* ignore */ }
+function setState(t) { stateEl.textContent = t; }
+function setNote(t, err) { note.textContent = t; note.classList.toggle('err', !!err); }
+function showHelp(html) { help.innerHTML = html; help.hidden = !html; }
+function tell(type, extra) { if (opener && !opener.closed) { try { opener.postMessage(Object.assign({ adam: 'listen', v: 2, type, n: S.n }, extra || {}), HUB); } catch (e) { /* ignore */ } } }
 
-  function setState(t) { stateEl.textContent = t; }
-  function setNote(t, err) { note.textContent = t; note.classList.toggle('err', !!err); }
-  function tell(type, extra) { if (opener && !opener.closed) { try { opener.postMessage(Object.assign({ adam: 'listen', v: 1, type, n: S.n }, extra || {}), HUB); } catch (e) { /* ignore */ } } }
+if (!opener || asked !== HUB) {
+  setState('Not connected');
+  setNote('This window only works when Adam opens it from the PhD hub. Close it and click the microphone in Adam’s chat.', true);
+  document.querySelectorAll('.field,.row,.meter,#heard').forEach(el => el.hidden = true);
+  throw new Error('not opened by the hub');
+}
 
-  if (!opener || asked !== HUB) {
-    setState('Not connected');
-    setNote('This window only works when Adam opens it from the PhD hub. Close it and click the microphone in Adam’s chat.', true);
-    pauseBtn.hidden = true; langSel.hidden = true;
-    return;
-  }
-  if (!SR) {
-    setState('This browser cannot listen');
-    setNote('Speech to text is not built into this browser. Open the hub in Chrome, Edge or Safari, or use your computer’s dictation in Adam’s box.', true);
-    pauseBtn.hidden = true; langSel.hidden = true;
-    tell('error', { code: 'unsupported' });
-    return;
-  }
+langSel.value = store.get('adam-ears-lang') || 'en';
+if (!SR) { engSel.querySelector('[value=browser]').disabled = true; S.engine = 'local'; }
+engSel.value = S.engine;
 
-  langSel.value = store.get('adam-listen-lang') || 'en-US';
-
-  async function pickMode() {
-    S.local = false; dlBtn.hidden = true;
-    const lang = langSel.value;
-    if (typeof SR.available === 'function') {
-      let st = 'unavailable';
-      try { st = await SR.available({ langs: [lang], processLocally: true }); } catch (e) { st = 'unavailable'; }
-      if (st === 'available') S.local = true;
-      else if (st === 'downloadable') dlBtn.hidden = false;
-      else if (st === 'downloading') { dlBtn.hidden = false; dlBtn.disabled = true; dlBtn.textContent = 'Downloading the on-device model…'; }
+/* ---------- microphone ---------- */
+async function listMics() {
+  try {
+    const devs = (await navigator.mediaDevices.enumerateDevices()).filter(d => d.kind === 'audioinput');
+    const keep = store.get('adam-ears-mic') || '';
+    micSel.innerHTML = '';
+    devs.forEach(d => { const o = document.createElement('option'); o.value = d.deviceId; o.textContent = d.label || 'Microphone'; micSel.append(o); });
+    if (!devs.length) { const o = document.createElement('option'); o.value = ''; o.textContent = 'No microphone found'; micSel.append(o); }
+    if (keep && devs.some(d => d.deviceId === keep)) micSel.value = keep;
+    else { const def = devs.find(d => d.deviceId === 'default'); if (def) micSel.value = 'default'; }
+  } catch (e) { /* ignore */ }
+}
+async function openMic() {
+  closeMic();
+  const id = micSel.value;
+  const audio = { echoCancellation: true, noiseSuppression: true, autoGainControl: true };
+  if (id) audio.deviceId = { exact: id };
+  try {
+    S.stream = await navigator.mediaDevices.getUserMedia({ audio });
+  } catch (e) {
+    const name = e && e.name;
+    if (name === 'NotAllowedError' || name === 'SecurityError') {
+      setState('The microphone is not allowed yet');
+      allowBtn.hidden = false;
+      showHelp(`<b>How to allow it</b><ol><li>Click <b>Allow the microphone</b> above. Chrome asks at the top of this window: choose <b>Allow</b>.</li><li>No question appears? Chrome remembered “Block”. At the top of this small window, click the little icon just left of <b>haydex.github.io</b>, set <b>Microphone</b> to <b>Allow</b>, then close this window and click the microphone in Adam’s chat again.</li><li>Still nothing? On your Mac: <b>System Settings → Privacy &amp; Security → Microphone</b>, and turn on <b>Google Chrome</b>.</li></ol>`);
+      tell('error', { code: 'blocked' });
+    } else if (name === 'NotFoundError' || name === 'OverconstrainedError') {
+      if (id) { store.set('adam-ears-mic', ''); micSel.value = ''; return openMic(); }
+      setState('No microphone found');
+      showHelp('Plug in a microphone or headset, then choose it in the <b>Microphone</b> list above.');
+      tell('error', { code: 'audio-capture' });
+    } else {
+      setState('The microphone could not start');
+      showHelp('Another app may be using it (Zoom, Teams). Close that app’s call, then choose the microphone again above.');
+      tell('error', { code: 'audio-capture' });
     }
-    paintMode();
+    return false;
   }
-  function paintMode() {
-    modeEl.classList.toggle('online', !S.local);
-    modeEl.innerHTML = S.local ? '<b>●</b> On this computer' : '<b>●</b> Online speech service';
-    modeEl.title = S.local ? 'Your voice is turned into text on this computer; no audio leaves it.' : 'Your browser sends the audio to its speech service (Google in Chrome, Apple in Safari) to turn it into text.';
-  }
+  allowBtn.hidden = true; showHelp('');
+  S.track = S.stream.getAudioTracks()[0];
+  await listMics();
+  const cur = S.track.getSettings().deviceId; if (cur && [...micSel.options].some(o => o.value === cur) && micSel.value !== 'default') micSel.value = cur;
+  S.ctx = new (window.AudioContext || window.webkitAudioContext)();
+  S.rate = S.ctx.sampleRate;
+  S.src = S.ctx.createMediaStreamSource(S.stream);
+  S.proc = S.ctx.createScriptProcessor(4096, 1, 1);
+  S.proc.onaudioprocess = onAudio;
+  const mute = S.ctx.createGain(); mute.gain.value = 0;
+  S.src.connect(S.proc); S.proc.connect(mute); mute.connect(S.ctx.destination);
+  if (S.ctx.state === 'suspended') { try { await S.ctx.resume(); } catch (e) { /* ignore */ } }
+  return true;
+}
+function closeMic() {
+  try { if (S.proc) S.proc.disconnect(); if (S.src) S.src.disconnect(); if (S.ctx) S.ctx.close(); } catch (e) { /* ignore */ }
+  if (S.stream) S.stream.getTracks().forEach(t => t.stop());
+  S.stream = S.track = S.ctx = S.src = S.proc = null;
+}
 
-  function makeRec() {
-    const r = new SR();
-    r.lang = langSel.value; r.continuous = true; r.interimResults = true; r.maxAlternatives = 1;
-    if (S.local && 'processLocally' in r) { try { r.processLocally = true; } catch (e) { S.local = false; paintMode(); } }
-    r.onstart = () => { S.running = true; document.body.classList.add('on'); setState('Listening… speak now'); setNote('Adam sends your words two seconds after you stop. Leave this window open.'); tell('listening'); };
-    r.onresult = e => {
-      let interim = '';
-      for (let i = e.resultIndex; i < e.results.length; i++) {
-        const t = e.results[i][0].transcript;
-        if (e.results[i].isFinal) S.finalText += (S.finalText && !/\s$/.test(S.finalText) ? ' ' : '') + t.trim();
-        else interim += t;
-      }
-      const text = (S.finalText + (interim ? (S.finalText ? ' ' : '') + interim.trim() : '')).trim();
-      words.innerHTML = '';
-      words.append(document.createTextNode(S.finalText));
-      if (interim) { const i = document.createElement('i'); i.textContent = (S.finalText ? ' ' : '') + interim.trim(); words.append(i); }
-      document.body.classList.add('heard'); clearTimeout(S.heardT); S.heardT = setTimeout(() => document.body.classList.remove('heard'), 600);
-      if (text) tell('words', { text });
-    };
-    r.onerror = e => {
-      const code = e.error || 'error';
-      if (code === 'no-speech' || code === 'aborted') return;
-      if (code === 'not-allowed' || code === 'service-not-allowed') {
-        S.want = false; paintPaused();
-        setState('The microphone is blocked');
-        setNote('Click the camera/microphone icon in this window’s address bar, choose Allow, then click Resume.', true);
-        tell('error', { code: 'blocked' });
-      } else if (code === 'language-not-supported') {
-        if (S.local) { S.local = false; paintMode(); }
-        else { setNote('This language is not available here. Pick another one.', true); tell('error', { code }); }
-      } else if (code === 'network') {
-        setNote('No connection to the speech service. Check the internet, or use “Keep my voice on this computer”.', true);
-        tell('error', { code });
-      } else if (code === 'audio-capture') {
-        setNote('No microphone found. Check that one is plugged in and chosen in your Mac’s Sound settings.', true);
-        tell('error', { code });
-      } else setNote('Listening stopped (' + code + '). Click Resume to try again.', true);
-    };
-    r.onend = () => {
-      S.running = false; document.body.classList.remove('on');
-      if (!S.want) return;
-      const now = Date.now(); S.restarts = S.restarts.filter(t => now - t < 12000); S.restarts.push(now);
-      if (S.restarts.length > 6) { S.want = false; paintPaused(); setState('Paused'); setNote('Listening kept stopping, so I paused. Click Resume to try again.', true); tell('paused'); return; }
-      setTimeout(() => { if (S.want && !S.running) start(); }, 250);
-    };
-    return r;
+/* ---------- sound level + the on-device engine's recorder ---------- */
+const SPEAK = 0.018, QUIET_END = 1100, MAX_MS = 25000;
+function onAudio(ev) {
+  const x = ev.inputBuffer.getChannelData(0);
+  let sum = 0; for (let i = 0; i < x.length; i++) sum += x[i] * x[i];
+  const rms = Math.sqrt(sum / x.length), ms = x.length / S.rate * 1000;
+  lvl.style.width = Math.min(100, Math.round(rms * 900)) + '%';
+  if (rms > SPEAK) { S.lastHeard = Date.now(); heardEl.textContent = 'I can hear you ✓'; heardEl.classList.add('yes'); }
+  else if (Date.now() - S.lastHeard > 1500) { heardEl.textContent = 'Sound level. Say something: the bar should move.'; heardEl.classList.remove('yes'); }
+  if (S.engine !== 'local' || !S.want) { S.pcm = []; S.speaking = false; return; }
+  if (rms > SPEAK) { S.loudMs += ms; S.quietMs = 0; if (!S.speaking && S.loudMs > 120) { S.speaking = true; setState('Hearing you…'); } }
+  else { S.quietMs += ms; if (!S.speaking) S.loudMs = 0; }
+  if (S.speaking || S.pcm.length) S.pcm.push(new Float32Array(x));
+  else { S.pcm = [new Float32Array(x)]; } /* keep a short lead-in */
+  const total = S.pcm.length * x.length / S.rate * 1000;
+  if (S.speaking && (S.quietMs > QUIET_END || total > MAX_MS)) { const chunk = S.pcm; S.pcm = []; S.speaking = false; S.loudMs = 0; S.quietMs = 0; transcribe(chunk); }
+  else if (!S.speaking && S.pcm.length > 2) S.pcm = S.pcm.slice(-2);
+}
+function to16k(chunks) {
+  const len = chunks.reduce((a, c) => a + c.length, 0), all = new Float32Array(len); let o = 0;
+  chunks.forEach(c => { all.set(c, o); o += c.length; });
+  const ratio = S.rate / 16000, out = new Float32Array(Math.floor(len / ratio));
+  for (let i = 0; i < out.length; i++) { const a = Math.floor(i * ratio), b = Math.min(len, Math.floor((i + 1) * ratio)); let s = 0; for (let j = a; j < b; j++) s += all[j]; out[i] = s / Math.max(1, b - a); }
+  return out;
+}
+async function loadASR() {
+  const ar = langSel.value === 'ar', key = ar ? 'Xenova/whisper-base' : 'Xenova/whisper-base.en';
+  if (S.asr && S.asrKey === key) return S.asr;
+  setState('Getting my ears ready (one-time download, about 75 MB)…');
+  const T = await import(TF);
+  T.env.allowLocalModels = false;
+  const progress = p => { if (p && p.status === 'progress' && p.total) setState(`Getting my ears ready… ${Math.round((p.loaded / p.total) * 100)}% of ${p.file.split('/').pop()}`); };
+  const asr = await T.pipeline('automatic-speech-recognition', key, { dtype: 'q8', progress_callback: progress });
+  S.asr = asr; S.asrKey = key; return asr;
+}
+async function transcribe(chunks) {
+  const audio = to16k(chunks); if (audio.length < 16000 * 0.35) return;
+  const n = S.n; S.busy = true; setState('Writing down what you said…');
+  try {
+    const asr = await loadASR();
+    const out = await asr(audio, langSel.value === 'ar' ? { language: 'arabic', task: 'transcribe' } : {});
+    let t = String((out && out.text) || '').trim();
+    if (/^\[.*\]$|^\(.*\)$/.test(t) || /^(you|thank you\.?|thanks for watching!?)$/i.test(t)) t = '';
+    if (t && S.want && n === S.n) { S.finalText = (S.finalText ? S.finalText + ' ' : '') + t; paintWords(''); tell('words', { text: S.finalText }); }
+  } catch (e) {
+    setNote('The on-device speech model could not load (' + (e && e.message ? e.message.slice(0, 80) : 'error') + '). Try “Chrome’s speech service” above.', true);
   }
-  function start() {
-    if (S.running) return;
-    S.rec = makeRec();
-    try { S.rec.start(); } catch (e) { /* already starting */ }
-  }
-  function stop() { if (S.rec) { try { S.rec.abort(); } catch (e) { /* ignore */ } } }
-  function paintPaused() { pauseBtn.textContent = S.want ? 'Pause' : 'Resume'; if (!S.want) { document.body.classList.remove('on'); } }
+  S.busy = false; if (S.want) setState('Listening… speak now');
+}
 
-  async function resume(n) {
-    if (typeof n === 'number') S.n = n;
-    S.want = true; S.finalText = ''; words.textContent = ''; S.restarts = []; paintPaused();
-    if (S.running) { stop(); return; } /* onend restarts with a clean slate */
-    start();
-  }
-  function pause(label) {
-    S.want = false; paintPaused(); stop();
-    setState(label || 'Paused');
-  }
+/* ---------- Chrome's speech service ---------- */
+function startBrowser() {
+  if (!SR || S.recOn) return;
+  const r = new SR(); S.rec = r;
+  r.lang = langSel.value === 'ar' ? 'ar-IQ' : 'en-US'; r.continuous = true; r.interimResults = true;
+  r.onstart = () => { S.recOn = true; S.srHeardAt = 0; };
+  r.onresult = e => {
+    let interim = '';
+    for (let i = e.resultIndex; i < e.results.length; i++) {
+      const t = e.results[i][0].transcript;
+      if (e.results[i].isFinal) S.finalText += (S.finalText ? ' ' : '') + t.trim(); else interim += t;
+    }
+    S.srHeardAt = Date.now();
+    paintWords(interim.trim());
+    const text = (S.finalText + (interim.trim() ? (S.finalText ? ' ' : '') + interim.trim() : '')).trim();
+    if (text) tell('words', { text });
+  };
+  r.onerror = e => {
+    const c = e.error || 'error';
+    if (c === 'no-speech' || c === 'aborted') return;
+    S.want && switchToLocal(c === 'network' ? 'Chrome’s speech service can’t be reached' : c === 'not-allowed' || c === 'service-not-allowed' ? 'Chrome’s speech service is not allowed here' : 'Chrome’s speech service stopped (' + c + ')');
+  };
+  r.onend = () => {
+    S.recOn = false;
+    if (!S.want || S.engine !== 'browser') return;
+    const now = Date.now(); S.restarts = S.restarts.filter(t => now - t < 12000); S.restarts.push(now);
+    if (S.restarts.length > 6) { switchToLocal('Chrome’s speech service kept stopping'); return; }
+    setTimeout(() => { if (S.want && S.engine === 'browser' && !S.recOn) startBrowser(); }, 250);
+  };
+  try { if (S.track) r.start(S.track); else r.start(); }
+  catch (e) { try { r.start(); } catch (e2) { switchToLocal('Chrome’s speech service could not start'); } }
+}
+function stopBrowser() { if (S.rec) { try { S.rec.abort(); } catch (e) { /* ignore */ } } S.recOn = false; }
+function switchToLocal(why) {
+  stopBrowser(); S.engine = 'local'; engSel.value = 'local';
+  setNote(why + ', so I switched to “On this computer”.', true); paintMode();
+}
+/* if the bar moves but Chrome writes nothing for a while, Chrome isn't getting the sound: switch */
+setInterval(() => {
+  if (S.engine === 'browser' && S.want && S.recOn && S.lastHeard && Date.now() - S.lastHeard < 800) {
+    S.loudBrowser = (S.loudBrowser || 0) + 1;
+    if (S.loudBrowser > 14 && (!S.srHeardAt || Date.now() - S.srHeardAt > 7000)) { S.loudBrowser = 0; switchToLocal('Chrome heard nothing while the bar was moving'); }
+  } else if (S.engine === 'browser') S.loudBrowser = Math.max(0, (S.loudBrowser || 0) - 1);
+}, 500);
 
-  pauseBtn.addEventListener('click', () => {
-    if (S.want) { pause('Paused'); tell('paused'); }
-    else { resume(); tell('resumed'); }
-  });
-  langSel.addEventListener('change', async () => { store.set('adam-listen-lang', langSel.value); await pickMode(); if (S.want) { stop(); } });
-  dlBtn.addEventListener('click', async () => {
-    dlBtn.disabled = true; dlBtn.textContent = 'Downloading… (one time)';
-    let ok = false;
-    try { ok = await SR.install({ langs: [langSel.value], processLocally: true }); } catch (e) { ok = false; }
-    dlBtn.disabled = false; dlBtn.textContent = 'Keep my voice on this computer';
-    if (ok) { await pickMode(); setNote('Done. From now on your voice stays on this computer.'); if (S.want) stop(); }
-    else setNote('The download did not work this time. Listening still works with the online service.', true);
-  });
+/* ---------- start / pause ---------- */
+function paintWords(interim) {
+  words.innerHTML = ''; words.append(document.createTextNode(S.finalText));
+  if (interim) { const i = document.createElement('i'); i.textContent = (S.finalText ? ' ' : '') + interim; words.append(i); }
+}
+function paintMode() { modeEl.textContent = S.engine === 'local' ? '● Private: stays on this computer' : '● Online: Google turns it into text'; }
+async function resume(n) {
+  if (typeof n === 'number') S.n = n;
+  S.finalText = ''; words.textContent = ''; S.pcm = []; S.speaking = false; S.restarts = [];
+  if (!S.stream && !(await openMic())) return;
+  S.want = true; document.body.classList.add('on'); pauseBtn.textContent = 'Pause';
+  setState('Listening… speak now'); setNote('Adam sends your words two seconds after you stop. Leave this window open.');
+  if (S.engine === 'browser') { stopBrowser(); startBrowser(); } else loadASR().then(() => { if (S.want && !S.busy) setState('Listening… speak now'); }).catch(() => switchFail());
+  tell('listening');
+}
+function switchFail() { setNote('The on-device speech model could not load. Check the internet the first time, or choose “Chrome’s speech service”.', true); }
+function pause(label) {
+  S.want = false; S.pcm = []; S.speaking = false; stopBrowser();
+  document.body.classList.remove('on'); pauseBtn.textContent = 'Resume'; setState(label || 'Paused');
+}
 
-  window.addEventListener('message', e => {
-    if (e.origin !== HUB || e.source !== opener) return;
-    const d = e.data; if (!d || d.adam !== 'listen') return;
-    if (d.cmd === 'resume') resume(d.n);
-    else if (d.cmd === 'pause') pause(d.why === 'talking' ? 'Adam is talking…' : d.why === 'sent' ? 'Sent. Adam is thinking…' : 'Paused');
-    else if (d.cmd === 'close') { pause(); window.close(); }
-  });
-  window.addEventListener('pagehide', () => tell('closed'));
-  /* If the hub goes away, close this window too. */
-  setInterval(() => { if (!opener || opener.closed) { stop(); window.close(); } }, 2000);
+pauseBtn.addEventListener('click', () => { if (S.want) { pause('Paused'); tell('paused'); } else { resume(); tell('resumed'); } });
+allowBtn.addEventListener('click', async () => { if (await openMic()) { await resume(); tell('resumed'); } });
+micSel.addEventListener('change', async () => { store.set('adam-ears-mic', micSel.value); const was = S.want; if (was) pause('Switching microphone…'); await openMic(); if (was) resume(); });
+engSel.addEventListener('change', () => { S.engine = engSel.value; store.set('adam-ears-engine', S.engine); paintMode(); if (S.want) { stopBrowser(); resume(); } });
+langSel.addEventListener('change', () => { store.set('adam-ears-lang', langSel.value); if (S.want) { stopBrowser(); resume(); } });
+navigator.mediaDevices && navigator.mediaDevices.addEventListener && navigator.mediaDevices.addEventListener('devicechange', listMics);
 
-  pickMode().then(() => tell('ready'));
-})();
+window.addEventListener('message', e => {
+  if (e.origin !== HUB || e.source !== opener) return;
+  const d = e.data; if (!d || d.adam !== 'listen') return;
+  if (d.cmd === 'resume') resume(d.n);
+  else if (d.cmd === 'pause') pause(d.why === 'sent' ? 'Sent. Adam is answering…' : 'Paused');
+  else if (d.cmd === 'close') { pause(); closeMic(); window.close(); }
+});
+window.addEventListener('pagehide', () => { closeMic(); tell('closed'); });
+setInterval(() => { if (!opener || opener.closed) { closeMic(); window.close(); } }, 2000);
+
+paintMode();
+await listMics();
+setState('Starting the microphone…');
+const ok = await openMic();
+tell('ready');
+if (ok) setState('Ready');
 </script>
 </body>
 </html>
